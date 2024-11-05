@@ -1,6 +1,7 @@
 name: FinancialControl
 
 options:
+  groupSortPosition: "none"
   bundleIdPrefix: com.financial.control
   minimumXcodeGenVersion: 16.0
   generateEmptyDirectories: true
@@ -30,10 +31,10 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.financial.control.app
         PRODUCT_NAME: FinancialControl
         ENABLE_PREVIEWS: YES
-        DEVELOPMENT_ASSET_PATHS: "\"FinancialControl/Preview Content\""
+        DEVELOPMENT_ASSET_PATHS: "\"FinancialControl/Resources/Preview Content\""
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
     info:
-      path: FinancialControl/Info.plist
+      path: FinancialControl/Resources/Info.plist
       properties:
         UIStatusBarStyle: UIStatusBarStyleLightContent
         LSApplicationCategoryType: public.app-category.finance
