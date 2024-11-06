@@ -5,6 +5,6 @@ target 'FinancialControl' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for FinancialControl
-
+  pod 'Router', :git => 'https://github.com/TiagoLinharess/app-ios-financial-control-v2.git', :branch => 'main'
+  #pod 'Router', :path => '~/Documents/ProjetosPessoais/app-ios-financial-control-v2'
 end

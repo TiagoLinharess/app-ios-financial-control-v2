@@ -5,6 +5,7 @@
 //  Created by Tiago Linhares on 05/11/24.
 //
 
+import Router
 import SwiftUI
 
 @main
@@ -13,7 +14,7 @@ struct FinancialControlApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Navigation.Features.Router.ContainerView {
+            Router.Features.Navigation.ContainerView {
                 HomeView()
             }
         }

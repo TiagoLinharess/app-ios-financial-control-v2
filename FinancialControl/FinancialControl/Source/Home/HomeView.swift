@@ -5,10 +5,11 @@
 //  Created by Tiago Linhares on 05/11/24.
 //
 
+import Router
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var path: Navigation.Features.Router.Path
+    @EnvironmentObject var path: Router.Features.Navigation.Path
     
     var body: some View {
         VStack {
