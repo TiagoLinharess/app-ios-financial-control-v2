@@ -13,7 +13,9 @@ struct FinancialControlApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Navigation.Features.Router.ContainerView {
+                HomeView()
+            }
         }
     }
 }
