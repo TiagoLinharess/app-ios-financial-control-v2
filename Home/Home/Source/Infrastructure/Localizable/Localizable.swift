@@ -9,6 +9,7 @@ import SwiftUI
 
 enum HomeLocalizable {
     // MARK: - Home -
+    
     enum Home {
         static let title = HomeLocalizable.tr("Localizable", "home.title", fallback: "Financial Control")
     }

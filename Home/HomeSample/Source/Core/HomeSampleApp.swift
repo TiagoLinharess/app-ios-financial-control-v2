@@ -1,5 +1,5 @@
 //
-//  RouterSampleApp.swift
+//  HomeSampleApp.swift
 //  Router
 //
 //  Created by Tiago Linhares on 05/11/24.
@@ -10,13 +10,13 @@ import Router
 import SwiftUI
 
 @main
-struct RouterSampleApp: App {
+struct HomeSampleApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
             ContainerRouterView {
-                HomeView()
+                HomeBuilder().build()
             }
         }
     }
