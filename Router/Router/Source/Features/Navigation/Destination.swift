@@ -8,43 +8,48 @@
 import SwiftUI
 
 public enum Destination: CaseIterable, Codable, Hashable {
-    case Home
-    case SingleForm
-    case PaymentType
-    case Products
-    case Budgets
-    case Bills
+    case home
+    case singleForm
+    case paymentType
+    case creditCard
+    case products
+    case budgets
+    case bills
     
     public var title: String {
         switch self {
-        case .Home:
+        case .home:
             "Home"
-        case .SingleForm:
-            "Single Form"
-        case .PaymentType:
-            "Payment Type"
-        case .Products:
+        case .singleForm:
+            "Add Payment"
+        case .paymentType:
+            "Payment Types"
+        case .creditCard:
+            "Credit Cards"
+        case .products:
             "Products"
-        case .Budgets:
+        case .budgets:
             "Budgets"
-        case .Bills:
+        case .bills:
             "Bills"
         }
     }
     
     public var iconName: String {
         switch self {
-        case .Home:
+        case .home:
             "house"
-        case .SingleForm:
+        case .singleForm:
             "dollarsign"
-        case .PaymentType:
+        case .paymentType:
             "list.bullet"
-        case .Products:
+        case .creditCard:
+            "creditcard"
+        case .products:
             "bookmark"
-        case .Budgets:
+        case .budgets:
             "calendar.day.timeline.left"
-        case .Bills:
+        case .bills:
             "calendar"
         }
     }
