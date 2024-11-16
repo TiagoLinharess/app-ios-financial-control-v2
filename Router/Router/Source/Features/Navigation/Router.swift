@@ -1,18 +1,11 @@
 //
-//  Path.swift
+//  Router.swift
 //  Router
 //
 //  Created by Tiago Linhares on 05/11/24.
 //
 
 import SwiftUI
-
-// MARK: - Destination -
-
-public enum Destination: Codable, Hashable {
-    case featureA
-    case featureB
-}
 
 // MARK: - Path -
 
@@ -21,12 +14,7 @@ public final class Router: ObservableObject {
     
     @ViewBuilder
     public func handle(to destination: Destination) -> some View {
-        switch destination {
-        case .featureA:
-            FeatureA()
-        case .featureB:
-            FeatureB()
-        }
+        destination.view
     }
     
     public func navigate(to destination: Destination) {

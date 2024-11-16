@@ -9,17 +9,14 @@ import Router
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var path: Router.Features.Navigation.Path
+    @EnvironmentObject var path: Router
     
     var body: some View {
         VStack {
-            Text("Home")
-                .foregroundStyle(.white)
-            Button("A") {
-                path.navigate(to: .featureA)
-            }
-            Button("B") {
-                path.navigate(to: .featureB)
+            ForEach(Destination.allCases, id: \.self) { destination in
+                Button(destination.title) {
+                    path.navigate(to: destination)
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
