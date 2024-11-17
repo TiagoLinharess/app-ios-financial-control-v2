@@ -13,7 +13,7 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
-            ForEach(Destination.allCases, id: \.self) { destination in
+            ForEach([Destination.Home, Destination.Products], id: \.self) { destination in
                 Button(destination.title) {
                     path.navigate(to: destination)
                 }

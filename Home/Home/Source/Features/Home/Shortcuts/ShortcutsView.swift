@@ -5,20 +5,20 @@
 //  Created by Tiago Linhares on 14/11/24.
 //
 
-import Router
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
 struct ShortcutsView<Store: ShortcutsAppStoreProtocol>: View {
     // MARK: - Properties -
 
-    @EnvironmentObject private var router: Router
     @StateObject var store: Store
+    weak var singleton: HomeSingleton?
     
     // MARK: - Init -
     
-    init(store: Store) {
+    init(store: Store, singleton: HomeSingleton? = HomeSingleton.shared) {
         self._store = StateObject(wrappedValue: store)
+        self.singleton = singleton
     }
     
     // MARK: - Body -
@@ -33,7 +33,7 @@ struct ShortcutsView<Store: ShortcutsAppStoreProtocol>: View {
                         label: destination.title,
                         font: .montserrat
                     ) {
-                        router.navigate(to: destination)
+                        singleton?.navigate(to: destination)
                     }
                 }
                 Spacer().frame(width: .small)

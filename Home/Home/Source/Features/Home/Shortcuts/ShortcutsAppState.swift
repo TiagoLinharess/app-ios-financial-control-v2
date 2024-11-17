@@ -5,12 +5,10 @@
 //  Created by Tiago Linhares on 16/11/24.
 //
 
-import Router
-
 struct ShortcutsAppState: Equatable {
     // MARK: - Properties -
     
-    var items: [Destination] = []
+    var items: [ExternalDestination] = []
     
     // MARK: - Equatable -
     

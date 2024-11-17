@@ -29,6 +29,7 @@ struct HomeView<Store: HomeAppStoreProtocol>: View {
                 }
             }
         }
+        .navigationBarHidden(true)
         .task {
             store.dispatch(action: .fetch)
         }

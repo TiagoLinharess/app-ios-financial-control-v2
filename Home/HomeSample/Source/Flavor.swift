@@ -7,6 +7,7 @@
 
 import SharpnezDesignSystemSwiftUI
 
+// TODO: Implementar no core sample
 // MARK: - Flavor Colors
 final class FlavorColors: FlavorColorsProtocol {
     var primary: String = "#161c48"
