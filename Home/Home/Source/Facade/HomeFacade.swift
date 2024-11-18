@@ -10,7 +10,7 @@ import SwiftUI
 public typealias ExternalDestinationCompletion = (ExternalDestination) -> Void
 
 
-// TODO: Mover ExternalDestination, FacadeProtocol para Core
+// TODO: Mover ExternalDestination, FacadeProtocol, ExternalDestinationDelegate para Core
 public enum ExternalDestination: String {
     case singleForm
     case paymentType
@@ -54,6 +54,10 @@ public enum ExternalDestination: String {
     }
 }
 
+public protocol ExternalDestinationDelegate {
+    func didNavigate(to externalDestination: ExternalDestination)
+}
+
 // MARK: - Facade -
 
 public protocol FacadeProtocol: Hashable {
@@ -64,7 +68,7 @@ public protocol FacadeProtocol: Hashable {
 // MARK: - Protocol -
 
 public protocol HomeFacadeProtocol: FacadeProtocol {
-    func start(navigate: @escaping ExternalDestinationCompletion)
+    func start(externalDestinationDelegate: ExternalDestinationDelegate)
 }
 
 public struct HomeFacade: HomeFacadeProtocol {
@@ -74,8 +78,8 @@ public struct HomeFacade: HomeFacadeProtocol {
     
     // MARK: - Public Methods -
     
-    public func start(navigate: @escaping ExternalDestinationCompletion) {
-        startSingleton(navigate: navigate)
+    public func start(externalDestinationDelegate: ExternalDestinationDelegate) {
+        startSingleton(externalDestinationDelegate: externalDestinationDelegate)
     }
     
     @ViewBuilder
@@ -86,7 +90,7 @@ public struct HomeFacade: HomeFacadeProtocol {
     
     // MARK: - Private Methods -
     
-    private func startSingleton(navigate: @escaping ExternalDestinationCompletion) {
-        HomeSingleton.start(navigate: navigate)
+    private func startSingleton(externalDestinationDelegate: ExternalDestinationDelegate) {
+        HomeSingleton.start(externalDestinationDelegate: externalDestinationDelegate)
     }
 }

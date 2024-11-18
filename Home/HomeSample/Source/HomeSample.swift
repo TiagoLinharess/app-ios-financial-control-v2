@@ -15,18 +15,20 @@ struct HomeSample<Facade: HomeFacadeProtocol>: View {
     
     init(homeFacade: Facade) {
         self.homeFacade = homeFacade
+        homeFacade.start(externalDestinationDelegate: self)
     }
     
     var body: some View {
         Button("Navigate to home", action: navigateToHome)
-            .task {
-                homeFacade.start { externalDestination in
-                    print(externalDestination)
-                }
-            }
     }
     
     private func navigateToHome() {
         router.navigate(to: Destination<Facade>.home(homeFacade))
+    }
+}
+
+extension HomeSample: ExternalDestinationDelegate {
+    func didNavigate(to externalDestination: ExternalDestination) {
+        print(externalDestination)
     }
 }

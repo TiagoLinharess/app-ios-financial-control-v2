@@ -14,25 +14,25 @@ final class HomeSingleton: NSObject {
     
     // MARK: - Properties -
     
-    private var navigate: ExternalDestinationCompletion?
+    private var externalDestinationDelegate: ExternalDestinationDelegate?
     
     // MARK: - Start -
     
-    static func start(navigate: @escaping ExternalDestinationCompletion) {
+    static func start(externalDestinationDelegate: ExternalDestinationDelegate) {
         shared = HomeSingleton()
-        shared?.navigate = navigate
+        shared?.externalDestinationDelegate = externalDestinationDelegate
     }
     
     // MARK: - Finish -
     
     static func finish() {
-        shared?.navigate = nil
+        shared?.externalDestinationDelegate = nil
         shared = nil
     }
     
     // MARK: - Public Methods -
     
     func navigate(to destination: ExternalDestination) {
-        navigate?(destination)
+        externalDestinationDelegate?.didNavigate(to: destination)
     }
 }
