@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-public struct HomeBuilder {
-    
-    public init() { }
+struct HomeBuilder {
     
     @ViewBuilder
-    public func build() -> some View {
+    func build() -> some View {
         let state = HomeAppState()
         let store = HomeAppStore(initialState: state, reducer: homeAppReducer(state:action:))
         HomeView(store: store)

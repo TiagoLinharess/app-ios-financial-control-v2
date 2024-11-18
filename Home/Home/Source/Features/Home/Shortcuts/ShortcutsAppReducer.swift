@@ -5,8 +5,6 @@
 //  Created by Tiago Linhares on 16/11/24.
 //
 
-import Router
-
 // MARK: - Typealias -
 
 typealias ShortcutsAppReducer<ShortcutsAppState, ShortcutsAppAction> = (

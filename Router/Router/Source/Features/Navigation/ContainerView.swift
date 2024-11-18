@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public struct ContainerRouterView<Content: View>: View {
+public struct ContainerRouterView<Content: View, Destination: DestinationProtocol>: View {
     
     // MARK: - Properties -
     
