@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public protocol DestinationProtocol: CaseIterable, Codable, Hashable {
+public protocol DestinationProtocol: Hashable {
     associatedtype ContentView: View
     var title: String { get }
     var iconName: String { get }

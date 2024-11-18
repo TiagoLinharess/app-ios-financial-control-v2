@@ -7,19 +7,8 @@ def router_pod
 end
 
 def core_pod
-  #  pod 'Router', :git => 'https://github.com/TiagoLinharess/app-ios-financial-control-v2.git', :branch => 'main'
+  #  pod 'Core', :git => 'https://github.com/TiagoLinharess/app-ios-financial-control-v2.git', :branch => 'main'
     pod 'Core', :path => '~/Documents/ProjetosPessoais/app-ios-financial-control-v2'
-end
-
-def core_sample_pod
-  #  pod 'Router', :git => 'https://github.com/TiagoLinharess/app-ios-financial-control-v2.git', :branch => 'main'
-    pod 'CoreSample', :path => '~/Documents/ProjetosPessoais/app-ios-financial-control-v2'
-end
-
-def internal_pods
-  router_pod
-  core_pod
-  core_sample_pod
 end
 
 def sharpnez_pods
@@ -27,18 +16,10 @@ def sharpnez_pods
   pod 'SharpnezDesignSystemSwiftUI', :path => '~/Documents/ProjetosPessoais/sdk-ios-sharpnez-design-system'
 end
 
-target 'Home' do
+target 'CoreSample' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  
+  sharpnez_pods
+  router_pod
   core_pod
-  sharpnez_pods
-end
-
-target 'HomeSample' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-  
-  internal_pods
-  sharpnez_pods
 end

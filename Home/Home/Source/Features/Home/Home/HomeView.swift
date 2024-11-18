@@ -8,18 +8,30 @@
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-public struct HomeView: View {
+struct HomeView<Store: HomeAppStoreProtocol>: View {
+    // MARK: - Properties -
+    
+    @StateObject var store: Store
     
     // MARK: - Init -
     
-    public init () { }
+    init(store: Store) {
+        self._store = StateObject(wrappedValue: store)
+    }
     
     // MARK: - Body -
     
-    public var body: some View {
-        SHContainerView(title: "home.title".localizedLowercase, font: .poppins) {
-            Text(HomeLocalizable.Home.title)
-            ShortcutsView()
+    var body: some View {
+        SHContainerView(title: HomeLocalizable.Home.title, font: .poppins) {
+            VStack(spacing: .small) {
+                ForEach(store.state.items, id: \.self) { item in
+                    item.view
+                }
+            }
+        }
+        .navigationBarHidden(true)
+        .task {
+            store.dispatch(action: .fetch)
         }
     }
 }
