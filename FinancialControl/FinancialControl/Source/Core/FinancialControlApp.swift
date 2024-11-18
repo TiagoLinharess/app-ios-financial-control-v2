@@ -14,9 +14,8 @@ struct FinancialControlApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContainerRouterView {
-                HomeView()
-            }
+            //TODO: Mudar o Facade protocol para View?
+            StartView()
         }
     }
 }

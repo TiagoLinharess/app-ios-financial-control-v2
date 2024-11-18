@@ -6,7 +6,19 @@ def router_pod
     pod 'Router', :path => '~/Documents/ProjetosPessoais/app-ios-financial-control-v2'
 end
 
+def core_pod
+  #  pod 'Router', :git => 'https://github.com/TiagoLinharess/app-ios-financial-control-v2.git', :branch => 'main'
+    pod 'Core', :path => '~/Documents/ProjetosPessoais/app-ios-financial-control-v2'
+end
+
+def home_pod
+  #  pod 'Router', :git => 'https://github.com/TiagoLinharess/app-ios-financial-control-v2.git', :branch => 'main'
+    pod 'Home', :path => '~/Documents/ProjetosPessoais/app-ios-financial-control-v2'
+end
+
 def internal_pods
+  core_pod
+  home_pod
   router_pod
 end
 
