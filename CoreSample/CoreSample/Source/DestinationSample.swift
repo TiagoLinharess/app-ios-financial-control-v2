@@ -1,23 +1,21 @@
 //
 //  Destination.swift
-//  Home
+//  Router
 //
 //  Created by Tiago Linhares on 16/11/24.
-//
 
+import Core
 import Router
-import Home
 import SwiftUI
 
-// TODO: Implementar no core sample
 public enum Destination<T: FacadeProtocol>: DestinationProtocol {
     case home(T)
-    case singleForm
-    case paymentType
-    case creditCard
-    case products
-    case budgets
-    case bills
+    case singleForm(T)
+    case paymentType(T)
+    case creditCard(T)
+    case products(T)
+    case budgets(T)
+    case bills(T)
 
     public var title: String {
         switch self {
@@ -60,10 +58,14 @@ public enum Destination<T: FacadeProtocol>: DestinationProtocol {
     @ViewBuilder
     public var view: some View {
         switch self {
-        case .home(let facade):
+        case let .home(facade),
+            let .singleForm(facade),
+            let .paymentType(facade),
+            let .creditCard(facade),
+            let .products(facade),
+            let .budgets(facade),
+            let .bills(facade):
             facade.getView()
-        default:
-            Text(self.title)
         }
     }
 }

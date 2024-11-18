@@ -6,6 +6,7 @@
 //
 
 import Home
+import CoreSample
 import Router
 import SwiftUI
 

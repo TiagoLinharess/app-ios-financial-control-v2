@@ -5,6 +5,7 @@
 //  Created by Tiago Linhares on 16/11/24.
 //
 
+import Core
 import SwiftUI
 
 final class HomeSingleton: NSObject {
