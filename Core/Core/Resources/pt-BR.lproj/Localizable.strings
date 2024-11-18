@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Home
+
+  Created by Tiago Linhares on 16/11/24.
+  
+*/
+"module.home" = "Início";
+"module.single.form" = "Adicionar pagamento";
+"module.payment.type" = "Tipos de pagamento";
+"module.creditcard" = "Cartões de crédito";
+"module.products" = "Produtos";
+"module.budgets" = "Orçamentos";
+"module.bills" = "Contas";
