@@ -7,14 +7,10 @@
 import Core
 import SwiftUI
 
-// MARK: - Typealias -
-
-public typealias ExternalDestinationCompletion = (ExternalDestination) -> Void
-
 // MARK: - Protocol -
 
 public protocol HomeFacadeProtocol: FacadeProtocol {
-    func start(externalDestinationDelegate: ExternalDestinationDelegate)
+    func start(externalNavigateCompletion: @escaping ExternalDestinationCompletion)
 }
 
 public struct HomeFacade: HomeFacadeProtocol {
@@ -24,8 +20,8 @@ public struct HomeFacade: HomeFacadeProtocol {
     
     // MARK: - Public Methods -
     
-    public func start(externalDestinationDelegate: ExternalDestinationDelegate) {
-        startSingleton(externalDestinationDelegate: externalDestinationDelegate)
+    public func start(externalNavigateCompletion: @escaping ExternalDestinationCompletion) {
+        startSingleton(externalNavigateCompletion: externalNavigateCompletion)
     }
     
     @ViewBuilder
@@ -36,7 +32,7 @@ public struct HomeFacade: HomeFacadeProtocol {
     
     // MARK: - Private Methods -
     
-    private func startSingleton(externalDestinationDelegate: ExternalDestinationDelegate) {
-        HomeSingleton.start(externalDestinationDelegate: externalDestinationDelegate)
+    private func startSingleton(externalNavigateCompletion: @escaping ExternalDestinationCompletion) {
+        HomeSingleton.start(externalNavigateCompletion: externalNavigateCompletion)
     }
 }

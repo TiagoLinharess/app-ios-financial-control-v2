@@ -9,6 +9,6 @@ enum Constants {
     
     // MARK: - Images
     enum Images {
-        static let background = "background"
+        static let background = "Background"
     }
 }

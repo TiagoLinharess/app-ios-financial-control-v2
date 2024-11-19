@@ -8,6 +8,7 @@
 enum Constants {
     enum Icons {
         static let home = "house"
+        static let login = "person"
         static let singleForm = "dollarsign"
         static let paymentType = "list.bullet"
         static let creditCard = "creditcard"

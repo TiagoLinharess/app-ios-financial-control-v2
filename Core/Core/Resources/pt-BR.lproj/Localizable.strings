@@ -6,6 +6,7 @@
   
 */
 "module.home" = "Início";
+"module.login" = "Login";
 "module.single.form" = "Adicionar pagamento";
 "module.payment.type" = "Tipos de pagamento";
 "module.creditcard" = "Cartões de crédito";

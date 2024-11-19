@@ -12,6 +12,7 @@ enum CoreLocalizable {
     
     enum Modules {
         static let home = CoreLocalizable.tr("Localizable", "module.home", fallback: "Home")
+        static let login = CoreLocalizable.tr("Localizable", "module.login", fallback: "Login")
         static let singleForm = CoreLocalizable.tr("Localizable", "module.single.form", fallback: "Add Payment")
         static let paymentType = CoreLocalizable.tr("Localizable", "module.payment.type", fallback: "Payment Types")
         static let creditCard = CoreLocalizable.tr("Localizable", "module.creditcard", fallback: "Credit Cards")

@@ -7,6 +7,7 @@
 
 public enum ExternalDestination: String {
     case home
+    case login
     case singleForm
     case paymentType
     case creditCard
@@ -18,6 +19,8 @@ public enum ExternalDestination: String {
         switch self {
         case .home:
             CoreLocalizable.Modules.home
+        case .login:
+            CoreLocalizable.Modules.login
         case .singleForm:
             CoreLocalizable.Modules.singleForm
         case .paymentType:
@@ -37,6 +40,8 @@ public enum ExternalDestination: String {
         switch self {
         case .home:
             Constants.Icons.home
+        case .login:
+            Constants.Icons.login
         case .singleForm:
             Constants.Icons.singleForm
         case .paymentType:
