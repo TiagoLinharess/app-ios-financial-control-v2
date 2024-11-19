@@ -5,14 +5,21 @@
 //  Created by Tiago Linhares on 14/11/24.
 //
 
-import Router
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-struct ShortcutsView: View {
+struct ShortcutsView<Store: ShortcutsAppStoreProtocol>: View {
     // MARK: - Properties -
+
+    @StateObject var store: Store
+    weak var singleton: HomeSingleton?
     
-    @EnvironmentObject private var router: Router
+    // MARK: - Init -
+    
+    init(store: Store, singleton: HomeSingleton? = HomeSingleton.shared) {
+        self._store = StateObject(wrappedValue: store)
+        self.singleton = singleton
+    }
     
     // MARK: - Body -
     
@@ -20,17 +27,20 @@ struct ShortcutsView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: .extraSmall) {
                 Spacer().frame(width: .small)
-                ForEach(Destination.allCases, id: \.self) { destination in
+                ForEach(store.state.items, id: \.self) { destination in
                     SHShortcutButton(
                         image: destination.iconName,
                         label: destination.title,
                         font: .montserrat
                     ) {
-                        router.navigate(to: destination)
+                        singleton?.navigate(to: destination)
                     }
                 }
                 Spacer().frame(width: .small)
             }
+        }
+        .task {
+            store.dispatch(action: .fetch)
         }
     }
 }

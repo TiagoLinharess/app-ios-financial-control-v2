@@ -13,11 +13,11 @@ public final class Router: ObservableObject {
     @Published public var navPath = NavigationPath()
     
     @ViewBuilder
-    public func handle(to destination: Destination) -> some View {
+    public func handle<T: DestinationProtocol>(to destination: T) -> some View {
         destination.view
     }
     
-    public func navigate(to destination: Destination) {
+    public func navigate(to destination: any DestinationProtocol) {
         navPath.append(destination)
     }
     

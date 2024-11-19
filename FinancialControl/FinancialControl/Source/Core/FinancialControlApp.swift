@@ -14,8 +14,8 @@ struct FinancialControlApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContainerRouterView {
-                HomeView()
+            ContainerRouterView<StartView, Modules> {
+                StartView()
             }
         }
     }

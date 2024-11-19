@@ -7,17 +7,18 @@
 
 import SwiftUI
 
-enum HomeLocalizable {
-    // MARK: - Home -
+enum Localizable {
+    // MARK: - Start -
     
-    enum Home {
-        static let title = HomeLocalizable.tr("Localizable", "home.title", fallback: "Financial Control")
+    enum Start {
+        static let title = Localizable.tr("Localizable", "start.title", fallback: "Financial Control")
+        static let button = Localizable.tr("Localizable", "start.button", fallback: "Start")
     }
 }
 
 // MARK: - Implementation Details -
 
-extension HomeLocalizable {
+extension Localizable {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg..., fallback value: String = "") -> String {
     let format = BundleToken.bundle.localizedString(forKey: key, value: value, table: table)
     return String(format: format, locale: Locale.current, arguments: args)

@@ -14,7 +14,7 @@ struct RouterSampleApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContainerRouterView {
+            ContainerRouterView<HomeView, Destination> {
                 HomeView()
             }
         }
