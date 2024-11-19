@@ -17,6 +17,7 @@ struct StartView: View {
     let homeFacade: any HomeFacadeProtocol
     
     @EnvironmentObject var router: Router
+    @EnvironmentObject var launchScreenState: LaunchScreenStateManager
     @State private var isVisible = false
     
     // MARK: - Init -
@@ -34,7 +35,7 @@ struct StartView: View {
                 .configureWithSH(color: .onPrimarySH, font: .title1(.poppins, .regular))
             Spacer()
             Button(action: handleStart) {
-                Text(Localizable.Start.button)
+                Text(Localizable.Start.login)
                     .frame(maxWidth: .infinity)
             }
             .primarySHStyle(
@@ -42,21 +43,27 @@ struct StartView: View {
                 color: .onPrimarySH,
                 onColor: .primarySH
             )
+            Button(action: handleStart) {
+                Text(Localizable.Start.createAccount)
+                    .frame(maxWidth: .infinity)
+            }
+            .secondarySHStyle(font: .body(.montserrat, .regular), color: .onPrimarySH)
         }
         .offset(y: handleOffset())
         .opacity(handleIsVisible())
         .padding(.small)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Image(Constants.Images.background))
-        .onAppear(perform: handleShow)
+        .task {
+            await handleShow()
+        }
     }
     
     // MARK: - Private Methods -
     
-    private func handleShow() {
-        withAnimation(.easeInOut(duration: 1.0)) {
-            isVisible.toggle()
-        }
+    private func handleShow() async {
+        await launchScreenState.dismiss()
+        isVisible.toggle()
     }
     
     private func handleIsVisible() -> CGFloat {

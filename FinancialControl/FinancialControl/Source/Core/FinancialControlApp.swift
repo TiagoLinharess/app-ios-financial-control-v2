@@ -11,12 +11,19 @@ import SwiftUI
 @main
 struct FinancialControlApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject var launchScreenState = LaunchScreenStateManager()
     
     var body: some Scene {
         WindowGroup {
-            ContainerRouterView<StartView, Modules> {
-                StartView()
-            }
+            ZStack {
+                ContainerRouterView<StartView, Modules> {
+                    StartView()
+                }
+                
+                if launchScreenState.state != .finished {
+                    LaunchScreenView()
+                }
+            }.environmentObject(launchScreenState)
         }
     }
 }

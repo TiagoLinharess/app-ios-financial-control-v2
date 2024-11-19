@@ -6,4 +6,5 @@
   
 */
 "start.title" = "Financial Control";
-"start.button" = "Start";
+"start.login" = "Login";
+"start.createAccount" = "Create account";

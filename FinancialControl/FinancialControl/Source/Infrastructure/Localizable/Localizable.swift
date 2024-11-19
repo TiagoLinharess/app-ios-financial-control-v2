@@ -12,7 +12,8 @@ enum Localizable {
     
     enum Start {
         static let title = Localizable.tr("Localizable", "start.title", fallback: "Financial Control")
-        static let button = Localizable.tr("Localizable", "start.button", fallback: "Start")
+        static let login = Localizable.tr("Localizable", "start.login", fallback: "Login")
+        static let createAccount = Localizable.tr("Localizable", "start.createAccount", fallback: "Create Account")
     }
 }
 
