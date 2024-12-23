@@ -8,6 +8,10 @@ def core_pod
    pod 'Core', :path => '~/Documents/FinancialControl/app-ios-financial-control-v2'
 end
 
+def router_pod
+   pod 'Router', :path => '~/Documents/FinancialControl/app-ios-financial-control-v2'
+end
+
 def core_sample_pod
    pod 'CoreSample', :path => '~/Documents/FinancialControl/app-ios-financial-control-v2'
 end
@@ -18,7 +22,7 @@ def internal_pods
 end
 
 def sharpnez_pods
- pod 'SharpnezDesignSystemSwiftUI', :git => 'https://github.com/TiagoLinharess/sdk-ios-sharpnez-design-system.git', :tag => '2.2.0'
+ pod 'SharpnezDesignSystemSwiftUI', :path => '~/Documents/Sharpnez/sdk-ios-sharpnez-design-system'
 end
 
 target 'Login' do
@@ -29,6 +33,7 @@ end
 
 target 'LoginSample' do
   use_frameworks!
+  router_pod
   internal_pods
   sharpnez_pods
 end

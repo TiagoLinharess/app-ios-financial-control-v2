@@ -18,6 +18,10 @@ enum LoginLocalizable {
     
     enum CreateAccount {
         static let title = LoginLocalizable.tr("Localizable", "createAccount.title", fallback: "Criar conta")
+        static let name = LoginLocalizable.tr("Localizable", "createAccount.name", fallback: "Nome")
+        static let email = LoginLocalizable.tr("Localizable", "createAccount.email", fallback: "E-mail")
+        static let password = LoginLocalizable.tr("Localizable", "createAccount.password", fallback: "Senha")
+        static let confirmPassword = LoginLocalizable.tr("Localizable", "createAccount.confirmPassword", fallback: "Confirmar senha")
     }
 }
 

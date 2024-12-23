@@ -20,3 +20,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         return true
     }
 }
+
+extension UINavigationController {
+    open override func viewWillLayoutSubviews() {
+        let button = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        button.tintColor = UIColor(Color.onPrimarySH)
+        navigationBar.topItem?.backBarButtonItem = button
+    }
+}

@@ -8,8 +8,12 @@
 
 // MARK: - Login -
 
-"login.title" = "Login";
+"login.title" = "Entrar";
 
 // MARK: - Create Account -
 
-"createAccount.title" = "Create Account";
+"createAccount.title" = "Criar Conta";
+"createAccount.name" = "Nome";
+"createAccount.email" = "E-mail";
+"createAccount.password" = "Senha";
+"createAccount.confirmPassword" = "Confirmar senha";
