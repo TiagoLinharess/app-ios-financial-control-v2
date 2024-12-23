@@ -2,10 +2,7 @@
  platform :ios, '18.0'
 
 # pod 'Router', :path => '~/Documents/FinancialControl/app-ios-financial-control-v2'
-
-def router_pod
-   pod 'Router', :git => 'https://github.com/TiagoLinharess/app-ios-financial-control-v2.git', :branch => 'main'
-end
+# pod 'Router', :git => 'https://github.com/TiagoLinharess/app-ios-financial-control-v2.git', :branch => 'main'
 
 def core_pod
    pod 'Core', :path => '~/Documents/FinancialControl/app-ios-financial-control-v2'
@@ -16,7 +13,6 @@ def core_sample_pod
 end
 
 def internal_pods
-  router_pod
   core_pod
   core_sample_pod
 end
