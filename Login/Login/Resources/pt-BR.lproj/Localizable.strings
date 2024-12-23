@@ -17,3 +17,10 @@
 "createAccount.email" = "E-mail";
 "createAccount.password" = "Senha";
 "createAccount.confirmPassword" = "Confirmar senha";
+"createAccount.numberCharactersRule" = "• Pelo menos de 8 caracteres";
+"createAccount.capitalLetterRule" = "• Pelo menos 1 letra maiúscula";
+"createAccount.lowercaseLetterRule" = "• Pelo menos 1 letra minúscula";
+"createAccount.numberRule" = "• Pelo menos 1 número";
+"createAccount.specialCharacterRule" = "• Pelo menos 1 caractere especial";
+"createAccount.confirmPasswordRule" = "• As senhas precisam ser as mesmas";
+"createAccount.emailRule" = "• O e-mail precisa ser válido";
