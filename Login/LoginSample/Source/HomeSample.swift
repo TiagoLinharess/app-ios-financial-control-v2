@@ -11,27 +11,20 @@ import CoreSample
 import Router
 import SwiftUI
 
-struct HomeSample<Facade: LoginFacadeProtocol>: View {
-    @State private var loginFacade: Facade
+struct HomeSample: View {
     @EnvironmentObject var router: Router
     
-    init(loginFacade: Facade) {
-        self.loginFacade = loginFacade
-    }
-    
     var body: some View {
-        Button("Navigate to login", action: navigateToLogin)
-        Button("Navigate to create account", action: navigateToCreateAccount)
+        Button("Navigate to Sign In", action: { start(at: .signIn) })
+        Button("Navigate to Sign Up", action: { start(at: .signUp) })
     }
     
-    private func navigateToLogin() {
-        loginFacade.start(destination: .login, completion: onFinish)
-        router.navigate(to: Destination<Facade>.login(loginFacade))
-    }
-    
-    private func navigateToCreateAccount() {
-        loginFacade.start(destination: .createAccount, completion: onFinish)
-        router.navigate(to: Destination<Facade>.login(loginFacade))
+    private func start(at destination: LoginDestination) {
+        let finishModel = LoginFinish(completion: onFinish)
+        let view = LoginContainerView(destination: destination)
+            .environmentObject(finishModel)
+        
+        router.navigate(to: Destination.login(AnyView(view)))
     }
     
     private func onFinish() {

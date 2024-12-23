@@ -17,6 +17,7 @@ def core_sample_pod
 end
 
 def internal_pods
+  router_pod
   core_pod
   core_sample_pod
 end
@@ -34,7 +35,6 @@ end
 
 target 'LoginSample' do
   use_frameworks!
-  router_pod
   internal_pods
   sharpnez_pods
 end

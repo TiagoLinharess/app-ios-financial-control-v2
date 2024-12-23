@@ -1,5 +1,5 @@
 //
-//  CreateAccountView.swift
+//  SignUpView.swift
 //  Login
 //
 //  Created by Tiago Linhares on 22/12/24.
@@ -9,35 +9,36 @@ import SharpnezCore
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-struct CreateAccountView: View {
-    // MARK: - Properties -
+struct SignUpView: View {
     
-    @State var name: String = ""
-    @State var email: String = ""
-    @State var password: String = ""
-    @State var confirmPassword: String = ""
+    // MARK: Properties
     
-    // MARK: - Body -
+    @State private var name: String = ""
+    @State private var email: String = ""
+    @State private var password: String = ""
+    @State private var confirmPassword: String = ""
+    
+    // MARK: Body
     
     var body: some View {
-        SHContainerView(title: LoginLocalizable.CreateAccount.title, font: .poppins) {
+        SHContainerView(title: LoginLocalizable.SignUp.title, font: .poppins) {
             VStack(alignment: .center, spacing: .small) {
                 SHTextField(
-                    title: LoginLocalizable.CreateAccount.name,
+                    title: LoginLocalizable.SignUp.name,
                     color: .primarySH,
                     font: .body(.montserrat, .regular),
                     titleFont: .subtitle(.montserrat, .regular),
                     text: $name
                 )
                 SHTextField(
-                    title: LoginLocalizable.CreateAccount.email,
+                    title: LoginLocalizable.SignUp.email,
                     color: .primarySH,
                     font: .body(.montserrat, .regular),
                     titleFont: .subtitle(.montserrat, .regular),
                     text: $email,
                     rules: [
                         .init(
-                            title: LoginLocalizable.CreateAccount.emailRule,
+                            title: LoginLocalizable.SignUp.emailRule,
                             isComplete: email.isValidEmail
                         )
                     ],
@@ -45,60 +46,60 @@ struct CreateAccountView: View {
                     keyboardType: .emailAddress
                 )
                 SHPasswordField(
-                    title: LoginLocalizable.CreateAccount.password,
+                    title: LoginLocalizable.SignUp.password,
                     color: .primarySH,
                     font: .body(.montserrat, .regular),
                     titleFont: .subtitle(.montserrat, .regular),
                     text: $password,
                     rules: [
                         .init(
-                            title: LoginLocalizable.CreateAccount.numberCharactersRule,
+                            title: LoginLocalizable.SignUp.numberCharactersRule,
                             isComplete: numberCharactersRule()
                         ),
                         .init(
-                            title: LoginLocalizable.CreateAccount.capitalLetterRule,
+                            title: LoginLocalizable.SignUp.capitalLetterRule,
                             isComplete: password.containsUppercasedLetter
                         ),
                         .init(
-                            title: LoginLocalizable.CreateAccount.lowercaseLetterRule,
+                            title: LoginLocalizable.SignUp.lowercaseLetterRule,
                             isComplete: password.containsLowercasedLetter
                         ),
                         .init(
-                            title: LoginLocalizable.CreateAccount.numberRule,
+                            title: LoginLocalizable.SignUp.numberRule,
                             isComplete: password.containsNumber
                         ),
                         .init(
-                            title: LoginLocalizable.CreateAccount.specialCharacterRule,
+                            title: LoginLocalizable.SignUp.specialCharacterRule,
                             isComplete: password.containsSpecialCharacter
                         ),
                     ]
                 )
                 SHPasswordField(
-                    title: LoginLocalizable.CreateAccount.confirmPassword,
+                    title: LoginLocalizable.SignUp.confirmPassword,
                     color: .primarySH,
                     font: .body(.montserrat, .regular),
                     titleFont: .subtitle(.montserrat, .regular),
                     text: $confirmPassword,
                     rules: [
                         .init(
-                            title: LoginLocalizable.CreateAccount.confirmPasswordRule,
+                            title: LoginLocalizable.SignUp.confirmPasswordRule,
                             isComplete: passwordMustBeEqual()
                         )
                     ]
                 )
                 SHButton(
-                    title: LoginLocalizable.CreateAccount.title,
+                    title: LoginLocalizable.SignUp.title,
                     style: .primary(.primarySH, .onPrimarySH),
                     font: .body(.montserrat, .regular),
                     isDisabled: handleIsButtonDisabled(),
-                    action: handleCreateAccount
+                    action: handleSignUp
                 )
             }
             .padding(.small)
         }
     }
     
-    // MARK: - Private Methods -
+    // MARK: Private Methods
     
     private func numberCharactersRule() -> Bool {
         return password.count >= 8
@@ -125,7 +126,7 @@ struct CreateAccountView: View {
         !handlePasswordValidation()
     }
     
-    private func handleCreateAccount() {
-        print("create account")
+    private func handleSignUp() {
+        print("Sign up")
     }
 }

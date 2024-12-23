@@ -6,6 +6,6 @@
 //
 
 public enum LoginDestination {
-    case login
-    case createAccount
+    case signIn
+    case signUp
 }

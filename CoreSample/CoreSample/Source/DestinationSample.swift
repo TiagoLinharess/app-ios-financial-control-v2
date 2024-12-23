@@ -8,15 +8,15 @@ import Core
 import Router
 import SwiftUI
 
-public enum Destination<T: FacadeProtocol>: DestinationProtocol {
-    case login(T)
-    case home(T)
-    case singleForm(T)
-    case paymentType(T)
-    case creditCard(T)
-    case products(T)
-    case budgets(T)
-    case bills(T)
+public enum Destination: DestinationProtocol {
+    case login(AnyView)
+    case home(AnyView)
+    case singleForm(AnyView)
+    case paymentType(AnyView)
+    case creditCard(AnyView)
+    case products(AnyView)
+    case budgets(AnyView)
+    case bills(AnyView)
 
     public var title: String {
         switch self {
@@ -59,19 +59,27 @@ public enum Destination<T: FacadeProtocol>: DestinationProtocol {
             "person"
         }
     }
+    
+    public static func == (lhs: Destination, rhs: Destination) -> Bool {
+        lhs.title == rhs.title
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        return hasher.combine(title)
+    }
 
     @ViewBuilder
     public var view: some View {
         switch self {
-        case let .home(facade),
-            let .singleForm(facade),
-            let .paymentType(facade),
-            let .creditCard(facade),
-            let .products(facade),
-            let .budgets(facade),
-            let .bills(facade),
-            let .login(facade):
-            facade.getView()
+        case let .home(view),
+            let .singleForm(view),
+            let .paymentType(view),
+            let .creditCard(view),
+            let .products(view),
+            let .budgets(view),
+            let .bills(view),
+            let .login(view):
+            view
         }
     }
 }

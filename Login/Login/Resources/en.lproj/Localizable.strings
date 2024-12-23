@@ -8,19 +8,19 @@
 
 // MARK: - Login -
 
-"login.title" = "Login";
+"signIn.title" = "Login";
 
-// MARK: - Create Account -
+// MARK: - Sign Up -
 
-"createAccount.title" = "Create Account";
-"createAccount.name" = "Name";
-"createAccount.email" = "E-mail";
-"createAccount.password" = "Password";
-"createAccount.confirmPassword" = "Confirm password";
-"createAccount.numberCharactersRule" = "• At least 8 characters";
-"createAccount.capitalLetterRule" = "• At least 1 capital letter";
-"createAccount.lowercaseLetterRule" = "• At least 1 lowercase letter";
-"createAccount.numberRule" = "• At least 1 number";
-"createAccount.specialCharacterRule" = "• At least 1 special character";
-"createAccount.confirmPasswordRule" = "• Passwords must be equal";
-"createAccount.emailRule" = "• E-mail must be valid";
+"signUp.title" = "Sign Up";
+"signUp.name" = "Name";
+"signUp.email" = "E-mail";
+"signUp.password" = "Password";
+"signUp.confirmPassword" = "Confirm password";
+"signUp.numberCharactersRule" = "• At least 8 characters";
+"signUp.capitalLetterRule" = "• At least 1 capital letter";
+"signUp.lowercaseLetterRule" = "• At least 1 lowercase letter";
+"signUp.numberRule" = "• At least 1 number";
+"signUp.specialCharacterRule" = "• At least 1 special character";
+"signUp.confirmPasswordRule" = "• Passwords must be equal";
+"signUp.emailRule" = "• E-mail must be valid";
