@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  Home
+
+  Created by Tiago Linhares on 16/11/24.
+  
+*/
+
+// MARK: - Login -
+
+"login.title" = "Login";
+
+// MARK: - Create Account -
+
+"createAccount.title" = "Create Account";

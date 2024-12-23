@@ -6,3 +6,5 @@
 //
 
 public typealias ExternalDestinationCompletion = (ExternalDestination) -> Void
+
+public typealias FinishCompletion = () -> Void

@@ -1,0 +1,38 @@
+# Uncomment the next line to define a global platform for your project
+ platform :ios, '18.0'
+
+# pod 'Router', :path => '~/Documents/FinancialControl/app-ios-financial-control-v2'
+
+def router_pod
+   pod 'Router', :git => 'https://github.com/TiagoLinharess/app-ios-financial-control-v2.git', :branch => 'main'
+end
+
+def core_pod
+   pod 'Core', :path => '~/Documents/FinancialControl/app-ios-financial-control-v2'
+end
+
+def core_sample_pod
+   pod 'CoreSample', :path => '~/Documents/FinancialControl/app-ios-financial-control-v2'
+end
+
+def internal_pods
+  router_pod
+  core_pod
+  core_sample_pod
+end
+
+def sharpnez_pods
+ pod 'SharpnezDesignSystemSwiftUI', :git => 'https://github.com/TiagoLinharess/sdk-ios-sharpnez-design-system.git', :tag => '2.2.0'
+end
+
+target 'Login' do
+  use_frameworks!
+  core_pod
+  sharpnez_pods
+end
+
+target 'LoginSample' do
+  use_frameworks!
+  internal_pods
+  sharpnez_pods
+end

@@ -9,6 +9,7 @@ import Router
 import SwiftUI
 
 public enum Destination<T: FacadeProtocol>: DestinationProtocol {
+    case login(T)
     case home(T)
     case singleForm(T)
     case paymentType(T)
@@ -33,6 +34,8 @@ public enum Destination<T: FacadeProtocol>: DestinationProtocol {
             "Budgets"
         case .bills:
             "Bills"
+        case .login:
+            "Login"
         }
     }
 
@@ -52,6 +55,8 @@ public enum Destination<T: FacadeProtocol>: DestinationProtocol {
             "calendar.day.timeline.left"
         case .bills:
             "calendar"
+        case .login:
+            "person"
         }
     }
 
@@ -64,7 +69,8 @@ public enum Destination<T: FacadeProtocol>: DestinationProtocol {
             let .creditCard(facade),
             let .products(facade),
             let .budgets(facade),
-            let .bills(facade):
+            let .bills(facade),
+            let .login(facade):
             facade.getView()
         }
     }
