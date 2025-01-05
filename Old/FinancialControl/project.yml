@@ -6,7 +6,10 @@ options:
   minimumXcodeGenVersion: 16.0
   generateEmptyDirectories: true
   plataform: iOS
-  deploymentTarget: "18.0"
+  deploymentTarget:
+    iOS: 18.0
+    macOS: 15.0
+    visionOS: 2.0
   postGenCommand: pod install
 
 settings:
@@ -28,24 +31,20 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.financial.control.app
         PRODUCT_NAME: FinancialControl
         ENABLE_PREVIEWS: YES
-        DEVELOPMENT_ASSET_PATHS: "\"FinancialControl/Resources/Assets.xcassets\""
+        DEVELOPMENT_ASSET_PATHS: "\"FinancialControl/Resources/Preview Content\""
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
     info:
       path: FinancialControl/Resources/Info.plist
       properties:
+        UIStatusBarStyle: UIStatusBarStyleLightContent
         LSApplicationCategoryType: public.app-category.finance
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleShortVersionString: $(MARKETING_VERSION)
         LSRequiresIPhoneOS: YES
-        UILaunchScreen: Launch Screen
-        UILaunchStoryboardName: Launch Screen
+        UILaunchScreen: ""
         UIApplicationSupportsIndirectInputEvents: YES
-        UIApplicationSceneManifest:
-          UIApplicationSupportsMultipleScenes: false
-          UISceneConfigurations:
-            UIWindowSceneSessionRoleApplication:
-              - UISceneConfigurationName: Default Configuration
-                UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+        UIApplicationSceneManifest: 
+          UIApplicationSupportsMultipleScenes: YES
         UISupportedInterfaceOrientations~iphone:
           [UIInterfaceOrientationPortrait]
         UISupportedInterfaceOrientations~ipad:
