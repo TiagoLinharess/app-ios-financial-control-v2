@@ -5,14 +5,20 @@
 //  Created by Tiago Linhares on 04/01/25.
 //
 
-import UIKit
+import SharpnezDesignSystemUIKit
 
-class StartViewController: UIViewController {
+final class StartViewController: UISHViewController<StartView, StartViewModelProtocol> {
+    
+    // MARK: View Life Cicle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        title = Localizable.Start.login
     }
 }
 
+private extension StartViewController {
+    
+    // MARK: Private methods
+    
+    /// Code
+}

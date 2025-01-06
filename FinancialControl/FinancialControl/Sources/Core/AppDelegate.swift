@@ -18,8 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        let coordinator = StartCoordinator(navigationController: UINavigationController())
+        coordinator.start()
         window = UIWindow()
-        window?.rootViewController = UINavigationController(rootViewController: StartViewController())
+        window?.rootViewController = coordinator.navigationController
         window?.makeKeyAndVisible()
         
         DesignSystemConfiguration.start(flavorColors: FlavorColors())
