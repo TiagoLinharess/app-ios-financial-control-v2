@@ -9,7 +9,7 @@ import SharpnezDesignSystemUIKit
 
 final class StartViewController: UISHViewController<StartView, StartViewModelProtocol> {
     
-    // MARK: View Life Cicle
+    // MARK: View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

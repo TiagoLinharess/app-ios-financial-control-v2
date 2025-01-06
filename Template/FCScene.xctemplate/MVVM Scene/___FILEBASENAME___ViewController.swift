@@ -9,7 +9,7 @@ import SharpnezDesignSystemUIKit
 
 final class ___VARIABLE_productName:identifier___ViewController: UISHViewController<___VARIABLE_productName:identifier___View, ___VARIABLE_productName:identifier___ViewModelProtocol> {
     
-    // MARK: View Life Cicle
+    // MARK: View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
