@@ -9,9 +9,16 @@ import SharpnezDesignSystemUIKit
 import SnapKit
 
 protocol StartViewProtocol: UIView {
+    var didTapLogin: (() -> Void)? { get set }
+    var didTapCreateAccount: (() -> Void)? { get set }
 }
 
 final class StartView: UISHContainerView, StartViewProtocol {
+    
+    // MARK: Properties
+    
+    var didTapLogin: (() -> Void)?
+    var didTapCreateAccount: (() -> Void)?
     
     // MARK: UI elements
     
@@ -87,6 +94,16 @@ extension StartView: ViewCode {
         loginButton.snp.makeConstraints {
             $0.top.equalTo(createAccountButton.snp.bottom).offset(CGFloat.small)
             $0.leading.trailing.bottom.equalTo(safeAreaLayoutGuide).inset(CGFloat.small)
+        }
+    }
+    
+    func setupActions() {
+        createAccountButton.action = { [weak self] in
+            self?.didTapCreateAccount?()
+        }
+        
+        loginButton.action = { [weak self] in
+            self?.didTapLogin?()
         }
     }
 }

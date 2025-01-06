@@ -33,7 +33,7 @@ final class LaunchScreenViewController: UIHostingController<LaunchScreenView> {
     // MARK: Private methods
     
     private func handleFinishLaunching() {
-        rootView.onFinish = { [weak self] in
+        rootView.didFinish = { [weak self] in
             self?.viewModel.didFinish()
         }
     }

@@ -13,6 +13,7 @@ final class StartViewController: UISHViewController<StartViewProtocol, StartView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupActions()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,5 +31,13 @@ private extension StartViewController {
     
     // MARK: Private methods
     
-    /// Code
+    func setupActions() {
+        customView.didTapLogin = { [weak self] in
+            self?.viewModel.didTapLogin()
+        }
+        
+        customView.didTapCreateAccount = { [weak self] in
+            self?.viewModel.didTapCreateAccount()
+        }
+    }
 }

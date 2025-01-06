@@ -25,7 +25,28 @@ final class StartCoordinator: AppCoordinator {
 
     func start() {
         let builder = StartBuilder()
-        let controller = builder.build()
+        let controller = builder.build(
+            onNavigateToLogin: navigateToLogin,
+            onNavigateToCreateAccount: navigateToCreateAccount
+        )
+
         navigationController.pushViewController(controller, animated: true)
+    }
+    
+    // MARK: Private methods
+    
+    private func navigateToLogin() {
+        startMainCoordinator(at: .login(.login))
+    }
+    
+    private func navigateToCreateAccount() {
+        startMainCoordinator(at: .login(.createAccount))
+    }
+    
+    private func startMainCoordinator(at destination: Destination) {
+        let coordinator = MainCoordinator(navigationController: navigationController)
+        coordinator.parentCoordinator = self
+        childCoordinators.append(coordinator)
+        coordinator.navigate(to: destination)
     }
 }

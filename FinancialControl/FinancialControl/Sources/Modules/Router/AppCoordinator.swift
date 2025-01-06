@@ -18,6 +18,8 @@ public protocol AppCoordinator: AnyObject {
 
 extension AppCoordinator {
     
+    func start() { fatalError() }
+    
     func finish<T: AppCoordinator>(at coordinator: T) {
         childCoordinators.removeAll { $0 === coordinator }
     }

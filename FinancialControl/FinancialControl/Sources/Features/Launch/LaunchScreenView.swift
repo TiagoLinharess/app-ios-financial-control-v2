@@ -19,7 +19,7 @@ struct LaunchScreenView: View {
     @State private var firstAnimation = false
     @State private var secondAnimation = false
     
-    var onFinish: (() -> Void)?
+    var didFinish: (() -> Void)?
     
     // MARK: Body
     
@@ -53,7 +53,7 @@ struct LaunchScreenView: View {
                 self.secondAnimation = true
             }
             try? await Task.sleep(for: .seconds(0.3))
-            onFinish?()
+            didFinish?()
         }
     }
 }

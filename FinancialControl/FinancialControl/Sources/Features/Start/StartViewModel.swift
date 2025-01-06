@@ -6,27 +6,24 @@
 //
 
 protocol StartViewModelProtocol {
-    /// Code
+    func didTapLogin()
+    func didTapCreateAccount()
 }
 
 final class StartViewModel: StartViewModelProtocol {
     
     // MARK: Properties
     
-    /// Code
-    
-    // MARK: Init
-    
-    /// Code
+    var onNavigateToLogin: (() -> Void)?
+    var onNavigateToCreateAccount: (() -> Void)?
     
     // MARK: Public methods
     
-    /// Code
-}
-
-private extension StartViewModel {
+    func didTapLogin() {
+        onNavigateToLogin?()
+    }
     
-    // MARK: Private methods
-    
-    /// Code
+    func didTapCreateAccount() {
+        onNavigateToCreateAccount?()
+    }
 }
