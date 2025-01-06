@@ -44,6 +44,3 @@ final class MainCoordinator: AppCoordinator, DestinationProtocol {
         }
     }
 }
-
-
-
