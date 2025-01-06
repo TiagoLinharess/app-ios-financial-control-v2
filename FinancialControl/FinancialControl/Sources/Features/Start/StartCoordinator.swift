@@ -5,6 +5,7 @@
 //  Created by Tiago Linhares on 05/01/25.
 //
 
+import Router
 import UIKit
 
 final class StartCoordinator: AppCoordinator {

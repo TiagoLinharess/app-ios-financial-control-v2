@@ -16,7 +16,7 @@ public protocol AppCoordinator: AnyObject {
     func finishChildCoordinators()
 }
 
-extension AppCoordinator {
+public extension AppCoordinator {
     
     func start() { fatalError() }
     

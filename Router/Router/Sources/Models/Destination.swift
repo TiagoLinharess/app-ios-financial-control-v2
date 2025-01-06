@@ -5,7 +5,7 @@
 //  Created by Tiago Linhares on 06/01/25.
 //
 
-protocol DestinationProtocol {
+public protocol DestinationProtocol {
     func navigate(to destination: Destination)
 }
 
