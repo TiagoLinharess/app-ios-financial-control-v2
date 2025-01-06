@@ -8,7 +8,8 @@
 import SwiftUI
 
 enum Localizable {
-    // MARK: - Start -
+    
+    // MARK: Start
     
     enum Start {
         static let title = Localizable.tr("Localizable", "start.title", fallback: "Financial Control")
@@ -17,7 +18,7 @@ enum Localizable {
     }
 }
 
-// MARK: - Implementation Details -
+// MARK: Implementation Details
 
 extension Localizable {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg..., fallback value: String = "") -> String {

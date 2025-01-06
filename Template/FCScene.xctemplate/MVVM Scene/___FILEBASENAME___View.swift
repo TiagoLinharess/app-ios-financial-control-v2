@@ -7,5 +7,9 @@
 
 import SharpnezDesignSystemUIKit
 
-final class ___VARIABLE_productName:identifier___View: UISHContainerView {
+
+protocol ___VARIABLE_productName:identifier___ViewProtocol: UIView {
+}
+
+final class ___VARIABLE_productName:identifier___View: UISHContainerView, ___VARIABLE_productName:identifier___ViewProtocol {
 }

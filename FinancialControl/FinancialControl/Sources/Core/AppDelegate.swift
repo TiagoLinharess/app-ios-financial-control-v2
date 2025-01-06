@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        let coordinator = StartCoordinator(navigationController: UINavigationController())
+        let coordinator = LaunchScreenCoordinator(navigationController: UINavigationController())
         coordinator.start()
         window = UIWindow()
         window?.rootViewController = coordinator.navigationController

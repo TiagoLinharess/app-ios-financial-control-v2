@@ -7,8 +7,9 @@
 
 enum Constants {
     
-    // MARK: - Images
+    // MARK: Images
+    
     enum Images {
-        static let background = "Background"
+        static let background = "background_logo"
     }
 }
