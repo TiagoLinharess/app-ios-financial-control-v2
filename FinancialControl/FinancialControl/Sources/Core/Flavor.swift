@@ -8,6 +8,7 @@
 import SharpnezDesignSystemUIKit
 
 // MARK: Flavor Colors
+
 final class FlavorColors: FlavorColorsProtocol {
     var primary: String = "#3b70a2"
     var onPrimary: String = "#FFFFFF"

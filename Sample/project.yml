@@ -1,8 +1,8 @@
-name: CoreSample
+name: Sample
 
 options:
   groupSortPosition: "none"
-  bundleIdPrefix: com.financial.control.core.sample
+  bundleIdPrefix: com.financial.control.sample
   minimumXcodeGenVersion: 16.0
   generateEmptyDirectories: true
   plataform: iOS
@@ -19,19 +19,19 @@ settings:
     CODE_SIGN_STYLE: Automatic
 
 targets:
-  CoreSample:
+  Sample:
     type: framework
     platform: iOS
     deploymentTarget: "18.0"
     sources: 
-        - CoreSample
+        - Sample
     settings:
       base:
         ENABLE_BITCODE: NO
-        PRODUCT_BUNDLE_IDENTIFIER: com.financial.control.core.sample.app
-        PRODUCT_NAME: CoreSample
+        PRODUCT_BUNDLE_IDENTIFIER: com.financial.control.sample.app
+        PRODUCT_NAME: Sample
     info:
-      path: CoreSample/Resources/Info.plist
+      path: Sample/Resources/Info.plist
       properties:
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleShortVersionString: $(MARKETING_VERSION)
