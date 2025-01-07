@@ -8,19 +8,19 @@
 import Router
 import UIKit
 
-final class SampleCoordinator: AppCoordinator {
+public final class SampleCoordinator: AppCoordinator {
     
     // MARK: Properties
     
-    var navigationController: UINavigationController = UINavigationController()
-    var parentCoordinator: AppCoordinator?
-    var childCoordinators: [AppCoordinator] = []
-    var onStart: () -> Void
-    var sampleTitle: String
+    public var navigationController: UINavigationController = UINavigationController()
+    public var parentCoordinator: AppCoordinator?
+    public var childCoordinators: [AppCoordinator] = []
+    public var onStart: () -> Void
+    public var sampleTitle: String
     
     // MARK: Init
     
-    init(
+    public init(
         onStart: @escaping () -> Void,
         sampleTitle: String
     ) {
@@ -28,7 +28,7 @@ final class SampleCoordinator: AppCoordinator {
         self.sampleTitle = sampleTitle
     }
 
-    func start() {
+    public func start() {
         let controller = SampleViewController(onStart: onStart, sampleTitle: sampleTitle)
         navigationController.pushViewController(controller, animated: true)
     }

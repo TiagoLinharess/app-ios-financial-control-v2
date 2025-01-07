@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  FinancialControl
+
+  Created by Tiago Linhares on 05/01/25.
+  
+*/
+"start.title" = "Financial Control";
+"start.login" = "Entrar";
+"start.createAccount" = "Criar conta";

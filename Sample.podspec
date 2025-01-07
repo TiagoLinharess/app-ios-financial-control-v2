@@ -11,4 +11,5 @@ Pod::Spec.new do |spec|
   spec.source_files = 'Sample/Sample/**/*.swift'
   spec.framework    = 'SystemConfiguration'
   spec.dependency     'Router'
+  spec.dependency     'SharpnezDesignSystemUIKit'
 end

@@ -41,28 +41,29 @@ targets:
     deploymentTarget: "18.0"
     sources: 
       - LoginSample
-    dependencies:
-      - target: Login
     settings:
       base:
         ENABLE_BITCODE: NO
-        PRODUCT_BUNDLE_IDENTIFIER: com.financial.control.app
+        PRODUCT_BUNDLE_IDENTIFIER: com.financial.control.login.sample.app
         PRODUCT_NAME: LoginSample
         ENABLE_PREVIEWS: YES
-        DEVELOPMENT_ASSET_PATHS: "\"LoginSample/Resources/Preview Content\""
+        DEVELOPMENT_ASSET_PATHS: "\"LoginSample/Resources/Assets.xcassets\""
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
     info:
       path: LoginSample/Resources/Info.plist
       properties:
-        UIStatusBarStyle: UIStatusBarStyleLightContent
         LSApplicationCategoryType: public.app-category.finance
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleShortVersionString: $(MARKETING_VERSION)
         LSRequiresIPhoneOS: YES
         UILaunchScreen: ""
         UIApplicationSupportsIndirectInputEvents: YES
-        UIApplicationSceneManifest: 
-          UIApplicationSupportsMultipleScenes: YES
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: Default Configuration
+                UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
         UISupportedInterfaceOrientations~iphone:
           [UIInterfaceOrientationPortrait]
         UISupportedInterfaceOrientations~ipad:

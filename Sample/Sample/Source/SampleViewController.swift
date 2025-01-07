@@ -49,10 +49,3 @@ final class SampleViewController: UIViewController {
         button.snp.makeConstraints { $0.center.equalToSuperview() }
     }
 }
-
-#Preview {
-    SampleViewController(
-        onStart: { },
-        sampleTitle: "Sample"
-    )
-}
