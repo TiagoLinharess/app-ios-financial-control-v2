@@ -1,5 +1,5 @@
 //
-//  Localizable.swift
+//  LoginLocalizable.swift
 //  Home
 //
 //  Created by Tiago Linhares on 16/11/24.
@@ -7,20 +7,18 @@
 
 import SwiftUI
 
-enum Localizable {
+enum LoginLocalizable {
     
-    // MARK: Start
+    // MARK: Create account
     
-    enum Start {
-        static let title = Localizable.tr("Localizable", "start.title", fallback: "Financial Control")
-        static let login = Localizable.tr("Localizable", "start.login", fallback: "Login")
-        static let createAccount = Localizable.tr("Localizable", "start.createAccount", fallback: "Create Account")
+    enum CreateAccount {
+        static let title = LoginLocalizable.tr("Localizable", "createAccount.title", fallback: "Create Account")
     }
 }
 
 // MARK: Implementation Details
 
-extension Localizable {
+extension LoginLocalizable {
   private static func tr(_ table: String, _ key: String, _ args: CVarArg..., fallback value: String = "") -> String {
     let format = BundleToken.bundle.localizedString(forKey: key, value: value, table: table)
     return String(format: format, locale: Locale.current, arguments: args)

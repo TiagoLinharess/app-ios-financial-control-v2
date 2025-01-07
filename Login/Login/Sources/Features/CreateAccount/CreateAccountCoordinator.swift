@@ -1,5 +1,5 @@
 //
-//  ___VARIABLE_productName:identifier___Coordinator.swift
+//  CreateAccountCoordinator.swift
 //  FinancialControl
 //
 //  Created by Tiago Linhares on 05/01/25.
@@ -7,7 +7,7 @@
 
 import Router
 
-final class ___VARIABLE_productName:identifier___Coordinator: AppCoordinator {
+final class CreateAccountCoordinator: AppCoordinator {
     
     // MARK: Propeties
     
@@ -24,7 +24,7 @@ final class ___VARIABLE_productName:identifier___Coordinator: AppCoordinator {
     // MARK: Public mehtods
 
     func start() {
-        let builder = ___VARIABLE_productName:identifier___Builder()
+        let builder = CreateAccountBuilder()
         let controller = builder.build()
         navigationController.pushViewController(controller, animated: true)
     }

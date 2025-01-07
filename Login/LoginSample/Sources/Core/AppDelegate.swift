@@ -5,6 +5,7 @@
 //  Created by Tiago Linhares on 04/01/25.
 //
 
+import Login
 import IQKeyboardManagerSwift
 import Sample
 import SharpnezDesignSystemUIKit
@@ -14,18 +15,18 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var coordinator: SampleCoordinator?
+    var facade: LoginFacadeProtocol?
 
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        let coordinator = SampleCoordinator(
-            onStart: { print("start") },
-            sampleTitle: "Start Login"
-        )
-        coordinator.start()
+        facade = LoginFacade()
+        coordinator = SampleCoordinator(onStart: onStart, sampleTitle: "Start Login")
+        coordinator?.start()
         window = UIWindow()
-        window?.rootViewController = coordinator.navigationController
+        window?.rootViewController = coordinator?.navigationController
         window?.makeKeyAndVisible()
         
         DesignSystemConfiguration.start(flavorColors: FlavorColors())
@@ -48,6 +49,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
+    private func onStart() {
+        facade?
+            .start(
+                navigationController: coordinator?.navigationController ?? UINavigationController(),
+                at: .createAccount,
+                onFinish: onFinish
+            )
+    }
+    
+    private func onFinish() {
+        coordinator?.navigationController.popToRootViewController(animated: true)
+    }
 }
 

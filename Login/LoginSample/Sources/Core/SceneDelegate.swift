@@ -5,12 +5,15 @@
 //  Created by Tiago Linhares on 04/01/25.
 //
 
+import Login
 import Sample
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var coordinator: SampleCoordinator?
+    var facade: LoginFacadeProtocol?
     
     func scene(
         _ scene: UIScene,
@@ -20,12 +23,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        let coordinator = SampleCoordinator(
-            onStart: { print("start") },
-            sampleTitle: "Start Login"
-        )
-        coordinator.start()
-        window.rootViewController = coordinator.navigationController
+        facade = LoginFacade()
+        coordinator = SampleCoordinator(onStart: onStart, sampleTitle: "Start Login")
+        coordinator?.start()
+        window.rootViewController = coordinator?.navigationController
         
         self.window = window
         window.makeKeyAndVisible()
@@ -59,6 +60,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-
+    private func onStart() {
+        facade?
+            .start(
+                navigationController: coordinator?.navigationController ?? UINavigationController(),
+                at: .createAccount,
+                onFinish: onFinish
+            )
+    }
+    
+    private func onFinish() {
+        coordinator?.navigationController.popToRootViewController(animated: true)
+    }
 }
 
