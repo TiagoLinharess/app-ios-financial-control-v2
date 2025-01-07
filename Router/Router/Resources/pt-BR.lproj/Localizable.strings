@@ -5,6 +5,11 @@
   Created by Tiago Linhares on 05/01/25.
   
 */
-"start.title" = "Financial Control";
-"start.login" = "Entrar";
-"start.createAccount" = "Criar conta";
+"module.home" = "Início";
+"module.login" = "Login";
+"module.payment" = "Adicionar pagamento";
+"module.paymentType" = "Tipos de pagamento";
+"module.creditcard" = "Cartões de crédito";
+"module.product" = "Produtos";
+"module.budget" = "Orçamentos";
+"module.bill" = "Contas Mensais";
