@@ -25,6 +25,7 @@ end
 
 def sharpnez_pods
  pod 'SharpnezDesignSystemUIKit', :path => '~/Documents/Sharpnez/sdk-ios-sharpnez-design-system'
+ pod 'SharpnezCore', :path => '~/Documents/Sharpnez/sdk-ios-sharpnez-core'
 end
 
 target 'Login' do

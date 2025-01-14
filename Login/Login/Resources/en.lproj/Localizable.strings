@@ -5,4 +5,20 @@
   Created by Tiago Linhares on 05/01/25.
   
 */
+// MARK: Commons
+
+"commons.name" = "Name";
+"commons.email" = "E-mail";
+"commons.password" = "Password";
+"commons.confirmPassword" = "Confirm password";
+
+// MARK: Create Account
+
 "createAccount.title" = "Create account";
+"createAccount.numberCharactersRule" = "At least 8 characters";
+"createAccount.capitalLetterRule" = "At least 1 capital letter";
+"createAccount.lowercaseLetterRule" = "At least 1 lowercase letter";
+"createAccount.numberRule" = "At least 1 number";
+"createAccount.specialCharacterRule" = "At least 1 special character";
+"createAccount.confirmPasswordRule" = "Passwords must be equal";
+"createAccount.emailRule" = "E-mail must be valid";

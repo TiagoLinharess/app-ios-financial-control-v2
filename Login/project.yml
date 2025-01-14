@@ -41,6 +41,8 @@ targets:
     deploymentTarget: "18.0"
     sources: 
       - LoginSample
+    dependencies:
+      - target: Login
     settings:
       base:
         ENABLE_BITCODE: NO
