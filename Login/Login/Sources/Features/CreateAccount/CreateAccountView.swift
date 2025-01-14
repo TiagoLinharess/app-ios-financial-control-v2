@@ -115,7 +115,7 @@ extension CreateAccountView: ViewCode {
     func setupView() { }
 
     func setupHierarchy() {
-        scrollView.addSubviews(
+        contentView.addSubviews(
             nameField,
             emailField,
             passwordField,
@@ -126,31 +126,31 @@ extension CreateAccountView: ViewCode {
 
     func setupConstraints() {
         nameField.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(CGFloat.small)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(CGFloat.small)
+            $0.top.horizontalEdges.equalToSuperview().inset(CGFloat.small)
         }
         
         emailField.snp.makeConstraints {
             $0.top.equalTo(nameField.snp.bottom).offset(CGFloat.small)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(CGFloat.small)
+            $0.horizontalEdges.equalToSuperview().inset(CGFloat.small)
         }
         
         passwordField.snp.makeConstraints {
             $0.top.equalTo(emailField.snp.bottom).offset(CGFloat.small)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(CGFloat.small)
+            $0.horizontalEdges.equalToSuperview().inset(CGFloat.small)
         }
         
         confirmPasswordField.snp.makeConstraints {
             $0.top.equalTo(passwordField.snp.bottom).offset(CGFloat.small)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(CGFloat.small)
+            $0.horizontalEdges.equalToSuperview().inset(CGFloat.small)
         }
         
         createAccountButton.snp.makeConstraints {
-            $0.top.greaterThanOrEqualTo(confirmPasswordField.snp.bottom).offset(CGFloat.small)
-            $0.bottom.equalToSuperview().inset(CGFloat.small)
-            $0.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(CGFloat.small)
+            $0.top.greaterThanOrEqualTo(confirmPasswordField.snp.bottom).offset(CGFloat.medium)
+            $0.bottom.horizontalEdges.equalToSuperview().inset(CGFloat.small)
         }
     }
+    
+    // MARK: Actions
     
     func setupActions() {
         emailField.onChange = { [weak self] textField in
@@ -173,6 +173,19 @@ extension CreateAccountView: ViewCode {
                 numberRule,
                 specialCharacterRule
             ])
+            self.validateConfirmPasswordRule()
         }
+        
+        confirmPasswordField.onChange = { [weak self] _ in
+            guard let self else { return }
+            self.validateConfirmPasswordRule()
+        }
+    }
+    
+    private func validateConfirmPasswordRule() {
+        guard let text = confirmPasswordField.text else { return }
+        
+        confirmPasswordRule.isComplete = text == passwordField.text && !text.isEmpty
+        confirmPasswordField.updateListItems([confirmPasswordRule])
     }
 }
