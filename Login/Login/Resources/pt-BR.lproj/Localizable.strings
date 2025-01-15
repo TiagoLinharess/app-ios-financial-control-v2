@@ -7,18 +7,18 @@
 */
 // MARK: Commons
 
-"commons.name" = "Nome";
-"commons.email" = "E-mail";
-"commons.password" = "Senha";
-"commons.confirmPassword" = "Confirmar senha";
+"commons.name" = "nome";
+"commons.email" = "e-mail";
+"commons.password" = "senha";
+"commons.confirmPassword" = "confirmar senha";
 
 // MARK: Create Account
 
 "createAccount.title" = "Criar conta";
-"createAccount.numberCharactersRule" = "Pelo menos de 8 caracteres";
+"createAccount.numberCharactersRule" = "Pelo menos 8 caracteres";
 "createAccount.capitalLetterRule" = "Pelo menos 1 letra maiúscula";
 "createAccount.lowercaseLetterRule" = "Pelo menos 1 letra minúscula";
 "createAccount.numberRule" = "Pelo menos 1 número";
-"createAccount.specialCharacterRule" = "Pelo menos 1 caractere especial";
+"createAccount.specialCharacterRule" = "Pelo menos 1 caractere especial (ex: !,@,#,%,$)";
 "createAccount.confirmPasswordRule" = "As senhas precisam ser iguais";
 "createAccount.emailRule" = "O e-mail precisa ser válido";

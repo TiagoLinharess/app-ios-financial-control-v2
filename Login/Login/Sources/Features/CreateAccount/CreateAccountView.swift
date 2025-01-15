@@ -10,11 +10,14 @@ import SharpnezDesignSystemUIKit
 import SnapKit
 
 protocol CreateAccountViewProtocol: UIView {
+    var buttonAction: (() -> Void)? { get set }
 }
 
 final class CreateAccountView: UISHContainerView, CreateAccountViewProtocol {
     
     // MARK: Properties
+    
+    var buttonAction: (() -> Void)?
     
     private var emailRule = UISHListItemViewModel(
         title: LoginLocalizable.CreateAccount.emailRule,
@@ -52,6 +55,30 @@ final class CreateAccountView: UISHContainerView, CreateAccountViewProtocol {
     )
     
     // MARK: UI elements
+    
+    public lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .clear
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.delegate = self
+        return scrollView
+    }()
+    
+    public lazy var stackView: UIStackView = {
+        let view = UIStackView()
+        view.axis = .vertical
+        view.alignment = .fill
+        view.spacing = .small
+        view.isLayoutMarginsRelativeArrangement = true
+        view.layoutMargins = .init(
+            top: .small,
+            left: .small,
+            bottom: .small,
+            right: .small
+        )
+        return view
+    }()
     
     private lazy var nameField: UISHTextField = UISHTextField(
         title: LoginLocalizable.Commons.name,
@@ -91,11 +118,15 @@ final class CreateAccountView: UISHContainerView, CreateAccountViewProtocol {
         listItems: [confirmPasswordRule]
     )
     
-    private lazy var createAccountButton: UISHButton = UISHButton(
-        style: .primary(.primarySH, .onPrimarySH),
-        title: LoginLocalizable.CreateAccount.title,
-        font: .montserrat
-    )
+    private lazy var createAccountButton: UISHButton = {
+        let button = UISHButton(
+            style: .primary(.primarySH, .onPrimarySH),
+            title: LoginLocalizable.CreateAccount.title,
+            font: .montserrat
+        )
+        button.isDisabled = true
+        return button
+    }()
     
     // MARK: Init
     
@@ -111,42 +142,27 @@ final class CreateAccountView: UISHContainerView, CreateAccountViewProtocol {
 extension CreateAccountView: ViewCode {
     
     // MARK: View Code
-    
-    func setupView() { }
 
     func setupHierarchy() {
-        contentView.addSubviews(
-            nameField,
-            emailField,
-            passwordField,
-            confirmPasswordField,
-            createAccountButton
-        )
+        addSubviews(scrollView, createAccountButton)
+        scrollView.addSubview(stackView)
+        stackView.addArrangedSubviews(nameField, emailField, passwordField, confirmPasswordField)
     }
 
     func setupConstraints() {
-        nameField.snp.makeConstraints {
-            $0.top.horizontalEdges.equalToSuperview().inset(CGFloat.small)
+        scrollView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide)
+            $0.horizontalEdges.equalToSuperview()
         }
         
-        emailField.snp.makeConstraints {
-            $0.top.equalTo(nameField.snp.bottom).offset(CGFloat.small)
-            $0.horizontalEdges.equalToSuperview().inset(CGFloat.small)
-        }
-        
-        passwordField.snp.makeConstraints {
-            $0.top.equalTo(emailField.snp.bottom).offset(CGFloat.small)
-            $0.horizontalEdges.equalToSuperview().inset(CGFloat.small)
-        }
-        
-        confirmPasswordField.snp.makeConstraints {
-            $0.top.equalTo(passwordField.snp.bottom).offset(CGFloat.small)
-            $0.horizontalEdges.equalToSuperview().inset(CGFloat.small)
+        stackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.width.equalTo(snp.width)
         }
         
         createAccountButton.snp.makeConstraints {
-            $0.top.greaterThanOrEqualTo(confirmPasswordField.snp.bottom).offset(CGFloat.medium)
-            $0.bottom.horizontalEdges.equalToSuperview().inset(CGFloat.small)
+            $0.top.equalTo(scrollView.snp.bottom).offset(CGFloat.medium)
+            $0.bottom.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(CGFloat.small)
         }
     }
     
@@ -157,6 +173,7 @@ extension CreateAccountView: ViewCode {
             guard let self else { return }
             self.emailRule.isComplete = textField.text?.isValidEmail
             self.emailField.updateListItems([self.emailRule])
+            self.validateButton()
         }
         
         passwordField.onChange = { [weak self] textField in
@@ -174,11 +191,17 @@ extension CreateAccountView: ViewCode {
                 specialCharacterRule
             ])
             self.validateConfirmPasswordRule()
+            self.validateButton()
         }
         
         confirmPasswordField.onChange = { [weak self] _ in
             guard let self else { return }
             self.validateConfirmPasswordRule()
+            self.validateButton()
+        }
+        
+        createAccountButton.action = { [weak self] in
+            self?.buttonAction?()
         }
     }
     
@@ -187,5 +210,32 @@ extension CreateAccountView: ViewCode {
         
         confirmPasswordRule.isComplete = text == passwordField.text && !text.isEmpty
         confirmPasswordField.updateListItems([confirmPasswordRule])
+    }
+    
+    private func validateButton() {
+        let nameText = nameField.text ?? String()
+        let allRulesValidated = [
+            emailRule,
+            numberCharactersRule,
+            capitalLetterRule,
+            lowercaseLetterRule,
+            numberRule,
+            specialCharacterRule,
+            numberCharactersRule,
+            confirmPasswordRule
+        ].allSatisfy { $0.isComplete ?? false } && !nameText.isEmpty
+        
+        createAccountButton.isDisabled = !allRulesValidated
+    }
+}
+
+extension CreateAccountView: UIScrollViewDelegate {
+    
+    // MARK: UIScrollViewDelegate
+    
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x != .zero {
+            scrollView.contentOffset.x = .zero
+        }
     }
 }
