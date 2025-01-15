@@ -14,6 +14,7 @@ final class CreateAccountViewController: UISHViewController<CreateAccountViewPro
     override func viewDidLoad() {
         super.viewDidLoad()
         setDefaultHeader(title: LoginLocalizable.CreateAccount.title)
+        setupActions()
     }
 }
 
@@ -21,5 +22,9 @@ private extension CreateAccountViewController {
     
     // MARK: Private methods
     
-    /// Code
+    func setupActions() {
+        customView.buttonAction = { [weak self] model in
+            self?.viewModel.submit(model)
+        }
+    }
 }

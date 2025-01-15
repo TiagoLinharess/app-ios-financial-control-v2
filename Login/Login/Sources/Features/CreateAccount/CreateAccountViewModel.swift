@@ -6,7 +6,7 @@
 //
 
 protocol CreateAccountViewModelProtocol {
-    /// Code
+    func submit(_ model: CreateAccountModel)
 }
 
 final class CreateAccountViewModel: CreateAccountViewModelProtocol {
@@ -21,7 +21,9 @@ final class CreateAccountViewModel: CreateAccountViewModelProtocol {
     
     // MARK: Public methods
     
-    /// Code
+    func submit(_ model: CreateAccountModel) {
+        print(model)
+    }
 }
 
 private extension CreateAccountViewModel {

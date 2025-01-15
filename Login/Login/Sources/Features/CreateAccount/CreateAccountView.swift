@@ -101,28 +101,37 @@ final class CreateAccountView: UISHContainerView, CreateAccountViewProtocol {
         )
         field.contentType = .emailAddress
         field.keyboardType = .emailAddress
+        field.autocapitalizationType = .none
         return field
     }()
     
-    private lazy var passwordField: UISHPasswordField = UISHPasswordField(
-        title: LoginLocalizable.Commons.password,
-        font: .montserrat,
-        color: .onBackgroundSH,
-        listItems: [
-            numberCharactersRule,
-            capitalLetterRule,
-            lowercaseLetterRule,
-            numberRule,
-            specialCharacterRule
-        ]
-    )
+    private lazy var passwordField: UISHPasswordField = {
+        let field = UISHPasswordField(
+            title: LoginLocalizable.Commons.password,
+            font: .montserrat,
+            color: .onBackgroundSH,
+            listItems: [
+                numberCharactersRule,
+                capitalLetterRule,
+                lowercaseLetterRule,
+                numberRule,
+                specialCharacterRule
+            ]
+        )
+        field.autocapitalizationType = .none
+        return field
+    }()
     
-    private lazy var confirmPasswordField: UISHPasswordField = UISHPasswordField(
-        title: LoginLocalizable.Commons.confirmPassword,
-        font: .montserrat,
-        color: .onBackgroundSH,
-        listItems: [confirmPasswordRule]
-    )
+    private lazy var confirmPasswordField: UISHPasswordField = {
+        let field = UISHPasswordField(
+            title: LoginLocalizable.Commons.confirmPassword,
+            font: .montserrat,
+            color: .onBackgroundSH,
+            listItems: [confirmPasswordRule]
+        )
+        field.autocapitalizationType = .none
+        return field
+    }()
     
     private lazy var createAccountButton: UISHButton = {
         let button = UISHButton(
