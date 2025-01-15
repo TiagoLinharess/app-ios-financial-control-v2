@@ -10,14 +10,14 @@ import SharpnezDesignSystemUIKit
 import SnapKit
 
 protocol CreateAccountViewProtocol: UIView {
-    var buttonAction: (() -> Void)? { get set }
+    var buttonAction: ((CreateAccountModel) -> Void)? { get set }
 }
 
 final class CreateAccountView: UISHContainerView, CreateAccountViewProtocol {
     
     // MARK: Properties
     
-    var buttonAction: (() -> Void)?
+    var buttonAction: ((CreateAccountModel) -> Void)?
     
     private var emailRule = UISHListItemViewModel(
         title: LoginLocalizable.CreateAccount.emailRule,
@@ -169,40 +169,43 @@ extension CreateAccountView: ViewCode {
     // MARK: Actions
     
     func setupActions() {
-        emailField.onChange = { [weak self] textField in
-            guard let self else { return }
-            self.emailRule.isComplete = textField.text?.isValidEmail
-            self.emailField.updateListItems([self.emailRule])
-            self.validateButton()
+        emailField.onChange = { [weak self] _ in
+            self?.validateEmailRule()
         }
         
-        passwordField.onChange = { [weak self] textField in
-            guard let self else { return }
-            self.numberCharactersRule.isComplete = (textField.text?.count ?? .zero) > 7
-            self.capitalLetterRule.isComplete = textField.text?.containsUppercasedLetter
-            self.lowercaseLetterRule.isComplete = textField.text?.containsLowercasedLetter
-            self.numberRule.isComplete = textField.text?.containsNumber
-            self.specialCharacterRule.isComplete = textField.text?.containsSpecialCharacter
-            self.passwordField.updateListItems([
-                numberCharactersRule,
-                capitalLetterRule,
-                lowercaseLetterRule,
-                numberRule,
-                specialCharacterRule
-            ])
-            self.validateConfirmPasswordRule()
-            self.validateButton()
+        passwordField.onChange = { [weak self] _ in
+            self?.validatePasswordRule()
         }
         
         confirmPasswordField.onChange = { [weak self] _ in
-            guard let self else { return }
-            self.validateConfirmPasswordRule()
-            self.validateButton()
+            self?.validateConfirmPasswordRule()
         }
         
-        createAccountButton.action = { [weak self] in
-            self?.buttonAction?()
-        }
+        createAccountButton.action = didTapCreateAccountButton
+    }
+    
+    private func validateEmailRule() {
+        emailRule.isComplete = emailField.text?.isValidEmail
+        emailField.updateListItems([self.emailRule])
+        validateButton()
+    }
+    
+    private func validatePasswordRule() {
+        numberCharactersRule.isComplete = (passwordField.text?.count ?? .zero) > 7
+        capitalLetterRule.isComplete = passwordField.text?.containsUppercasedLetter
+        lowercaseLetterRule.isComplete = passwordField.text?.containsLowercasedLetter
+        numberRule.isComplete = passwordField.text?.containsNumber
+        specialCharacterRule.isComplete = passwordField.text?.containsSpecialCharacter
+        passwordField.updateListItems([
+            numberCharactersRule,
+            capitalLetterRule,
+            lowercaseLetterRule,
+            numberRule,
+            specialCharacterRule
+        ])
+        
+        validateConfirmPasswordRule()
+        validateButton()
     }
     
     private func validateConfirmPasswordRule() {
@@ -210,6 +213,7 @@ extension CreateAccountView: ViewCode {
         
         confirmPasswordRule.isComplete = text == passwordField.text && !text.isEmpty
         confirmPasswordField.updateListItems([confirmPasswordRule])
+        validateButton()
     }
     
     private func validateButton() {
@@ -226,6 +230,16 @@ extension CreateAccountView: ViewCode {
         ].allSatisfy { $0.isComplete ?? false } && !nameText.isEmpty
         
         createAccountButton.isDisabled = !allRulesValidated
+    }
+    
+    private func didTapCreateAccountButton() {
+        guard let name = nameField.text,
+              let email = emailField.text,
+              let password = passwordField.text
+        else { return }
+        
+        let model = CreateAccountModel(name: name, email: email, password: password)
+        buttonAction?(model)
     }
 }
 
