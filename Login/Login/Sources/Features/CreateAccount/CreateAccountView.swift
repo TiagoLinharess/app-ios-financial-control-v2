@@ -5,6 +5,7 @@
 //  Created by Tiago Linhares on 05/01/25.
 //
 
+import IQKeyboardToolbar
 import SharpnezCore
 import SharpnezDesignSystemUIKit
 import SnapKit
@@ -211,6 +212,7 @@ extension CreateAccountView: ViewCode {
         }
         
         createAccountButton.action = didTapCreateAccountButton
+        setupFieldsToolbar()
     }
     
     private func validateEmailRule() {
@@ -276,6 +278,74 @@ extension CreateAccountView: ViewCode {
             password: password
         )
         buttonAction?(model)
+    }
+}
+
+private extension CreateAccountView {
+    
+    // MARK: Textfields toolbar actions
+    
+    private func setupFieldsToolbar() {
+        nameField.textField.iq.addPreviousNextDone(
+            target: self,
+            previousAction: #selector(doneAction),
+            nextAction: #selector(focusFamilyNameField),
+            doneAction: #selector(doneAction)
+        )
+        familyNameField.textField.iq.addPreviousNextDone(
+            target: self,
+            previousAction: #selector(focusNameField),
+            nextAction: #selector(focusEmailField),
+            doneAction: #selector(doneAction)
+        )
+        emailField.textField.iq.addPreviousNextDone(
+            target: self,
+            previousAction: #selector(focusFamilyNameField),
+            nextAction: #selector(focusPasswordField),
+            doneAction: #selector(doneAction)
+        )
+        passwordField.getTextField().iq.addPreviousNextDone(
+            target: self,
+            previousAction: #selector(focusEmailField),
+            nextAction: #selector(focusConfirmPasswordField),
+            doneAction: #selector(doneAction)
+        )
+        confirmPasswordField.getTextField().iq.addPreviousNextDone(
+            target: self,
+            previousAction: #selector(focusPasswordField),
+            nextAction: #selector(doneAction),
+            doneAction: #selector(doneAction)
+        )
+    }
+    
+    @objc
+    func doneAction() {
+        endEditing(true)
+    }
+    
+    @objc
+    func focusNameField() {
+        nameField.textField.becomeFirstResponder()
+    }
+    
+    @objc
+    func focusFamilyNameField() {
+        familyNameField.textField.becomeFirstResponder()
+    }
+    
+    @objc
+    func focusEmailField() {
+        emailField.textField.becomeFirstResponder()
+    }
+    
+    @objc
+    func focusPasswordField() {
+        passwordField.getTextField().becomeFirstResponder()
+    }
+    
+    @objc
+    func focusConfirmPasswordField() {
+        confirmPasswordField.getTextField().becomeFirstResponder()
     }
 }
 
