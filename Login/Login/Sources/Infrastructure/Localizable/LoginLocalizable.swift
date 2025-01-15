@@ -12,13 +12,14 @@ enum LoginLocalizable {
     // MARK: Commons
     
     enum Commons {
-        static let name = LoginLocalizable.tr("Localizable", "commons.name", fallback: "Name")
-        static let email = LoginLocalizable.tr("Localizable", "commons.email", fallback: "E-mail")
-        static let password = LoginLocalizable.tr("Localizable", "commons.password", fallback: "Password")
+        static let name = LoginLocalizable.tr("Localizable", "commons.name", fallback: "name")
+        static let familyName = LoginLocalizable.tr("Localizable", "commons.familyName", fallback: "family name")
+        static let email = LoginLocalizable.tr("Localizable", "commons.email", fallback: "e-mail")
+        static let password = LoginLocalizable.tr("Localizable", "commons.password", fallback: "password")
         static let confirmPassword = LoginLocalizable.tr(
             "Localizable",
             "commons.confirmPassword",
-            fallback: "Confirm password"
+            fallback: "confirm password"
         )
     }
     

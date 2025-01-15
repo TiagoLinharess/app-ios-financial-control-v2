@@ -8,6 +8,7 @@
 // MARK: Commons
 
 "commons.name" = "nome";
+"commons.familyName" = "sobrenome";
 "commons.email" = "e-mail";
 "commons.password" = "senha";
 "commons.confirmPassword" = "confirmar senha";
@@ -19,6 +20,6 @@
 "createAccount.capitalLetterRule" = "Pelo menos 1 letra maiúscula";
 "createAccount.lowercaseLetterRule" = "Pelo menos 1 letra minúscula";
 "createAccount.numberRule" = "Pelo menos 1 número";
-"createAccount.specialCharacterRule" = "Pelo menos 1 caractere especial (ex: !,@,#,%,$)";
+"createAccount.specialCharacterRule" = "Pelo menos 1 caractere especial (ex: !,@,#,$)";
 "createAccount.confirmPasswordRule" = "As senhas precisam ser iguais";
 "createAccount.emailRule" = "O e-mail precisa ser válido";

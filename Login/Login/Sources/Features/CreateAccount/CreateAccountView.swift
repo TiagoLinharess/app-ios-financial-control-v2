@@ -86,6 +86,12 @@ final class CreateAccountView: UISHContainerView, CreateAccountViewProtocol {
         color: .onBackgroundSH
     )
     
+    private lazy var familyNameField: UISHTextField = UISHTextField(
+        title: LoginLocalizable.Commons.familyName,
+        font: .montserrat,
+        color: .onBackgroundSH
+    )
+    
     private lazy var emailField: UISHTextField = {
         let field = UISHTextField(
             title: LoginLocalizable.Commons.email,
@@ -146,7 +152,13 @@ extension CreateAccountView: ViewCode {
     func setupHierarchy() {
         addSubviews(scrollView, createAccountButton)
         scrollView.addSubview(stackView)
-        stackView.addArrangedSubviews(nameField, emailField, passwordField, confirmPasswordField)
+        stackView.addArrangedSubviews(
+            nameField,
+            familyNameField,
+            emailField,
+            passwordField,
+            confirmPasswordField
+        )
     }
 
     func setupConstraints() {
@@ -169,6 +181,14 @@ extension CreateAccountView: ViewCode {
     // MARK: Actions
     
     func setupActions() {
+        nameField.onChange = { [weak self] _ in
+            self?.validateButton()
+        }
+        
+        familyNameField.onChange = { [weak self] _ in
+            self?.validateButton()
+        }
+        
         emailField.onChange = { [weak self] _ in
             self?.validateEmailRule()
         }
@@ -218,6 +238,7 @@ extension CreateAccountView: ViewCode {
     
     private func validateButton() {
         let nameText = nameField.text ?? String()
+        let familyNameText = familyNameField.text ?? String()
         let allRulesValidated = [
             emailRule,
             numberCharactersRule,
@@ -227,18 +248,24 @@ extension CreateAccountView: ViewCode {
             specialCharacterRule,
             numberCharactersRule,
             confirmPasswordRule
-        ].allSatisfy { $0.isComplete ?? false } && !nameText.isEmpty
+        ].allSatisfy { $0.isComplete ?? false } && !nameText.isEmpty && !familyNameText.isEmpty
         
         createAccountButton.isDisabled = !allRulesValidated
     }
     
     private func didTapCreateAccountButton() {
         guard let name = nameField.text,
+              let familyName = familyNameField.text,
               let email = emailField.text,
               let password = passwordField.text
         else { return }
         
-        let model = CreateAccountModel(name: name, email: email, password: password)
+        let model = CreateAccountModel(
+            name: name,
+            familyName: familyName,
+            email: email,
+            password: password
+        )
         buttonAction?(model)
     }
 }

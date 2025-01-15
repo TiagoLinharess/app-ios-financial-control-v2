@@ -7,6 +7,7 @@
 
 struct CreateAccountModel {
     let name: String
+    let familyName: String
     let email: String
     let password: String
 }
