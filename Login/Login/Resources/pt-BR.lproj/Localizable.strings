@@ -23,3 +23,4 @@
 "createAccount.specialCharacterRule" = "Pelo menos 1 caractere especial (ex: !,@,#,$)";
 "createAccount.confirmPasswordRule" = "As senhas precisam ser iguais";
 "createAccount.emailRule" = "O e-mail precisa ser válido";
+"createAccount.userExistsError" = "O e-mail enviado já existe.";

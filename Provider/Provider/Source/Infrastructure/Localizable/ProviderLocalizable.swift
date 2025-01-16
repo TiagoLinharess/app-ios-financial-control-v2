@@ -15,12 +15,12 @@ enum ProviderLocalizable {
         static let unknown = ProviderLocalizable.tr(
             "Localizable",
             "error.unknown",
-            fallback: "Estamos fora do ar no momento, por favor tente novamente mais tarde."
+            fallback: "We are currently unavailable, please try again later."
         )
         static let generic = ProviderLocalizable.tr(
             "Localizable",
             "error.generic",
-            fallback: "Ocorreu um erro, por favor tente novamente mais tarde."
+            fallback: "Something went wrong, please try again later."
         )
     }
 }

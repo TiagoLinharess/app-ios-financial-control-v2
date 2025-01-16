@@ -66,6 +66,11 @@ enum LoginLocalizable {
             "createAccount.emailRule",
             fallback: "E-mail must be valid"
         )
+        static let userExistsError = LoginLocalizable.tr(
+            "Localizable",
+            "createAccount.userExistsError",
+            fallback: "The e-mail sent already exists."
+        )
     }
 }
 

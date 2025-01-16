@@ -38,7 +38,7 @@ final class CreateAccountService: FCService, CreateAccountServiceProtocol {
     
     private func handleSuccess(_ response: DefaultSuccessResponse) throws {
         if !response.success {
-            throw CoreError.customError("O e-mail enviado já existe.")
+            throw CoreError.customError(LoginLocalizable.CreateAccount.userExistsError)
         }
     }
 }
