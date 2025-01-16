@@ -13,16 +13,25 @@ final class CreateAccountViewModel: CreateAccountViewModelProtocol {
     
     // MARK: Properties
     
-    /// Code
+    private let service: CreateAccountServiceProtocol
     
     // MARK: Init
     
-    /// Code
+    init(service: CreateAccountServiceProtocol = CreateAccountService()) {
+        self.service = service
+    }
     
     // MARK: Public methods
     
     func submit(_ model: CreateAccountModel) {
-        print(model)
+        Task {
+            do {
+                try await service.submit(model)
+                print("success")
+            } catch {
+                print(error)
+            }
+        }
     }
 }
 

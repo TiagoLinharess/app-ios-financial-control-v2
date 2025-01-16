@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  FinancialControl
+
+  Created by Tiago Linhares on 05/01/25.
+  
+*/
+// MARK: Error
+
+"error.unknown" = "We are currently unavailable, please try again later.";
+"error.generic" = "Something went wrong, please try again later.";

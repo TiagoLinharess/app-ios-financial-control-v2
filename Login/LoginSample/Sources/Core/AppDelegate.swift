@@ -8,6 +8,7 @@
 import Login
 import IQKeyboardManagerSwift
 import Sample
+import SharpnezCloud
 import SharpnezDesignSystemUIKit
 import UIKit
 
@@ -29,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = coordinator?.navigationController
         window?.makeKeyAndVisible()
         
+        SHCloudConfiguration.start(baseURL: SampleURL.url)
         DesignSystemConfiguration.start(flavorColors: FlavorColors())
         IQKeyboardManager.shared.isEnabled = true
         IQKeyboardManager.shared.resignOnTouchOutside = true

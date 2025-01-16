@@ -9,9 +9,14 @@
 
  def sample_pod
   pod 'Sample', :path => '~/Documents/FinancialControl/app-ios-financial-control-v2'
-end
+ end
+
+ def provider_pod
+  pod 'Provider', :path => '~/Documents/FinancialControl/app-ios-financial-control-v2'
+ end
 
  def internal_pods
+   provider_pod
    router_pod
  end
 
@@ -26,6 +31,7 @@ end
 def sharpnez_pods
  pod 'SharpnezDesignSystemUIKit', :path => '~/Documents/Sharpnez/sdk-ios-sharpnez-design-system'
  pod 'SharpnezCore', :path => '~/Documents/Sharpnez/sdk-ios-sharpnez-core'
+ pod 'SharpnezCloud', :path => '~/Documents/Sharpnez/sdk-ios-sharpnez-cloud'
 end
 
 target 'Login' do

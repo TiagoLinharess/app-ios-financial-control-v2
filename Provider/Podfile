@@ -1,0 +1,12 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '18.0'
+
+def sharpnez_pods
+  pod 'SharpnezCloud', :path => '~/Documents/Sharpnez/sdk-ios-sharpnez-cloud'
+  pod 'SharpnezCore', :path => '~/Documents/Sharpnez/sdk-ios-sharpnez-core'
+end
+
+target 'Provider' do
+  use_frameworks!
+  sharpnez_pods
+end
