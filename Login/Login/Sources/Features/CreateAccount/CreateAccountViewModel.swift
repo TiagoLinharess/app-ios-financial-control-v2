@@ -5,7 +5,11 @@
 //  Created by Tiago Linhares on 05/01/25.
 //
 
+import SharpnezCore
+import SharpnezDesignSystemUIKit
+
 protocol CreateAccountViewModelProtocol {
+    var viewStatus: Bindable<ViewStatus> { get }
     func submit(_ model: CreateAccountModel)
 }
 
@@ -13,6 +17,7 @@ final class CreateAccountViewModel: CreateAccountViewModelProtocol {
     
     // MARK: Properties
     
+    private(set) var viewStatus: Bindable<ViewStatus> = Bindable(.none)
     private let service: CreateAccountServiceProtocol
     
     // MARK: Init
@@ -26,10 +31,11 @@ final class CreateAccountViewModel: CreateAccountViewModelProtocol {
     func submit(_ model: CreateAccountModel) {
         Task {
             do {
+                viewStatus.value = .loading
                 try await service.submit(model)
-                print("success")
+                viewStatus.value = .success
             } catch {
-                print(error)
+                viewStatus.value = .error((error as? CoreError)?.message ?? String())
             }
         }
     }

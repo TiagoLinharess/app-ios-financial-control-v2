@@ -12,6 +12,7 @@ import SnapKit
 
 protocol CreateAccountViewProtocol: UIView {
     var buttonAction: ((CreateAccountModel) -> Void)? { get set }
+    func setupLoading(isLoading: Bool)
 }
 
 final class CreateAccountView: UISHContainerView, CreateAccountViewProtocol {
@@ -153,6 +154,12 @@ final class CreateAccountView: UISHContainerView, CreateAccountViewProtocol {
 
     @available(*, unavailable)
     @MainActor required init?(coder: NSCoder) { nil }
+    
+    // MARK: Public methods
+    
+    func setupLoading(isLoading: Bool) {
+        createAccountButton.isLoading = isLoading
+    }
 }
 
 extension CreateAccountView: ViewCode {
