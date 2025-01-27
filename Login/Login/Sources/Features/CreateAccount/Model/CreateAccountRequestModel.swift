@@ -5,6 +5,8 @@
 //  Created by Tiago Linhares on 15/01/25.
 //
 
+import SharpnezCore
+
 struct CreateAccountRequestModel: Encodable {
     let name: String
     let familyName: String
@@ -15,6 +17,6 @@ struct CreateAccountRequestModel: Encodable {
         self.name = model.name
         self.familyName = model.familyName
         self.email = model.email
-        self.password = model.password
+        self.password = model.password.encripted
     }
 }
