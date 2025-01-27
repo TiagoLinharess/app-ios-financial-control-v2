@@ -34,6 +34,24 @@ targets:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         LSRequiresIPhoneOS: YES
         UIApplicationSupportsIndirectInputEvents: YES
+  
+  LoginTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources: 
+      - LoginTests
+    dependencies:
+      - target: Login
+    settings:
+      base:
+        ENABLE_BITCODE: NO
+        PRODUCT_BUNDLE_IDENTIFIER: com.financial.control.login.tests.app
+        PRODUCT_NAME: LoginSample
+    info:
+      path: LoginTests/Info.plist
+      properties:
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         
   LoginSample:
     type: application

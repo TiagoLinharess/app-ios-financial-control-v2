@@ -40,10 +40,3 @@ final class CreateAccountViewModel: CreateAccountViewModelProtocol {
         }
     }
 }
-
-private extension CreateAccountViewModel {
-    
-    // MARK: Private methods
-    
-    /// Code
-}
