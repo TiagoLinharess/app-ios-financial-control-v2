@@ -1,0 +1,26 @@
+/* 
+  Localizable.strings
+  Home
+
+  Created by Tiago Linhares on 16/11/24.
+  
+*/
+
+// MARK: - Login -
+
+"signIn.title" = "Login";
+
+// MARK: - Sign Up -
+
+"signUp.title" = "Sign Up";
+"signUp.name" = "Name";
+"signUp.email" = "E-mail";
+"signUp.password" = "Password";
+"signUp.confirmPassword" = "Confirm password";
+"signUp.numberCharactersRule" = "• At least 8 characters";
+"signUp.capitalLetterRule" = "• At least 1 capital letter";
+"signUp.lowercaseLetterRule" = "• At least 1 lowercase letter";
+"signUp.numberRule" = "• At least 1 number";
+"signUp.specialCharacterRule" = "• At least 1 special character";
+"signUp.confirmPasswordRule" = "• Passwords must be equal";
+"signUp.emailRule" = "• E-mail must be valid";

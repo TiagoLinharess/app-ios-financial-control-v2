@@ -6,11 +6,7 @@ options:
   minimumXcodeGenVersion: 16.0
   generateEmptyDirectories: true
   plataform: iOS
-  deploymentTarget:
-    iOS: 18.0
-    macOS: 15.0
-    visionOS: 2.0
-  postGenCommand: pod install
+  deploymentTarget: 18.0
 
 settings:
   base:
@@ -23,7 +19,7 @@ targets:
     type: framework
     platform: iOS
     deploymentTarget: "18.0"
-    sources: 
+    sources:
       - Router
     settings:
       base:
@@ -37,36 +33,3 @@ targets:
         CFBundleShortVersionString: $(MARKETING_VERSION)
         LSRequiresIPhoneOS: YES
         UIApplicationSupportsIndirectInputEvents: YES
-        
-  RouterSample:
-    type: application
-    platform: iOS
-    deploymentTarget: "18.0"
-    sources: 
-      - RouterSample
-    dependencies:
-      - target: Router
-    settings:
-      base:
-        ENABLE_BITCODE: NO
-        PRODUCT_BUNDLE_IDENTIFIER: com.financial.control.app
-        PRODUCT_NAME: RouterSample
-        ENABLE_PREVIEWS: YES
-        DEVELOPMENT_ASSET_PATHS: "\"RouterSample/Resources/Preview Content\""
-        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
-    info:
-      path: RouterSample/Resources/Info.plist
-      properties:
-        UIStatusBarStyle: UIStatusBarStyleLightContent
-        LSApplicationCategoryType: public.app-category.finance
-        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
-        CFBundleShortVersionString: $(MARKETING_VERSION)
-        LSRequiresIPhoneOS: YES
-        UILaunchScreen: ""
-        UIApplicationSupportsIndirectInputEvents: YES
-        UIApplicationSceneManifest: 
-          UIApplicationSupportsMultipleScenes: YES
-        UISupportedInterfaceOrientations~iphone:
-          [UIInterfaceOrientationPortrait]
-        UISupportedInterfaceOrientations~ipad:
-          [UIInterfaceOrientationPortrait]

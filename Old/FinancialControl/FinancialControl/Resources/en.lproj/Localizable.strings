@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  Home
+
+  Created by Tiago Linhares on 16/11/24.
+  
+*/
+"start.title" = "Financial Control";
+"start.login" = "Login";
+"start.createAccount" = "Create account";
