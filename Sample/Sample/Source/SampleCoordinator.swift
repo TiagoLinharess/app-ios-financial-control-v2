@@ -15,21 +15,16 @@ public final class SampleCoordinator: AppCoordinator {
     public var navigationController: UINavigationController = UINavigationController()
     public var parentCoordinator: AppCoordinator?
     public var childCoordinators: [AppCoordinator] = []
-    public var onStart: () -> Void
-    public var sampleTitle: String
+    public var sampleItem: [SampleItem]
     
     // MARK: Init
     
-    public init(
-        onStart: @escaping () -> Void,
-        sampleTitle: String
-    ) {
-        self.onStart = onStart
-        self.sampleTitle = sampleTitle
+    public init(sampleItem: [SampleItem]) {
+        self.sampleItem = sampleItem
     }
 
     public func start() {
-        let controller = SampleViewController(onStart: onStart, sampleTitle: sampleTitle)
+        let controller = SampleViewController(sampleItem: sampleItem)
         navigationController.pushViewController(controller, animated: true)
     }
 }

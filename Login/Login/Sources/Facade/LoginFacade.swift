@@ -14,7 +14,8 @@ public protocol LoginFacadeProtocol {
     func start(
         navigationController: UINavigationController,
         at destination: LoginDestination,
-        onFinish: @escaping FinishCompletion
+        onFinish: @escaping FinishCompletion,
+        onAbort: @escaping FinishCompletion
     )
 }
 
@@ -33,9 +34,10 @@ public final class LoginFacade: LoginFacadeProtocol {
     public func start(
         navigationController: UINavigationController,
         at destination: LoginDestination,
-        onFinish: @escaping FinishCompletion
+        onFinish: @escaping FinishCompletion,
+        onAbort: @escaping FinishCompletion
     ) {
-        startSingleton(onFinish: onFinish)
+        startSingleton(onFinish: onFinish, onAbort: onAbort)
         coordinator = LoginMainCoordinator(
             navigationController: navigationController,
             destination: destination
@@ -45,11 +47,18 @@ public final class LoginFacade: LoginFacadeProtocol {
     
     // MARK: Private methods
     
-    private func startSingleton(onFinish: @escaping FinishCompletion) {
+    private func startSingleton(onFinish: @escaping FinishCompletion, onAbort: @escaping FinishCompletion) {
         LoginSingleton.start { [weak self] in
-            self?.coordinator?.finishChildCoordinators()
-            self?.coordinator = nil
+            self?.finishCoordinators()
             onFinish()
+        } onAbort: { [weak self] in
+            self?.finishCoordinators()
+            onAbort()
         }
+    }
+    
+    private func finishCoordinators() {
+        coordinator?.finishChildCoordinators()
+        coordinator = nil
     }
 }

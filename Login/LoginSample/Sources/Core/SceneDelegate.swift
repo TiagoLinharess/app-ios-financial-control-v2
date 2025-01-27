@@ -24,7 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         facade = LoginFacade()
-        coordinator = SampleCoordinator(onStart: onStart, sampleTitle: "Start Login")
+        coordinator = SampleCoordinator(sampleItem: [
+            .init(title: "Create Account", action: createAccount)
+        ])
         coordinator?.start()
         window.rootViewController = coordinator?.navigationController
         
@@ -60,12 +62,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-    private func onStart() {
+    private func createAccount() {
         facade?
             .start(
                 navigationController: coordinator?.navigationController ?? UINavigationController(),
                 at: .createAccount,
-                onFinish: onFinish
+                onFinish: onFinish,
+                onAbort: onFinish
             )
     }
     

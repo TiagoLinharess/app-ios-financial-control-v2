@@ -24,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         facade = LoginFacade()
-        coordinator = SampleCoordinator(onStart: onStart, sampleTitle: "Start Login")
+        coordinator = SampleCoordinator(sampleItem: [
+            .init(title: "Create Account", action: createAccount)
+        ])
         coordinator?.start()
         window = UIWindow()
         window?.rootViewController = coordinator?.navigationController
@@ -51,12 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-    private func onStart() {
+    private func createAccount() {
         facade?
             .start(
                 navigationController: coordinator?.navigationController ?? UINavigationController(),
                 at: .createAccount,
-                onFinish: onFinish
+                onFinish: onFinish,
+                onAbort: onFinish
             )
     }
     

@@ -13,17 +13,21 @@ final class SampleViewController: UIViewController {
     
     // MARK: Properties
     
-    var onStart: () -> Void
-    var sampleTitle: String
+    var sampleItem: [SampleItem]
+    
+    // MARK: UI elements
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        return stackView
+    }()
     
     // MARK: Init
     
-    init(
-        onStart: @escaping () -> Void,
-        sampleTitle: String
-    ) {
-        self.onStart = onStart
-        self.sampleTitle = sampleTitle
+    init(sampleItem: [SampleItem]) {
+        self.sampleItem = sampleItem
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -36,16 +40,18 @@ final class SampleViewController: UIViewController {
         super.viewDidLoad()
         title = "Sample"
         view.backgroundColor = .backgroundSH
+        view.addSubview(stackView)
+        stackView.snp.makeConstraints { $0.center.equalToSuperview() }
         
-        let button = UISHButton(
-            style: .primary(.primarySH, .onPrimarySH),
-            title: sampleTitle,
-            font: .poppins,
-            action: onStart
-        )
-        
-        view.addSubview(button)
-        
-        button.snp.makeConstraints { $0.center.equalToSuperview() }
+        sampleItem.forEach { item in
+            let button = UISHButton(
+                style: .primary(.primarySH, .onPrimarySH),
+                title: item.title,
+                font: .poppins,
+                action: item.action
+            )
+            
+            stackView.addArrangedSubview(button)
+        }
     }
 }

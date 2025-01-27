@@ -11,21 +11,26 @@ final class CreateAccountCoordinator: AppCoordinator {
     
     // MARK: Propeties
     
+    private let singleton: LoginSingletonProtocol?
     let navigationController: UINavigationController
     var parentCoordinator: AppCoordinator?
     var childCoordinators: [AppCoordinator] = []
     
     // MARK: Init
     
-    init(navigationController: UINavigationController) {
+    init(
+        navigationController: UINavigationController,
+        singleton: LoginSingletonProtocol? = LoginSingleton.shared
+    ) {
         self.navigationController = navigationController
+        self.singleton = singleton
     }
     
     // MARK: Public methods
 
     func start() {
         let builder = CreateAccountBuilder()
-        let controller = builder.build(onFinish: navigateToSuccess)
+        let controller = builder.build(onFinish: navigateToSuccess, onAbort: didAbort)
         navigationController.pushViewController(controller, animated: true)
     }
     
@@ -38,5 +43,9 @@ final class CreateAccountCoordinator: AppCoordinator {
         coordinator.parentCoordinator = self
         childCoordinators.append(coordinator)
         coordinator.start()
+    }
+    
+    func didAbort() {
+        singleton?.abort()
     }
 }

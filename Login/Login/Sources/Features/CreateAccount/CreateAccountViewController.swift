@@ -13,12 +13,13 @@ final class CreateAccountViewController: UISHViewController<CreateAccountViewPro
     // MARK: Properties
     
     var onFinish: (() -> Void)?
+    var onAbort: (() -> Void)?
     
     // MARK: View life cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDefaultHeader(title: LoginLocalizable.CreateAccount.title)
+        setDefaultHeader(title: LoginLocalizable.CreateAccount.title, backCompletion: onAbort)
         setupActions()
         setupBinding()
     }
