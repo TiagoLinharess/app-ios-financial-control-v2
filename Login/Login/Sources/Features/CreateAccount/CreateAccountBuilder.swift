@@ -8,10 +8,11 @@
 import UIKit
 
 struct CreateAccountBuilder {
-    func build() -> UIViewController {
+    func build(onFinish: @escaping () -> Void) -> UIViewController {
         let view = CreateAccountView()
         let viewModel = CreateAccountViewModel()
         let controller = CreateAccountViewController(customView: view, viewModel: viewModel)
+        controller.onFinish = onFinish
         return controller
     }
 }

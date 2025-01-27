@@ -7,17 +7,17 @@
 
 import Router
 
-public protocol LoginSingletonProtocol {
+protocol LoginSingletonProtocol {
     static var shared: LoginSingleton? { get }
-    func start(onFinish: @escaping FinishCompletion)
+    static func start(onFinish: @escaping FinishCompletion)
     func finish()
 }
 
-public final class LoginSingleton: LoginSingletonProtocol {
+final class LoginSingleton: LoginSingletonProtocol {
     
     // MARK: Shared
     
-    private(set) public static var shared: LoginSingleton? = LoginSingleton()
+    private(set) static var shared: LoginSingleton?
     
     // MARK: Properties
     
@@ -25,13 +25,14 @@ public final class LoginSingleton: LoginSingletonProtocol {
     
     // MARK: Start
     
-    public func start(onFinish: @escaping FinishCompletion) {
-        self.onFinish = onFinish
+    static func start(onFinish: @escaping FinishCompletion) {
+        shared = LoginSingleton()
+        shared?.onFinish = onFinish
     }
     
     // MARK: Finish
     
-    public func finish() {
+    func finish() {
         onFinish?()
         LoginSingleton.shared = nil
     }

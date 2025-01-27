@@ -12,7 +12,7 @@ final class CreateAccountViewController: UISHViewController<CreateAccountViewPro
     
     // MARK: Properties
     
-    private var cancellables = Set<AnyCancellable>()
+    var onFinish: (() -> Void)?
     
     // MARK: View life cycle
 
@@ -38,15 +38,24 @@ private extension CreateAccountViewController {
         viewModel.viewStatus.bind { [weak self] state in
             switch state {
             case .success:
-                self?.customView.setupLoading(isLoading: false)
+                self?.handleSuccess()
             case .loading:
                 self?.customView.setupLoading(isLoading: true)
             case .none:
                 break
             case .error(let errorMessage):
-                self?.showToast(type: .error, text: errorMessage, font: .poppins)
-                self?.customView.setupLoading(isLoading: false)
+                self?.handleError(errorMessage)
             }
         }
+    }
+    
+    func handleSuccess() {
+        customView.setupLoading(isLoading: false)
+        onFinish?()
+    }
+    
+    func handleError(_ errorMessage: String) {
+        showToast(type: .error, text: errorMessage, font: .poppins)
+        customView.setupLoading(isLoading: false)
     }
 }

@@ -72,6 +72,26 @@ enum LoginLocalizable {
             fallback: "The e-mail sent already exists."
         )
     }
+    
+    // MARK: Success Create Account
+    
+    enum SuccessCreateAccount {
+        static let title = LoginLocalizable.tr(
+            "Localizable",
+            "SuccessCreateAccount.title",
+            fallback: "Success!"
+        )
+        static let description = LoginLocalizable.tr(
+            "Localizable",
+            "SuccessCreateAccount.description",
+            fallback: "Account created with success! Click on the button below to go back to start."
+        )
+        static let button = LoginLocalizable.tr(
+            "Localizable",
+            "SuccessCreateAccount.button",
+            fallback: "Back to start"
+        )
+    }
 }
 
 // MARK: Implementation Details

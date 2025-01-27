@@ -25,6 +25,9 @@ public extension AppCoordinator {
     }
     
     func finishChildCoordinators() {
-        childCoordinators.removeAll()
+        childCoordinators.enumerated().forEach { index, childCoordinator in
+            childCoordinator.finishChildCoordinators()
+            childCoordinators.remove(at: index)
+        }
     }
 }

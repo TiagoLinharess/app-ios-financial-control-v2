@@ -5,6 +5,7 @@
 //  Created by Tiago Linhares on 07/01/25.
 //
 
+import IQKeyboardManagerSwift
 import Router
 
 public protocol LoginFacadeProtocol {
@@ -22,13 +23,10 @@ public final class LoginFacade: LoginFacadeProtocol {
     // MARK: Properties
     
     public var coordinator: AppCoordinator?
-    private let singleton: LoginSingletonProtocol?
 
     // MARK: Init
     
-    public init(singleton: LoginSingletonProtocol? = LoginSingleton.shared) {
-        self.singleton = singleton
-    }
+    public init() { }
     
     // MARK: Public methods
     
@@ -48,6 +46,10 @@ public final class LoginFacade: LoginFacadeProtocol {
     // MARK: Private methods
     
     private func startSingleton(onFinish: @escaping FinishCompletion) {
-        singleton?.start(onFinish: onFinish)
+        LoginSingleton.start { [weak self] in
+            self?.coordinator?.finishChildCoordinators()
+            self?.coordinator = nil
+            onFinish()
+        }
     }
 }

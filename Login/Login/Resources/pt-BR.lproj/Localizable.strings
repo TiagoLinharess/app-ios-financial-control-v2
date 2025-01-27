@@ -24,3 +24,9 @@
 "createAccount.confirmPasswordRule" = "As senhas precisam ser iguais";
 "createAccount.emailRule" = "O e-mail precisa ser válido";
 "createAccount.userExistsError" = "O e-mail enviado já existe.";
+
+// MARK: Success Create Account
+
+"SuccessCreateAccount.title" = "Sucesso!";
+"SuccessCreateAccount.description" = "Conta criada com sucesso! Clique no botão abaixo para voltar para a tela de início.";
+"SuccessCreateAccount.button" = "Voltar ao início";
