@@ -42,14 +42,6 @@ target 'Login' do
   sharpnez_pods
 end
 
-target 'LoginTests' do
-  use_frameworks!
-  internal_pods
-  keyboard_manager_pod
-  snap_kit_pod
-  sharpnez_pods
-end
-
 target 'LoginSample' do
   use_frameworks!
   internal_pods
