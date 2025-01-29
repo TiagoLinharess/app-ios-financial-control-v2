@@ -48,8 +48,6 @@ target 'LoginTests' do
   keyboard_manager_pod
   snap_kit_pod
   sharpnez_pods
-  pod 'Nimble', '~> 13.7'
-  pod 'Quick', '~> 7.6'
 end
 
 target 'LoginSample' do
