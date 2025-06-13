@@ -30,10 +30,17 @@ struct LocalBiometryContainerView<Content: View>: View {
             .onChange(of: scenePhase) { oldValue, newValue in
                 validateScenePhase(oldValue: oldValue, newValue: newValue)
             }
+#if os(macOS)
+            .sheet(isPresented: $localBiometry.isPresent) {
+                LocalBiometryView()
+                    .environmentObject(localBiometry)
+            }
+#else
             .fullScreenCover(isPresented: $localBiometry.isPresent) {
                 LocalBiometryView()
                     .environmentObject(localBiometry)
             }
+#endif
     }
     
     func validateScenePhase(oldValue: ScenePhase, newValue: ScenePhase) {

@@ -18,7 +18,7 @@ struct LocalBiometryView: View {
     // MARK: Body
     
     var body: some View {
-        VStack {
+        VStack(spacing: .small) {
             HStack {
                 Text(Localizable.Biometry.title)
                     .font(.largeTitle)
@@ -29,14 +29,16 @@ struct LocalBiometryView: View {
             Spacer()
             Button(action: didValidate) {
                 Text(Localizable.Biometry.validate)
-                    .foregroundStyle(Color(.label))
+                    .foregroundStyle(Color.primary)
+                    .padding(.small)
                     .frame(maxWidth: .infinity)
             }
-            .padding(.small)
-            .glassEffect()
+            .buttonStyle(.glass)
         }
         .padding(.small)
+#if !os(macOS)
         .background(Color(.systemBackground).ignoresSafeArea())
+#endif
     }
     
     private func didValidate() {
