@@ -2,9 +2,11 @@
   Localizable.strings
   FinancialControl
 
-  Created by Tiago Linhares on 05/01/25.
+  Created by Tiago Linhares on 13/06/25.
   
 */
-"start.title" = "Financial Control";
-"start.login" = "Login";
-"start.createAccount" = "Create account";
+
+// MARK: Biometry
+
+"biometry.title" = "Use your device's local authentication to access the app.";
+"biometry.validate" = "Validate";
