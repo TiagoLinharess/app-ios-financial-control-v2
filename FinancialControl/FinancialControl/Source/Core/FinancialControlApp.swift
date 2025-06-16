@@ -16,7 +16,7 @@ struct FinancialControlApp: App {
     var body: some Scene {
         WindowGroup {
             LocalBiometryContainerView {
-                HomeView()
+                ContainerAppView()
             }
         }
         .modelContainer(for: LocalBiometryTimestamp.self)

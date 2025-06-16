@@ -10,3 +10,10 @@
 
 "biometry.title" = "Use a autenticação local do seu dispositivo para acessar o app.";
 "biometry.validate" = "Validar";
+
+// MARK: Modules
+
+"module.home" = "Início";
+"module.budgets" = "Orçamentos";
+"module.bills" = "Contas";
+"module.settings" = "Configurações";

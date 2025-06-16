@@ -33,7 +33,7 @@ struct LocalBiometryView: View {
                     .padding(.small)
                     .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.glass)
+            .buttonStyle(GlassButtonStyle())
         }
         .padding(.small)
 #if !os(macOS)

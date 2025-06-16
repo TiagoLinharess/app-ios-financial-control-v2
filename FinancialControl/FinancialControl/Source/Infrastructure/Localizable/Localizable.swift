@@ -15,6 +15,15 @@ enum Localizable {
         static let title = Localizable.tr("Localizable", "biometry.title", fallback: "Use your device's local authentication to access the app.")
         static let validate = Localizable.tr("Localizable", "biometry.validate", fallback: "Validate")
     }
+    
+    // MARK: Modules
+    
+    enum Modules {
+        static let home = Localizable.tr("Localizable", "module.home", fallback: "Home")
+        static let budgets = Localizable.tr("Localizable", "module.budgets", fallback: "Budgets")
+        static let bills = Localizable.tr("Localizable", "module.bills", fallback: "Bills")
+        static let settings = Localizable.tr("Localizable", "module.settings", fallback: "Settings")
+    }
 }
 
 // MARK: Implementation Details
