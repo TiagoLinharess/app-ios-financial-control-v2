@@ -24,6 +24,18 @@ enum Localizable {
         static let bills = Localizable.tr("Localizable", "module.bills", fallback: "Bills")
         static let settings = Localizable.tr("Localizable", "module.settings", fallback: "Settings")
     }
+    
+    // MARK: Add Routes
+    
+    enum AddRoute {
+        static let payment = Localizable.tr("Localizable", "add.route.payment", fallback: "Payment")
+        static let monthlyPayment = Localizable.tr("Localizable", "add.route.monthly.payment", fallback: "Monthly payment")
+        static let annualPayment = Localizable.tr("Localizable", "add.route.annual.payment", fallback: "Annual payment")
+        static let purchaseInstallment = Localizable.tr("Localizable", "add.route.purchase.installment", fallback: "Purchase installment")
+        static let product = Localizable.tr("Localizable", "add.route.product", fallback: "Product")
+        static let subPaymentType = Localizable.tr("Localizable", "add.route.sub.payment.type", fallback: "Sub payment type")
+        static let creditcard = Localizable.tr("Localizable", "add.route.creditcard", fallback: "Creditcard")
+    }
 }
 
 // MARK: Implementation Details

@@ -17,3 +17,14 @@
 "module.budgets" = "Budgets";
 "module.bills" = "Bills";
 "module.settings" = "Settings";
+
+// MARK: Add Routes
+
+"add.route.payment" = "Payment";
+"add.route.monthly.payment" = "Monthly payment";
+"add.route.annual.payment" = "Annual payment";
+"add.route.purchase.installment" = "Purchase installment";
+"add.route.product" = "Product";
+"add.route.sub.payment.type" = "Sub payment type";
+"add.route.creditcard" = "Creditcard";
+}

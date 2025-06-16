@@ -16,35 +16,42 @@ struct ContainerAppView: View {
     // MARK: Body
     
     var body: some View {
-        GlassEffectContainer {
-            TabView(selection: $router.selectedTab) {
-                ForEach(Tab.allCases) { tab in
-                    NavigationStack(path: $router[tab]) {
-                        tab.view
-                            .navigationDestination(for: Destination.self) { destination in
-                                router.getDestination(from: destination)
-                            }
-                            .toolbar {
-                                ToolbarItem(placement: .topBarTrailing) {
-                                    Button(action: didTapAddButton) {
-                                        Image(systemName: "plus")
-                                    }
+        NavigationStack(path: $router.path) {
+            HomeView()
+                .navigationDestination(for: Destination.self) { destination in
+                    router.getDestination(from: destination)
+                }
+                .toolbar {
+                    ToolbarItem(placement: .automatic) {
+                        Menu {
+                            ForEach(AddRoute.allCases) { route in
+                                Button(route.title) {
+                                    addNavigate(at: route)
                                 }
                             }
+                        } label: {
+                            Image(systemName: Constants.Icons.add)
+                        }
                     }
-                    .tabItem {
-                        Label(tab.title, systemImage: tab.icon)
+                    ToolbarItem(placement: .automatic) {
+                        Button {
+                            didTapSettingsButton()
+                        } label: {
+                            Image(systemName: Constants.Icons.settings)
+                        }
                     }
-                    .tag(tab)
                 }
-            }
         }
         .environmentObject(router)
     }
     
     // MARK: Private methods
     
-    private func didTapAddButton() {
-        router.push(.add)
+    private func didTapSettingsButton() {
+        router.push(.settings)
+    }
+    
+    private func addNavigate(at route: AddRoute) {
+        router.push(route.destination)
     }
 }

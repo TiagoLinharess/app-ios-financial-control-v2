@@ -17,3 +17,13 @@
 "module.budgets" = "Orçamentos";
 "module.bills" = "Contas";
 "module.settings" = "Configurações";
+
+// MARK: Add Routes
+
+"add.route.payment" = "Pagamento";
+"add.route.monthly.payment" = "Pagamento mensal";
+"add.route.annual.payment" = "Pagamento anual";
+"add.route.purchase.installment" = "Pagamento parcelado";
+"add.route.product" = "Produto";
+"add.route.sub.payment.type" = "Sub-tipo de pagamento";
+"add.route.creditcard" = "Cartão de crédito";
