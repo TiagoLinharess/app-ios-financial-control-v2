@@ -15,5 +15,6 @@ enum Constants {
         static let bills: String = "calendar"
         static let settings: String = "gear"
         static let add: String = "plus"
+        static let done: String = "checkmark"
     }
 }

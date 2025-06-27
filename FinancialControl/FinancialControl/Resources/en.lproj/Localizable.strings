@@ -11,6 +11,10 @@
 "biometry.title" = "Use your device's local authentication to access the app.";
 "biometry.validate" = "Validate";
 
+// MARK: Commons
+
+"commons.menu" = "Menu";
+
 // MARK: Modules
 
 "module.home" = "Home";
@@ -27,4 +31,9 @@
 "add.route.product" = "Product";
 "add.route.sub.payment.type" = "Sub payment type";
 "add.route.creditcard" = "Creditcard";
-}
+
+// MARK: Payment type
+
+"payment.type.income" = "Income";
+"payment.type.outcome" = "Outcome";
+"payment.type.credit" = "Credit";

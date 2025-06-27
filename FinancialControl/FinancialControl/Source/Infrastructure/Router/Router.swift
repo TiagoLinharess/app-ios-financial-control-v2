@@ -33,8 +33,21 @@ final class Router: ObservableObject {
     
     @ViewBuilder func getDestination(from destination: Destination) -> some View {
         switch destination {
+        case .addSubPaymentType:
+            SubPaymentTypesFormView()
         default:
             Text(destination.rawValue)
+        }
+    }
+    
+    @ViewBuilder func getFeatures(from selection: Features?) -> some View {
+        switch selection {
+        case .home:
+            HomeView()
+        case .subPayment:
+            Text("subPayment")
+        case .none:
+            Text("Selecione uma opção")
         }
     }
 }
@@ -54,4 +67,18 @@ enum Destination: String, Hashable {
     case settings
     case budgets
     case bills
+}
+
+enum Features: String, CaseIterable, Hashable, Identifiable {
+    case home
+    case subPayment
+    
+    var id: Int {
+        switch self {
+        case .home:
+            return 0
+        case .subPayment:
+            return 1
+        }
+    }
 }

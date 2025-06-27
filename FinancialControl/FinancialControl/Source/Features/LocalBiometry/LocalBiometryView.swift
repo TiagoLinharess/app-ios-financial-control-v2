@@ -30,7 +30,7 @@ struct LocalBiometryView: View {
             Button(action: didValidate) {
                 Text(Localizable.Biometry.validate)
                     .foregroundStyle(Color.primary)
-                    .padding(.small)
+                    .padding(.extraSmall)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(GlassButtonStyle())

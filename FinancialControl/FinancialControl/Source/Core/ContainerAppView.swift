@@ -11,47 +11,31 @@ struct ContainerAppView: View {
     
     // MARK: Properties
     
-    @StateObject var router = Router()
+    @StateObject private var router = Router()
+    @State private var contentSelection: Features? = .home
+    @State private var columnVisibility: NavigationSplitViewVisibility = .all
     
     // MARK: Body
     
     var body: some View {
-        NavigationStack(path: $router.path) {
-            HomeView()
+        NavigationSplitView(columnVisibility: $columnVisibility) {
+            List(selection: $contentSelection) {
+                ForEach(Features.allCases, id: \.self) { item in
+                    Text(item.rawValue.capitalized)
+                        .tag(item as Features?)
+                }
+            }
+            .navigationTitle(Localizable.Commons.menu)
+        } detail: {
+            NavigationStack(path: $router.path) {
+                Group {
+                    router.getFeatures(from: contentSelection)
+                }
                 .navigationDestination(for: Destination.self) { destination in
                     router.getDestination(from: destination)
                 }
-                .toolbar {
-                    ToolbarItem(placement: .automatic) {
-                        Menu {
-                            ForEach(AddRoute.allCases) { route in
-                                Button(route.title) {
-                                    addNavigate(at: route)
-                                }
-                            }
-                        } label: {
-                            Image(systemName: Constants.Icons.add)
-                        }
-                    }
-                    ToolbarItem(placement: .automatic) {
-                        Button {
-                            didTapSettingsButton()
-                        } label: {
-                            Image(systemName: Constants.Icons.settings)
-                        }
-                    }
-                }
+            }
+            .environmentObject(router)
         }
-        .environmentObject(router)
-    }
-    
-    // MARK: Private methods
-    
-    private func didTapSettingsButton() {
-        router.push(.settings)
-    }
-    
-    private func addNavigate(at route: AddRoute) {
-        router.push(route.destination)
     }
 }
