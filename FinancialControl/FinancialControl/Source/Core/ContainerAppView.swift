@@ -35,7 +35,7 @@ struct ContainerAppView: View {
                     router.getDestination(from: destination)
                 }
             }
-            .environmentObject(router)
         }
+        .environmentObject(router)
     }
 }

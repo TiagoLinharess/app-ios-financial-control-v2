@@ -14,6 +14,13 @@
 // MARK: Commons
 
 "commons.menu" = "Menu";
+"commons.new" = "Novo";
+"commons.update" = "Editar";
+"commons.oops" = "Oops!";
+"commons.ok" = "ok";
+"commons.name" = "Nome";
+"commons.payment.type" = "Tipo de pagamento";
+"commons.name.empty" = "Preencha o campo \"nome\".";
 
 // MARK: Modules
 
@@ -21,19 +28,14 @@
 "module.budgets" = "Orçamentos";
 "module.bills" = "Contas";
 "module.settings" = "Configurações";
-
-// MARK: Add Routes
-
-"add.route.payment" = "Pagamento";
-"add.route.monthly.payment" = "Pagamento mensal";
-"add.route.annual.payment" = "Pagamento anual";
-"add.route.purchase.installment" = "Pagamento parcelado";
-"add.route.product" = "Produto";
-"add.route.sub.payment.type" = "Sub-tipo de pagamento";
-"add.route.creditcard" = "Cartão de crédito";
+"module.sub.payment.types" = "Sub-tipo de pagamentos";
 
 // MARK: Payment type
 
 "payment.type.income" = "Entrada";
 "payment.type.outcome" = "Saída";
-"payment.type.credit" = "Credito";
+"payment.type.credit" = "Crédito";
+
+// MARK: Sub Payment type
+
+"sub.payment.type.form.title" = " Sub-tipo de pagamento";

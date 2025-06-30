@@ -19,6 +19,6 @@ struct FinancialControlApp: App {
                 ContainerAppView()
             }
         }
-        .modelContainer(for: LocalBiometryTimestamp.self)
+        .modelContainer(for: [LocalBiometryTimestamp.self, SubPaymentType.self])
     }
 }

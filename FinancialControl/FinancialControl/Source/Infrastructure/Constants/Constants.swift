@@ -17,4 +17,12 @@ enum Constants {
         static let add: String = "plus"
         static let done: String = "checkmark"
     }
+    
+    // MARK: Signals
+    
+    enum Signals {
+        static let dot: String = "."
+        static let doubleDot: String = ":"
+        static let asterisk: String = "*"
+    }
 }

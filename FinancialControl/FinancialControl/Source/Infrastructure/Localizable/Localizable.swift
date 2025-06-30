@@ -20,7 +20,13 @@ enum Localizable {
     
     enum Commons {
         static let menu = Localizable.tr("Localizable", "commons.menu", fallback: "Menu")
-        
+        static let new = Localizable.tr("Localizable", "commons.new", fallback: "New")
+        static let update = Localizable.tr("Localizable", "commons.update", fallback: "Update")
+        static let oops = Localizable.tr("Localizable", "commons.oops", fallback: "Oops!")
+        static let ok = Localizable.tr("Localizable", "commons.ok", fallback: "ok")
+        static let name = Localizable.tr("Localizable", "commons.name", fallback: "Name")
+        static let paymentType = Localizable.tr("Localizable", "commons.payment.type", fallback: "Payment type")
+        static let emptyName = Localizable.tr("Localizable", "commons.name.empty", fallback: "Fill the field \"name\".")
     }
     
     // MARK: Modules
@@ -30,18 +36,7 @@ enum Localizable {
         static let budgets = Localizable.tr("Localizable", "module.budgets", fallback: "Budgets")
         static let bills = Localizable.tr("Localizable", "module.bills", fallback: "Bills")
         static let settings = Localizable.tr("Localizable", "module.settings", fallback: "Settings")
-    }
-    
-    // MARK: Add Routes
-    
-    enum AddRoute {
-        static let payment = Localizable.tr("Localizable", "add.route.payment", fallback: "Payment")
-        static let monthlyPayment = Localizable.tr("Localizable", "add.route.monthly.payment", fallback: "Monthly payment")
-        static let annualPayment = Localizable.tr("Localizable", "add.route.annual.payment", fallback: "Annual payment")
-        static let purchaseInstallment = Localizable.tr("Localizable", "add.route.purchase.installment", fallback: "Purchase installment")
-        static let product = Localizable.tr("Localizable", "add.route.product", fallback: "Product")
-        static let subPaymentType = Localizable.tr("Localizable", "add.route.sub.payment.type", fallback: "Sub payment type")
-        static let creditcard = Localizable.tr("Localizable", "add.route.creditcard", fallback: "Creditcard")
+        static let subPaymentTypes = Localizable.tr("Localizable", "module.sub.payment.types", fallback: "Sub payment types")
     }
     
     // MARK: Payment type
@@ -50,6 +45,12 @@ enum Localizable {
         static let income = Localizable.tr("Localizable", "payment.type.income", fallback: "Income")
         static let outcome = Localizable.tr("Localizable", "payment.type.outcome", fallback: "Outcome")
         static let credit = Localizable.tr("Localizable", "payment.type.credit", fallback: "Credit")
+    }
+    
+    // MARK: Sub Payment type
+    
+    enum SubPaymentType {
+        static let formTitle = Localizable.tr("Localizable", "sub.payment.type.form.title", fallback: " Sub payment type")
     }
 }
 

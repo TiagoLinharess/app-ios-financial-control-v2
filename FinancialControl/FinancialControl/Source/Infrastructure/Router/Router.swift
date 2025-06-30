@@ -33,10 +33,10 @@ final class Router: ObservableObject {
     
     @ViewBuilder func getDestination(from destination: Destination) -> some View {
         switch destination {
-        case .addSubPaymentType:
-            SubPaymentTypesFormView()
+        case .subPaymentTypeForm(let subPaymentType):
+            SubPaymentTypesFormView(subPaymentType: subPaymentType)
         default:
-            Text(destination.rawValue)
+            Text("in development")
         }
     }
     
@@ -45,28 +45,24 @@ final class Router: ObservableObject {
         case .home:
             HomeView()
         case .subPayment:
-            Text("subPayment")
+            SubPaymentTypeListView()
         case .none:
-            Text("Selecione uma opção")
+            EmptyView()
         }
     }
 }
 
 // MARK: Navigation Option
 
-enum Destination: String, Hashable {
-    case add
-    case addPayment
-    case addMonthlyPayment
-    case addAnnualPayment
-    case addPurchaseInstallment
-    case addProduct
-    case addSubPaymentType
-    case addBudget
-    case addCreditCard
-    case settings
-    case budgets
-    case bills
+enum Destination: Hashable {
+    case paymentForm
+    case monthlyPaymentForm
+    case annualPaymentForm
+    case purchaseInstallmentForm
+    case productForm
+    case subPaymentTypeForm(SubPaymentType? = nil)
+    case budgetForm
+    case creditCardForm
 }
 
 enum Features: String, CaseIterable, Hashable, Identifiable {
