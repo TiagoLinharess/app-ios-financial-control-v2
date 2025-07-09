@@ -18,24 +18,26 @@ struct ContainerAppView: View {
     // MARK: Body
     
     var body: some View {
-        NavigationSplitView(columnVisibility: $columnVisibility) {
-            List(selection: $contentSelection) {
-                ForEach(Features.allCases, id: \.self) { item in
-                    Text(item.rawValue.capitalized)
-                        .tag(item as Features?)
+        LocalBiometryContainerView {
+            NavigationSplitView(columnVisibility: $columnVisibility) {
+                List(selection: $contentSelection) {
+                    ForEach(Features.allCases, id: \.self) { item in
+                        Text(item.rawValue.capitalized)
+                            .tag(item as Features?)
+                    }
+                }
+                .navigationTitle(Localizable.Commons.menu)
+            } detail: {
+                NavigationStack(path: $router.path) {
+                    Group {
+                        router.getFeatures(from: contentSelection)
+                    }
+                    .navigationDestination(for: Destination.self) { destination in
+                        router.getDestination(from: destination)
+                    }
                 }
             }
-            .navigationTitle(Localizable.Commons.menu)
-        } detail: {
-            NavigationStack(path: $router.path) {
-                Group {
-                    router.getFeatures(from: contentSelection)
-                }
-                .navigationDestination(for: Destination.self) { destination in
-                    router.getDestination(from: destination)
-                }
-            }
+            .environmentObject(router)
         }
-        .environmentObject(router)
     }
 }
