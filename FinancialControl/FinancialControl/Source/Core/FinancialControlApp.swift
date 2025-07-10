@@ -5,18 +5,43 @@
 //  Created by Tiago Linhares on 13/06/25.
 //
 
+import GoogleSignIn
+import Firebase
+import SharpnezDesignSystemSwiftUI
 import SwiftUI
-import SwiftData
 
 @main
 struct FinancialControlApp: App {
+    
+    // MARK: Properties
+    
+    @State private var showLaunchScreen: Bool = true
+    
+    // MARK: Init
+    
+    init() {
+        FirebaseApp.configure()
+        DesignSystemConfiguration.start(flavorColors: FlavorColors())
+    }
     
     // MARK: Body
     
     var body: some Scene {
         WindowGroup {
-            ContainerAppView()
+            Group {
+                if showLaunchScreen {
+                    LaunchScreenView {
+                        withAnimation {
+                            showLaunchScreen = false
+                        }
+                    }
+                } else {
+                    AppContainerView()
+                }
+            }
+            .onOpenURL { url in
+                GIDSignIn.sharedInstance.handle(url)
+            }
         }
-        .modelContainer(for: [LocalBiometryTimestamp.self, SubPaymentType.self])
     }
 }

@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		ED6A76E72E1F09D500B66322 /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = ED6A76E62E1F09D500B66322 /* SharpnezDesignSystemSwiftUI */; };
+		ED6A76EF2E1F0F0200B66322 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = ED6A76EE2E1F0F0200B66322 /* FirebaseCore */; };
+		ED6A76FC2E1F30EF00B66322 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = ED6A76FB2E1F30EF00B66322 /* FirebaseAuth */; };
+		ED6A77012E1F34DC00B66322 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = ED6A77002E1F34DC00B66322 /* GoogleSignIn */; };
+		ED6A77032E1F34DC00B66322 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ED6A77022E1F34DC00B66322 /* GoogleSignInSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		ED90B1C02DFC4C1D008AE528 /* FinancialControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinancialControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,16 +44,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED6A77032E1F34DC00B66322 /* GoogleSignInSwift in Frameworks */,
+				ED6A76EF2E1F0F0200B66322 /* FirebaseCore in Frameworks */,
+				ED6A77012E1F34DC00B66322 /* GoogleSignIn in Frameworks */,
+				ED6A76FC2E1F30EF00B66322 /* FirebaseAuth in Frameworks */,
+				ED6A76E72E1F09D500B66322 /* SharpnezDesignSystemSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ED6A76ED2E1F0F0200B66322 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ED90B1B72DFC4C1D008AE528 = {
 			isa = PBXGroup;
 			children = (
 				ED90B1C22DFC4C1D008AE528 /* FinancialControl */,
+				ED6A76ED2E1F0F0200B66322 /* Frameworks */,
 				ED90B1C12DFC4C1D008AE528 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,6 +99,11 @@
 			);
 			name = FinancialControl;
 			packageProductDependencies = (
+				ED6A76E62E1F09D500B66322 /* SharpnezDesignSystemSwiftUI */,
+				ED6A76EE2E1F0F0200B66322 /* FirebaseCore */,
+				ED6A76FB2E1F30EF00B66322 /* FirebaseAuth */,
+				ED6A77002E1F34DC00B66322 /* GoogleSignIn */,
+				ED6A77022E1F34DC00B66322 /* GoogleSignInSwift */,
 			);
 			productName = FinancialControl;
 			productReference = ED90B1C02DFC4C1D008AE528 /* FinancialControl.app */;
@@ -109,6 +135,9 @@
 			mainGroup = ED90B1B72DFC4C1D008AE528;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				ED6A76E52E1F09D500B66322 /* XCLocalSwiftPackageReference "../../../Sharpnez/sdk-ios-sharpnez-design-system-swiftui/sdk-ios-sharpnez-design-system-swiftui" */,
+				ED6A76E82E1F0B6A00B66322 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				ED6A76FF2E1F34DC00B66322 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = ED90B1C12DFC4C1D008AE528 /* Products */;
@@ -176,12 +205,15 @@
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
@@ -221,12 +253,15 @@
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
@@ -367,6 +402,59 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		ED6A76E52E1F09D500B66322 /* XCLocalSwiftPackageReference "../../../Sharpnez/sdk-ios-sharpnez-design-system-swiftui/sdk-ios-sharpnez-design-system-swiftui" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../../Sharpnez/sdk-ios-sharpnez-design-system-swiftui/sdk-ios-sharpnez-design-system-swiftui";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ED6A76E82E1F0B6A00B66322 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.15.0;
+			};
+		};
+		ED6A76FF2E1F34DC00B66322 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ED6A76E62E1F09D500B66322 /* SharpnezDesignSystemSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharpnezDesignSystemSwiftUI;
+		};
+		ED6A76EE2E1F0F0200B66322 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED6A76E82E1F0B6A00B66322 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		ED6A76FB2E1F30EF00B66322 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED6A76E82E1F0B6A00B66322 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		ED6A77002E1F34DC00B66322 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED6A76FF2E1F34DC00B66322 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		ED6A77022E1F34DC00B66322 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED6A76FF2E1F34DC00B66322 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ED90B1B82DFC4C1D008AE528 /* Project object */;
 }

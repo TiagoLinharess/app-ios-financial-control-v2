@@ -5,10 +5,13 @@
 //  Created by Tiago Linhares on 13/06/25.
 //
 
+import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text("Suas transações aparecerão aqui.")
+        SHContainerView(title: "Home") {
+            Text("Suas transações aparecerão aqui.")
+        }
     }
 }
