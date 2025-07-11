@@ -6,10 +6,20 @@
   
 */
 
-// MARK: Biometry
+// MARK: Error
 
-"biometry.title" = "Use a autenticação local do seu dispositivo para acessar o app.";
-"biometry.validate" = "Validar";
+"error.user.permission" = "Permissão de acesso ao Google não foi concedida.";
+"error.user.canceled.login" = "O login foi cancelado pelo usuário.";
+"error.generic" = "Ocorreu um erro inesperado.";
+
+// MARK: Login
+
+"login.description" = "Bem-vindo(a) ao Financial Control!\nGerencie suas despesas de forma simples\ne segura.";
+"login.button" = "entrar com a sua conta Google";
+
+// MARK: UnLogged
+
+"unlogged.login.to.continue" = "Efetue o login para continuar";
 
 // MARK: Commons
 
@@ -21,6 +31,7 @@
 "commons.name" = "Nome";
 "commons.payment.type" = "Tipo de pagamento";
 "commons.name.empty" = "Preencha o campo \"nome\".";
+"commons.title" = "Financial Control";
 
 // MARK: Modules
 

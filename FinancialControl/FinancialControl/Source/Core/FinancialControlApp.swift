@@ -15,6 +15,8 @@ struct FinancialControlApp: App {
     
     // MARK: Properties
     
+    @Environment(\.scenePhase) var scenePhase
+    @StateObject private var authentication: Authentication = Authentication()
     @State private var showLaunchScreen: Bool = true
     
     // MARK: Init
@@ -28,20 +30,37 @@ struct FinancialControlApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Group {
-                if showLaunchScreen {
-                    LaunchScreenView {
-                        withAnimation {
-                            showLaunchScreen = false
-                        }
-                    }
-                } else {
-                    AppContainerView()
-                }
-            }
-            .onOpenURL { url in
-                GIDSignIn.sharedInstance.handle(url)
-            }
+            baseView
+                .environmentObject(authentication)
         }
+    }
+    
+    @ViewBuilder
+    private var baseView: some View {
+        if showLaunchScreen {
+            LaunchScreenView(isShowing: $showLaunchScreen)
+        } else {
+            AppContainerView()
+                .onAppear(perform: authentication.validateSession)
+                .onOpenURL { url in
+                    GIDSignIn.sharedInstance.handle(url)
+                }
+                .fullScreenCover(isPresented: $authentication.presentLogin) {
+                    LoginView()
+                }
+                .onChange(of: scenePhase) { oldValue, newValue in
+                    validateScenePhase(oldValue: oldValue, newValue: newValue)
+                }
+        }
+    }
+    
+    // MARK: Private methods
+    
+    func validateScenePhase(oldValue: ScenePhase, newValue: ScenePhase) {
+        guard newValue == .active && (oldValue == .background || oldValue == .inactive) else {
+            return
+        }
+        
+        authentication.validateSession()
     }
 }

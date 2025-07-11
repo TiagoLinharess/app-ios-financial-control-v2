@@ -5,57 +5,58 @@
 //  Created by Tiago Linhares on 05/01/25.
 //
 
-import Combine
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
 struct LaunchScreenView: View {
     
-    // MARK: Properties
+    // MARK: - Properties
     
-    private let animationTimer = Timer
-        .publish(every: 0.5, on: .current, in: .common)
-        .autoconnect()
-    
-    @State private var firstAnimation = false
-    @State private var secondAnimation = false
+    @State private var isLogoBounced = false
+    @State private var isLogoHidden = false
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    @Binding private var isShowing: Bool
     
-    var didFinish: (() -> Void)?
+    // MARK: - Init
     
-    // MARK: Body
+    init(isShowing: Binding<Bool>) {
+        self._isShowing = isShowing
+    }
+    
+    // MARK: - Body
     
     var body: some View {
         ZStack {
-            Image("logo")
+            Color.background(colorScheme: colorScheme)
+                .ignoresSafeArea()
+            Image(Constants.Images.logo)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 120, height: 120)
-                .rotationEffect(firstAnimation ? Angle(degrees: 1080) : Angle(degrees: 1800))
-                .scaleEffect(secondAnimation ? 0 : 1)
-                .offset(y: secondAnimation ? 400 : 0)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(width: .xxGiant, height: .xxGiant)
+                .scaleEffect(isLogoHidden ? 0 : 1)
+                .offset(y: (isLogoBounced ? -80 : 0) + (isLogoHidden ? 400 : 0))
                 .padding(.bottom, .large)
-                .background(Color.background(colorScheme: colorScheme))
         }
         .onAppear {
-            updateAnimation()
+            startAnimationSequence()
         }
     }
     
-    // MARK: Private Methods
+    // MARK: - Private Methods
     
-    private func updateAnimation() {
+    private func startAnimationSequence() {
         Task {
-            withAnimation(.easeInOut(duration: 0.9)) {
-                firstAnimation.toggle()
+            withAnimation(.interpolatingSpring(stiffness: 180, damping: 8)) {
+                isLogoBounced.toggle()
             }
             try? await Task.sleep(for: .seconds(0.9))
             withAnimation(.linear) {
-                self.secondAnimation = true
+                isLogoHidden = true
             }
             try? await Task.sleep(for: .seconds(0.3))
-            didFinish?()
+            withAnimation {
+                isShowing = false
+            }
         }
     }
 }

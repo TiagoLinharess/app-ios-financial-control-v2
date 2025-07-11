@@ -9,11 +9,25 @@ import SwiftUI
 
 enum Localizable {
     
-    // MARK: Biometry
+    // MARK: Error
     
-    enum Biometry {
-        static let title = Localizable.tr("Localizable", "biometry.title", fallback: "Use your device's local authentication to access the app.")
-        static let validate = Localizable.tr("Localizable", "biometry.validate", fallback: "Validate")
+    enum Error {
+        static let userPermission = Localizable.tr("Localizable", "error.user.permission", fallback: "Google access permission not granted.")
+        static let userCanceledLogin = Localizable.tr("Localizable", "error.user.canceled.login", fallback: "The user canceled the sign-in flow.")
+        static let generic = Localizable.tr("Localizable", "error.generic", fallback: "An unexpected error has occurred.")
+    }
+    
+    // MARK: Login
+    
+    enum Login {
+        static let description = Localizable.tr("Localizable", "login.description", fallback: "Welcome to Financial Control!\nManage your expenses simply\nand securely.")
+        static let button = Localizable.tr("Localizable", "login.button", fallback: "sign in with your Google account")
+    }
+    
+    // MARK: UnLogged
+    
+    enum UnLogged {
+        static let loginToContinue = Localizable.tr("Localizable", "unlogged.login.to.continue", fallback: "Efetue o login para continuar")
     }
     
     // MARK: Commons
@@ -27,6 +41,7 @@ enum Localizable {
         static let name = Localizable.tr("Localizable", "commons.name", fallback: "Name")
         static let paymentType = Localizable.tr("Localizable", "commons.payment.type", fallback: "Payment type")
         static let emptyName = Localizable.tr("Localizable", "commons.name.empty", fallback: "Fill the field \"name\".")
+        static let title = Localizable.tr("Localizable", "commons.title", fallback: "Financial Control")
     }
     
     // MARK: Modules
@@ -85,3 +100,4 @@ private final class BundleToken {
     #endif
   }()
 }
+

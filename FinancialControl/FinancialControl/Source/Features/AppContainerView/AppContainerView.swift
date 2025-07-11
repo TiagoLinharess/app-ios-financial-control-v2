@@ -8,7 +8,23 @@
 import SwiftUI
 
 struct AppContainerView: View {
+    
+    // MARK: Properties
+    
+    @EnvironmentObject private var authentication: Authentication
+    
+    // MARK: Body
+    
     var body: some View {
-        LoginView()
+        if authentication.user == nil {
+            UnLoggedView()
+        } else {
+            contentView
+        }
+    }
+    
+    @ViewBuilder
+    private var contentView: some View {
+        HomeView()
     }
 }
