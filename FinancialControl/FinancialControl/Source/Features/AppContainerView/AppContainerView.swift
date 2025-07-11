@@ -13,7 +13,7 @@ struct AppContainerView: View {
     
     @EnvironmentObject private var authentication: Authentication
     @StateObject private var router = Router()
-    @State private var contentSelection: Features? = .home
+    @StateObject private var sideMenu = SideMenu()
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     
     // MARK: Body
@@ -28,24 +28,13 @@ struct AppContainerView: View {
     
     @ViewBuilder
     private var contentView: some View {
-        NavigationSplitView(columnVisibility: $columnVisibility) {
-            List(selection: $contentSelection) {
-                ForEach(Features.allCases, id: \.self) { item in
-                    Text(item.rawValue.capitalized)
-                        .tag(item as Features?)
-                }
-            }
-            .navigationTitle(Localizable.Commons.menu)
-        } detail: {
-            NavigationStack(path: $router.path) {
-                Group {
-                    router.getFeatures(from: contentSelection)
-                }
+        NavigationStack(path: $router.path) {
+            HomeContainerView()
+                .environmentObject(router)
+                .environmentObject(sideMenu)
                 .navigationDestination(for: Destination.self) { destination in
                     router.getDestination(from: destination)
                 }
-            }
         }
-        .environmentObject(router)
     }
 }

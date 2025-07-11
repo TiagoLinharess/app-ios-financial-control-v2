@@ -24,6 +24,7 @@
 // MARK: Commons
 
 "commons.menu" = "Menu";
+"commons.sign.out" = "sair";
 "commons.new" = "Novo";
 "commons.update" = "Editar";
 "commons.oops" = "Oops!";
@@ -39,7 +40,7 @@
 "module.budgets" = "Orçamentos";
 "module.bills" = "Contas";
 "module.settings" = "Configurações";
-"module.sub.payment.types" = "Sub-tipo de pagamentos";
+"module.categories" = "Categorias";
 
 // MARK: Payment type
 
