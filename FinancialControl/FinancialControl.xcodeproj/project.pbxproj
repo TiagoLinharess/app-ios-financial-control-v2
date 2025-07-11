@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		ED6A76E72E1F09D500B66322 /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = ED6A76E62E1F09D500B66322 /* SharpnezDesignSystemSwiftUI */; };
-		ED6A76EF2E1F0F0200B66322 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = ED6A76EE2E1F0F0200B66322 /* FirebaseCore */; };
-		ED6A76FC2E1F30EF00B66322 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = ED6A76FB2E1F30EF00B66322 /* FirebaseAuth */; };
-		ED6A77012E1F34DC00B66322 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = ED6A77002E1F34DC00B66322 /* GoogleSignIn */; };
-		ED6A77032E1F34DC00B66322 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ED6A77022E1F34DC00B66322 /* GoogleSignInSwift */; };
+		EDFE8FD02E212EB200F1F9D3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EDFE8FCF2E212EB200F1F9D3 /* FirebaseAuth */; };
+		EDFE8FD22E212EB200F1F9D3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = EDFE8FD12E212EB200F1F9D3 /* FirebaseCore */; };
+		EDFE8FD52E212EC000F1F9D3 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EDFE8FD42E212EC000F1F9D3 /* GoogleSignIn */; };
+		EDFE8FD72E212EC000F1F9D3 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EDFE8FD62E212EC000F1F9D3 /* GoogleSignInSwift */; };
+		EDFE8FDA2E212ED500F1F9D3 /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EDFE8FD92E212ED500F1F9D3 /* SharpnezDesignSystemSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,11 +45,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED6A77032E1F34DC00B66322 /* GoogleSignInSwift in Frameworks */,
-				ED6A76EF2E1F0F0200B66322 /* FirebaseCore in Frameworks */,
-				ED6A77012E1F34DC00B66322 /* GoogleSignIn in Frameworks */,
-				ED6A76FC2E1F30EF00B66322 /* FirebaseAuth in Frameworks */,
+				EDFE8FDA2E212ED500F1F9D3 /* SharpnezDesignSystemSwiftUI in Frameworks */,
+				EDFE8FD72E212EC000F1F9D3 /* GoogleSignInSwift in Frameworks */,
 				ED6A76E72E1F09D500B66322 /* SharpnezDesignSystemSwiftUI in Frameworks */,
+				EDFE8FD52E212EC000F1F9D3 /* GoogleSignIn in Frameworks */,
+				EDFE8FD22E212EB200F1F9D3 /* FirebaseCore in Frameworks */,
+				EDFE8FD02E212EB200F1F9D3 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,10 +102,11 @@
 			name = FinancialControl;
 			packageProductDependencies = (
 				ED6A76E62E1F09D500B66322 /* SharpnezDesignSystemSwiftUI */,
-				ED6A76EE2E1F0F0200B66322 /* FirebaseCore */,
-				ED6A76FB2E1F30EF00B66322 /* FirebaseAuth */,
-				ED6A77002E1F34DC00B66322 /* GoogleSignIn */,
-				ED6A77022E1F34DC00B66322 /* GoogleSignInSwift */,
+				EDFE8FCF2E212EB200F1F9D3 /* FirebaseAuth */,
+				EDFE8FD12E212EB200F1F9D3 /* FirebaseCore */,
+				EDFE8FD42E212EC000F1F9D3 /* GoogleSignIn */,
+				EDFE8FD62E212EC000F1F9D3 /* GoogleSignInSwift */,
+				EDFE8FD92E212ED500F1F9D3 /* SharpnezDesignSystemSwiftUI */,
 			);
 			productName = FinancialControl;
 			productReference = ED90B1C02DFC4C1D008AE528 /* FinancialControl.app */;
@@ -135,9 +138,9 @@
 			mainGroup = ED90B1B72DFC4C1D008AE528;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				ED6A76E52E1F09D500B66322 /* XCLocalSwiftPackageReference "../../../Sharpnez/sdk-ios-sharpnez-design-system-swiftui/sdk-ios-sharpnez-design-system-swiftui" */,
-				ED6A76E82E1F0B6A00B66322 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				ED6A76FF2E1F34DC00B66322 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				EDFE8FCE2E212EB200F1F9D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EDFE8FD32E212EC000F1F9D3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				EDFE8FD82E212ED500F1F9D3 /* XCRemoteSwiftPackageReference "sdk-ios-sharpnez-design-system-swiftui" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = ED90B1C12DFC4C1D008AE528 /* Products */;
@@ -403,15 +406,8 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		ED6A76E52E1F09D500B66322 /* XCLocalSwiftPackageReference "../../../Sharpnez/sdk-ios-sharpnez-design-system-swiftui/sdk-ios-sharpnez-design-system-swiftui" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../Sharpnez/sdk-ios-sharpnez-design-system-swiftui/sdk-ios-sharpnez-design-system-swiftui";
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
-		ED6A76E82E1F0B6A00B66322 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		EDFE8FCE2E212EB200F1F9D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -419,12 +415,20 @@
 				minimumVersion = 11.15.0;
 			};
 		};
-		ED6A76FF2E1F34DC00B66322 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+		EDFE8FD32E212EC000F1F9D3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 9.0.0;
+			};
+		};
+		EDFE8FD82E212ED500F1F9D3 /* XCRemoteSwiftPackageReference "sdk-ios-sharpnez-design-system-swiftui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TiagoLinharess/sdk-ios-sharpnez-design-system-swiftui";
+			requirement = {
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -434,25 +438,30 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = SharpnezDesignSystemSwiftUI;
 		};
-		ED6A76EE2E1F0F0200B66322 /* FirebaseCore */ = {
+		EDFE8FCF2E212EB200F1F9D3 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = ED6A76E82E1F0B6A00B66322 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCore;
-		};
-		ED6A76FB2E1F30EF00B66322 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ED6A76E82E1F0B6A00B66322 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = EDFE8FCE2E212EB200F1F9D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		ED6A77002E1F34DC00B66322 /* GoogleSignIn */ = {
+		EDFE8FD12E212EB200F1F9D3 /* FirebaseCore */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = ED6A76FF2E1F34DC00B66322 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			package = EDFE8FCE2E212EB200F1F9D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		EDFE8FD42E212EC000F1F9D3 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EDFE8FD32E212EC000F1F9D3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
 		};
-		ED6A77022E1F34DC00B66322 /* GoogleSignInSwift */ = {
+		EDFE8FD62E212EC000F1F9D3 /* GoogleSignInSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = ED6A76FF2E1F34DC00B66322 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			package = EDFE8FD32E212EC000F1F9D3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		EDFE8FD92E212ED500F1F9D3 /* SharpnezDesignSystemSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EDFE8FD82E212ED500F1F9D3 /* XCRemoteSwiftPackageReference "sdk-ios-sharpnez-design-system-swiftui" */;
+			productName = SharpnezDesignSystemSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
