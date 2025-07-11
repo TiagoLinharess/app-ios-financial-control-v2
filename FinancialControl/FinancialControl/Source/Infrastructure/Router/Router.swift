@@ -33,8 +33,6 @@ final class Router: ObservableObject {
     
     @ViewBuilder func getDestination(from destination: Destination) -> some View {
         switch destination {
-        case .subPaymentTypeForm(let subPaymentType):
-            SubPaymentTypesFormView(subPaymentType: subPaymentType)
         default:
             Text("in development")
         }
@@ -44,10 +42,8 @@ final class Router: ObservableObject {
         switch selection {
         case .home:
             HomeView()
-        case .subPayment:
-            SubPaymentTypeListView()
-        case .none:
-            EmptyView()
+        default:
+            Text(selection?.rawValue ?? "")
         }
     }
 }
@@ -60,7 +56,7 @@ enum Destination: Hashable {
     case annualPaymentForm
     case purchaseInstallmentForm
     case productForm
-    case subPaymentTypeForm(SubPaymentType? = nil)
+    case subPaymentTypeForm
     case budgetForm
     case creditCardForm
 }

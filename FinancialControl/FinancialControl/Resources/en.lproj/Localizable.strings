@@ -6,10 +6,20 @@
   
 */
 
-// MARK: Biometry
+// MARK: Error
 
-"biometry.title" = "Use your device's local authentication to access the app.";
-"biometry.validate" = "Validate";
+"error.user.permission" = "Google access permission not granted.";
+"error.user.canceled.login" = "The user canceled the sign-in flow.";
+"error.generic" = "An unexpected error has occurred.";
+
+// MARK: Login
+
+"login.description" = "Welcome to Financial Control!\nManage your expenses simply\nand securely.";
+"login.button" = "sign in with your Google account";
+
+// MARK: UnLogged
+
+"unlogged.login.to.continue" = "Make login to continue";
 
 // MARK: Commons
 
@@ -21,6 +31,7 @@
 "commons.name" = "Name";
 "commons.payment.type" = "Payment type";
 "commons.name.empty" = "Fill the field \"name\".";
+"commons.title" = "Financial Control";
 
 // MARK: Modules
 
@@ -39,3 +50,4 @@
 // MARK: Sub Payment type
 
 "sub.payment.type.form.title" = " Sub payment type";
+
