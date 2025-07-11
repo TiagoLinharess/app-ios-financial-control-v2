@@ -40,8 +40,10 @@ final class Router: ObservableObject {
     
     @ViewBuilder func getFeatures(from selection: Features?) -> some View {
         switch selection {
+        case .home:
+            HomeView()
         default:
-            EmptyView()
+            Text(selection?.rawValue ?? "")
         }
     }
 }
