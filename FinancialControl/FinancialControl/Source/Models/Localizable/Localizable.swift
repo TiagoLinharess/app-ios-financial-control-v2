@@ -34,6 +34,7 @@ enum Localizable {
     
     enum Commons {
         static let menu = Localizable.tr("Localizable", "commons.menu", fallback: "Menu")
+        static let signOut = Localizable.tr("Localizable", "commons.sign.out", fallback: "sign out")
         static let new = Localizable.tr("Localizable", "commons.new", fallback: "New")
         static let update = Localizable.tr("Localizable", "commons.update", fallback: "Update")
         static let oops = Localizable.tr("Localizable", "commons.oops", fallback: "Oops!")
@@ -51,7 +52,7 @@ enum Localizable {
         static let budgets = Localizable.tr("Localizable", "module.budgets", fallback: "Budgets")
         static let bills = Localizable.tr("Localizable", "module.bills", fallback: "Bills")
         static let settings = Localizable.tr("Localizable", "module.settings", fallback: "Settings")
-        static let subPaymentTypes = Localizable.tr("Localizable", "module.sub.payment.types", fallback: "Sub payment types")
+        static let categories = Localizable.tr("Localizable", "module.categories", fallback: "Categories")
     }
     
     // MARK: Payment type

@@ -10,42 +10,37 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject private var authentication: Authentication
+    // MARK: Properties
+    
+    @EnvironmentObject private var sideMenu: SideMenu
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    @State private var toast: SHToastViewModel?
-    @State private var isLoading: Bool = false
+    
+    // MARK: Body
     
     var body: some View {
-        SHContainerView {
-            VStack {
-                SHButton(
-                    title: "Sair",
-                    style: .primary(
-                        .brand(colorScheme: colorScheme),
-                        .onBrand(colorScheme: colorScheme)
-                    ),
-                    font: .montserrat,
-                    isLoading: isLoading,
-                    action: handleClickLogout
-                )
+        ZStack {
+            Color.background(colorScheme: colorScheme).ignoresSafeArea()
+            Text("home")
+                .padding(.small)
+                .frame(maxWidth: Constants.Sizes.containerWidth)
+        }
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: handleClickMenu) {
+                    SHIcon(icon: sideMenu.isExpanded ? .close : .menu)
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundStyle(Color.onBackground(colorScheme: colorScheme))
+                        .frame(width: .medium, height: .medium)
+                }
             }
-            .padding(.small)
         }
     }
     
-    func handleClickLogout() {
-        Task {
-            defer { isLoading = false }
-            isLoading = true
-            do {
-                try await authentication.logout()
-            } catch {
-                toast = SHToastViewModel(
-                    style: .error,
-                    font: .montserrat,
-                    message: error.localizedDescription
-                )
-            }
-        }
+    // MARK: Private methods
+    
+    func handleClickMenu() {
+        sideMenu.isExpanded.toggle()
     }
 }
