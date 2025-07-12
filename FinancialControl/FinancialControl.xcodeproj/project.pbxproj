@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		ED6A76E72E1F09D500B66322 /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = ED6A76E62E1F09D500B66322 /* SharpnezDesignSystemSwiftUI */; };
+		ED6E0BFD2E21DC490013803E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = ED6E0BFC2E21DC490013803E /* FirebaseFirestore */; };
 		ED8DA34D2E2130FE00897E3C /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = ED8DA34C2E2130FE00897E3C /* SharpnezDesignSystemSwiftUI */; };
 		ED999A612E21652500BC814D /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = ED999A602E21652500BC814D /* SharpnezDesignSystemSwiftUI */; };
 		EDFE8FD02E212EB200F1F9D3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EDFE8FCF2E212EB200F1F9D3 /* FirebaseAuth */; };
@@ -51,6 +52,7 @@
 				ED999A612E21652500BC814D /* SharpnezDesignSystemSwiftUI in Frameworks */,
 				ED6A76E72E1F09D500B66322 /* SharpnezDesignSystemSwiftUI in Frameworks */,
 				EDFE8FD52E212EC000F1F9D3 /* GoogleSignIn in Frameworks */,
+				ED6E0BFD2E21DC490013803E /* FirebaseFirestore in Frameworks */,
 				EDFE8FD22E212EB200F1F9D3 /* FirebaseCore in Frameworks */,
 				EDFE8FD02E212EB200F1F9D3 /* FirebaseAuth in Frameworks */,
 			);
@@ -110,6 +112,7 @@
 				EDFE8FD62E212EC000F1F9D3 /* GoogleSignInSwift */,
 				ED8DA34C2E2130FE00897E3C /* SharpnezDesignSystemSwiftUI */,
 				ED999A602E21652500BC814D /* SharpnezDesignSystemSwiftUI */,
+				ED6E0BFC2E21DC490013803E /* FirebaseFirestore */,
 			);
 			productName = FinancialControl;
 			productReference = ED90B1C02DFC4C1D008AE528 /* FinancialControl.app */;
@@ -440,6 +443,11 @@
 		ED6A76E62E1F09D500B66322 /* SharpnezDesignSystemSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharpnezDesignSystemSwiftUI;
+		};
+		ED6E0BFC2E21DC490013803E /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EDFE8FCE2E212EB200F1F9D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 		ED8DA34C2E2130FE00897E3C /* SharpnezDesignSystemSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

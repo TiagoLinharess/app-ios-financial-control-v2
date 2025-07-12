@@ -6,7 +6,6 @@
 //
 
 import Combine
-import SwiftUI
 
 @MainActor
 final class Authentication: ObservableObject {
