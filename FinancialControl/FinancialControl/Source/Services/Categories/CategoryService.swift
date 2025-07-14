@@ -9,7 +9,7 @@ import FirebaseAuth
 
 protocol CategoryServiceProtocol {
     func read() async throws -> [CategoryViewModel]
-    func create(model: CategoryViewModel) async throws
+    func create(model: AddCategoryViewModel) async throws
     func update(model: CategoryViewModel) async throws
     func delete(id: String) async throws
 }
@@ -45,7 +45,7 @@ final class CategoryService: FCService, CategoryServiceProtocol {
         }
     }
     
-    func create(model: CategoryViewModel) async throws {
+    func create(model: AddCategoryViewModel) async throws {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
             try await repository.create(requestModel: model.toRequestModel(userID: userID))

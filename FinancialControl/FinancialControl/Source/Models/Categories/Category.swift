@@ -25,7 +25,7 @@ final class Category: ObservableObject {
         return try await service.read()
     }
     
-    func create(model: CategoryViewModel) async throws {
+    func create(model: AddCategoryViewModel) async throws {
         try await service.create(model: model)
     }
     

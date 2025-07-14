@@ -1,21 +1,23 @@
 //
-//  CategoryResponseModel.swift
+//  EditCategoryRequestModel.swift
 //  FinancialControl
 //
 //  Created by Tiago Linhares on 11/07/25.
 //
 
-import FirebaseFirestore
+import Foundation
 
-struct CategoryResponseModel: Decodable, Identifiable {
-    @DocumentID var id: String?
+struct EditCategoryRequestModel: Encodable, Identifiable {
+    let id: String
     let transactionTypeID: Int
+    let userID: String
     let name: String
     let createdAt: Date
     
     nonisolated enum CodingKeys: String, CodingKey {
         case id
         case transactionTypeID = "transaction_type_id"
+        case userID = "user_id"
         case name
         case createdAt = "created_at"
     }

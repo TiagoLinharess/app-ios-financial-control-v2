@@ -11,16 +11,9 @@ struct CategoryViewModel: Identifiable {
     let id: String
     let transactionType: TransactionType
     let name: String
-    let createdAt: String
+    let createdAt: Date
     
-    init(transactionType: TransactionType, name: String) {
-        self.id = UUID().uuidString
-        self.transactionType = transactionType
-        self.name = name
-        self.createdAt = Date().description
-    }
-    
-    init(id: String, transactionType: TransactionType, name: String, createdAt: String) {
+    init(id: String, transactionType: TransactionType, name: String, createdAt: Date) {
         self.id = id
         self.transactionType = transactionType
         self.name = name
@@ -39,8 +32,8 @@ struct CategoryViewModel: Identifiable {
         self.createdAt = response.createdAt
     }
     
-    func toRequestModel(userID: String) -> CategoryRequestModel {
-        return CategoryRequestModel(
+    func toRequestModel(userID: String) -> EditCategoryRequestModel {
+        return EditCategoryRequestModel(
             id: id,
             transactionTypeID: transactionType.rawValue,
             userID: userID,

@@ -65,7 +65,7 @@ public struct CategoryListView: View {
     private func handleAdd() {
         Task {
             do {
-                try await model.create(model: CategoryViewModel(
+                try await model.create(model: AddCategoryViewModel(
                     transactionType: .income,
                     name: "teste"
                 ))

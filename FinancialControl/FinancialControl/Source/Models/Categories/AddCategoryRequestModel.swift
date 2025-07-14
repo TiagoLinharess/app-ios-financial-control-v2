@@ -1,21 +1,19 @@
 //
-//  CategoryRequestModel.swift
+//  AddCategoryRequestModel.swift
 //  FinancialControl
 //
-//  Created by Tiago Linhares on 11/07/25.
+//  Created by Tiago Linhares on 14/07/25.
 //
 
 import Foundation
 
-struct CategoryRequestModel: Encodable, Identifiable {
-    let id: String
+struct AddCategoryRequestModel: Encodable {
     let transactionTypeID: Int
     let userID: String
     let name: String
-    let createdAt: String
+    let createdAt: Date
     
     nonisolated enum CodingKeys: String, CodingKey {
-        case id
         case transactionTypeID = "transaction_type_id"
         case userID = "user_id"
         case name

@@ -9,8 +9,8 @@ import FirebaseFirestore
 
 protocol CategoryRepositoryProtocol {
     func read(userID: String) async throws -> [CategoryResponseModel]
-    func create(requestModel: CategoryRequestModel) async throws
-    func update(requestModel: CategoryRequestModel) async throws
+    func create(requestModel: AddCategoryRequestModel) async throws
+    func update(requestModel: EditCategoryRequestModel) async throws
     func delete(id: String, userID: String) async throws
 }
 
@@ -38,19 +38,14 @@ final class CategoryRepository: CategoryRepositoryProtocol {
             .compactMap { try? $0.data(as: CategoryResponseModel.self) }
     }
     
-    func create(requestModel: CategoryRequestModel) async throws {
-        let dict = try JSONEncoder().toDictionary(model: requestModel)
-        
+    func create(requestModel: AddCategoryRequestModel) async throws {
         try await database.collection("categories")
-            .addDocument(data: dict)
+            .addDocument(requestModel)
     }
     
-    func update(requestModel: CategoryRequestModel) async throws {
-        let dict = try JSONEncoder().toDictionary(model: requestModel)
-        
+    func update(requestModel: EditCategoryRequestModel) async throws {
         try await database.collection("categories")
-            .document(requestModel.id)
-            .updateData(dict)
+            .updateData(requestModel, reference: requestModel.id)
     }
     
     func delete(id: String, userID: String) async throws {
