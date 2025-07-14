@@ -17,6 +17,9 @@ struct FinancialControlApp: App {
     
     @Environment(\.scenePhase) var scenePhase
     @StateObject private var authentication: Authentication = Authentication()
+    @StateObject private var router = Router()
+    @StateObject private var sideMenu = SideMenu()
+    @StateObject private var category: Category = Category()
     @State private var showLaunchScreen: Bool = true
     
     // MARK: Init
@@ -32,6 +35,9 @@ struct FinancialControlApp: App {
         WindowGroup {
             baseView
                 .environmentObject(authentication)
+                .environmentObject(router)
+                .environmentObject(sideMenu)
+                .environmentObject(category)
                 .onAppear(perform: startSingleton)
         }
     }

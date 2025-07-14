@@ -11,26 +11,18 @@
 "error.user.permission" = "Google access permission not granted.";
 "error.user.canceled.login" = "The user canceled the sign-in flow.";
 "error.generic" = "An unexpected error has occurred.";
-
-// MARK: Login
-
-"login.description" = "Welcome to Financial Control!\nManage your expenses simply\nand securely.";
-"login.button" = "sign in with your Google account";
-
-// MARK: UnLogged
-
-"unlogged.login.to.continue" = "Make login to continue";
+"error.session.expired" = "Your session has expired. Please log in again.";
+"error.parse.error" = "An error occurred while processing the data. Please try again later.";
 
 // MARK: Commons
 
-"commons.menu" = "Menu";
 "commons.sign.out" = "sign out";
-"commons.new" = "New";
-"commons.update" = "Update";
-"commons.oops" = "Oops!";
-"commons.ok" = "ok";
+"commons.new" = "new";
+"commons.update" = "update";
+"commons.try.again" = "try again";
+"commons.menu" = "Menu";
 "commons.name" = "Name";
-"commons.payment.type" = "Payment type";
+"commons.transaction.type" = "Transaction type";
 "commons.name.empty" = "Fill the field \"name\".";
 "commons.title" = "Financial Control";
 
@@ -42,13 +34,27 @@
 "module.settings" = "Settings";
 "module.categories" = "Categories";
 
-// MARK: Payment type
+// MARK: Login
 
-"payment.type.income" = "Income";
-"payment.type.outcome" = "Outcome";
-"payment.type.credit" = "Credit";
+"login.description" = "Welcome to Financial Control!\nManage your expenses simply\nand securely.";
+"login.button" = "sign in with your Google account";
 
-// MARK: Sub Payment type
+// MARK: UnLogged
 
-"sub.payment.type.form.title" = " Sub payment type";
+"unlogged.login.to.continue" = "Make login to continue";
+
+// MARK: Transaction type
+
+"transaction.type.income" = "Income";
+"transaction.type.debit" = "Debit";
+"transaction.type.credit" = "Credit";
+"transaction.type.incomes" = "Incomes";
+"transaction.type.debits" = "Debits";
+"transaction.type.credits" = "Credits";
+
+// MARK: Categories
+
+"categories.empty.state.title" = "You don't have any categories yet!";
+"categories.empty.state.description" = "Click the “+” to add a category";
+"categories.error.state.title" = "Oops, an error occurred while loading your categories";
 

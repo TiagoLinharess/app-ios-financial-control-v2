@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CategoryViewModel: Identifiable {
+struct CategoryViewModel: Identifiable, Equatable {
     let id: String
     let transactionType: TransactionType
     let name: String

@@ -32,9 +32,9 @@ enum FCError: Error {
         case .generic:
             Localizable.Error.generic
         case .parseError:
-            "Ocorreu um erro ao processar os dados. Por favor, tente novamente mais tarde."
+            Localizable.Error.parseError
         case .sessionExpired:
-            "Sua sessão expirou. Por favor, logue-se novamente."
+            Localizable.Error.sessionExpired
         }
     }
 }

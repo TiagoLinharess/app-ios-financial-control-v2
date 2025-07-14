@@ -12,9 +12,7 @@ struct AppContainerView: View {
     // MARK: Properties
     
     @EnvironmentObject private var authentication: Authentication
-    @StateObject private var router = Router()
-    @StateObject private var sideMenu = SideMenu()
-    @State private var columnVisibility: NavigationSplitViewVisibility = .all
+    @EnvironmentObject private var router: Router
     
     // MARK: Body
     
@@ -30,8 +28,6 @@ struct AppContainerView: View {
     private var contentView: some View {
         NavigationStack(path: $router.path) {
             HomeContainerView()
-                .environmentObject(router)
-                .environmentObject(sideMenu)
                 .navigationDestination(for: Destination.self) { destination in
                     router.getDestination(from: destination)
                 }

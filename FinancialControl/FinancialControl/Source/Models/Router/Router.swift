@@ -34,7 +34,9 @@ final class Router: ObservableObject {
     @ViewBuilder func getDestination(from destination: Destination) -> some View {
         switch destination {
         case .categories:
-            CategoryListView()
+            CategoryListContainerView()
+        case .categoryDetail(let id):
+            CategoryDetailView(id: id)
         default:
             Text("in development")
         }
@@ -45,5 +47,6 @@ final class Router: ObservableObject {
 
 enum Destination: Hashable {
     case categories
+    case categoryDetail(String)
     case products
 }

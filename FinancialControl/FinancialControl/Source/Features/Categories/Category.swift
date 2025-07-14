@@ -6,12 +6,16 @@
 //
 
 import Combine
+import Foundation
 
 final class Category: ObservableObject {
     
     // MARK: Properties
     
     private let service: CategoryServiceProtocol
+    
+    @Published private(set) var categories: [CategoryViewModel] = []
+    @Published private(set) var listState: CategoryViewState = .loading
     
     // MARK: Init
     
@@ -21,8 +25,15 @@ final class Category: ObservableObject {
     
     // MARK: Public methods
     
-    func read() async throws -> [CategoryViewModel] {
-        return try await service.read()
+    func read() async {
+        listState = .loading
+        do {
+            let categories = try await service.read()
+            self.categories = categories
+            listState = categories.isEmpty ? .empty : .success
+        } catch {
+            listState = .failure((error as? FCError) ?? FCError.generic)
+        }
     }
     
     func create(model: AddCategoryViewModel) async throws {
