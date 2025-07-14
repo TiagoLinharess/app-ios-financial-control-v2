@@ -29,7 +29,7 @@ final class CategoryRepository: CategoryRepositoryProtocol {
     // MARK: Public methods
     
     func read(userID: String) async throws -> [CategoryResponseModel] {
-        let snapshot = try await database.collection("categories")
+        let snapshot = try await database.collection(.categories)
             .whereField("user_id", isEqualTo: userID)
             .getDocuments()
         
@@ -39,17 +39,17 @@ final class CategoryRepository: CategoryRepositoryProtocol {
     }
     
     func create(requestModel: AddCategoryRequestModel) async throws {
-        try await database.collection("categories")
+        try await database.collection(.categories)
             .addDocument(requestModel)
     }
     
     func update(requestModel: EditCategoryRequestModel) async throws {
-        try await database.collection("categories")
+        try await database.collection(.categories)
             .updateData(requestModel, reference: requestModel.id)
     }
     
     func delete(id: String, userID: String) async throws {
-        try await database.collection("categories")
+        try await database.collection(.categories)
             .document(id)
             .delete()
     }

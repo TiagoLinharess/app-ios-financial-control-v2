@@ -8,6 +8,9 @@
 import FirebaseFirestore
 
 extension CollectionReference {
+    
+    // MARK: Add document
+    
     @discardableResult
     func addDocument<T: Encodable>(_ data: T) async throws -> DocumentReference {
         try await withCheckedThrowingContinuation { continuation in
@@ -25,6 +28,8 @@ extension CollectionReference {
             }
         }
     }
+    
+    // MARK: Update document
     
     nonisolated
     func updateData<T: Encodable>(_ model: T, reference: String) async throws {
