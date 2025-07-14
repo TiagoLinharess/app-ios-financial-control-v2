@@ -8,11 +8,11 @@
 
 // MARK: Error
 
-"error.user.permission" = "Permissão de acesso ao Google não foi concedida.";
-"error.user.canceled.login" = "O login foi cancelado pelo usuário.";
-"error.generic" = "Ocorreu um erro inesperado.";
-"error.session.expired" = "Sua sessão expirou. Por favor, logue-se novamente.";
-"error.parse.error" = "Ocorreu um erro ao processar os dados. Por favor, tente novamente mais tarde.";
+"error.user.permission" = "Permissão de acesso ao Google não foi concedida";
+"error.user.canceled.login" = "O login foi cancelado pelo usuário";
+"error.generic" = "Ocorreu um erro inesperado";
+"error.session.expired" = "Sua sessão expirou. Por favor, logue-se novamente";
+"error.parse.error" = "Ocorreu um erro ao processar os dados. Por favor, tente novamente mais tarde";
 
 // MARK: Commons
 
@@ -23,7 +23,7 @@
 "commons.menu" = "Menu";
 "commons.name" = "Nome";
 "commons.payment.type" = "Tipo de pagamento";
-"commons.name.empty" = "Preencha o campo \"nome\".";
+"commons.name.empty" = "Preencha o campo \"nome\"";
 "commons.title" = "Financial Control";
 
 // MARK: Modules

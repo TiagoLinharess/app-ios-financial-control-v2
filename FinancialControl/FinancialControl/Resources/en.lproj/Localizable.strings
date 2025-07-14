@@ -8,11 +8,11 @@
 
 // MARK: Error
 
-"error.user.permission" = "Google access permission not granted.";
-"error.user.canceled.login" = "The user canceled the sign-in flow.";
-"error.generic" = "An unexpected error has occurred.";
-"error.session.expired" = "Your session has expired. Please log in again.";
-"error.parse.error" = "An error occurred while processing the data. Please try again later.";
+"error.user.permission" = "Google access permission not granted";
+"error.user.canceled.login" = "The user canceled the sign-in flow";
+"error.generic" = "An unexpected error has occurred";
+"error.session.expired" = "Your session has expired. Please log in again";
+"error.parse.error" = "An error occurred while processing the data. Please try again later";
 
 // MARK: Commons
 
@@ -23,7 +23,7 @@
 "commons.menu" = "Menu";
 "commons.name" = "Name";
 "commons.transaction.type" = "Transaction type";
-"commons.name.empty" = "Fill the field \"name\".";
+"commons.name.empty" = "Fill the field \"name\"";
 "commons.title" = "Financial Control";
 
 // MARK: Modules
@@ -36,7 +36,7 @@
 
 // MARK: Login
 
-"login.description" = "Welcome to Financial Control!\nManage your expenses simply\nand securely.";
+"login.description" = "Welcome to Financial Control!\nManage your expenses simply\nand securely";
 "login.button" = "sign in with your Google account";
 
 // MARK: UnLogged
