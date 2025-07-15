@@ -26,6 +26,7 @@ struct CategorySectionListView: View {
                     }
                 }
             }
+            .padding(.small)
         }
     }
 }

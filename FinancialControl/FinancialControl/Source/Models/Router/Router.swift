@@ -37,6 +37,8 @@ final class Router: ObservableObject {
             CategoryListContainerView()
         case .categoryDetail(let id):
             CategoryDetailView(id: id)
+        case .categoryForm(let viewModel):
+            CategoryFormView(category: viewModel)
         default:
             Text("in development")
         }
@@ -48,5 +50,6 @@ final class Router: ObservableObject {
 enum Destination: Hashable {
     case categories
     case categoryDetail(String)
+    case categoryForm(CategoryViewModel? = nil)
     case products
 }

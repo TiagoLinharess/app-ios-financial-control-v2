@@ -34,7 +34,7 @@ struct CategoryListView: View {
             SHSection(
                 text: transactionType.listTitle,
                 color: .onBackgroundBody(colorScheme: colorScheme),
-                font: .caption(.montserrat, .regular)
+                font: .caption(.montserrat, .semiBold)
             )
             VStack(spacing: .small) {
                 ForEach(categories) { category in

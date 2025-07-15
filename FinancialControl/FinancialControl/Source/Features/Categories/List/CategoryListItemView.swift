@@ -32,7 +32,7 @@ public struct CategoryListItemView: View {
                 Text(category.name)
                     .configureWithSH(
                         color: .onSurface(colorScheme: colorScheme),
-                        font: .body(.montserrat, .regular)
+                        font: .body(.poppins, .regular)
                     )
                 Spacer()
             }

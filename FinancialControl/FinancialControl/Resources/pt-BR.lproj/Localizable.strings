@@ -49,11 +49,11 @@
 "transaction.type.debit" = "Débito";
 "transaction.type.credit" = "Crédito";
 "transaction.type.incomes" = "Entradas";
-"transaction.type.debit" = "Débitos";
+"transaction.type.debits" = "Débitos";
 "transaction.type.credits" = "Créditos";
 
 // MARK: Categories
 
 "categories.empty.state.title" = "Você ainda não possui categorias!";
 "categories.empty.state.description" = "clique no “+” para adicionar uma categoria";
-"categories.error.state.title" = "Ops, ocorreu um erro ao carregar suas categorias";
+"categories.error.state.title" = "Ops, ocorreu um erro ao carregar suas categorias...";

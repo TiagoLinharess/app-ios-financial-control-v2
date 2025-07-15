@@ -60,11 +60,11 @@ enum Localizable {
     
     enum TransactionType {
         static let income = Localizable.tr("Localizable", "transaction.type.income", fallback: "Income")
-        static let debit = Localizable.tr("Localizable", "transaction.type.debit", fallback: "Outcome")
+        static let debit = Localizable.tr("Localizable", "transaction.type.debit", fallback: "Debit")
         static let credit = Localizable.tr("Localizable", "transaction.type.credit", fallback: "Credit")
-        static let incomes = Localizable.tr("Localizable", "transaction.type.incomes", fallback: "Income")
-        static let debits = Localizable.tr("Localizable", "transaction.type.debits", fallback: "Outcome")
-        static let credits = Localizable.tr("Localizable", "transaction.type.credits", fallback: "Credit")
+        static let incomes = Localizable.tr("Localizable", "transaction.type.incomes", fallback: "Incomes")
+        static let debits = Localizable.tr("Localizable", "transaction.type.debits", fallback: "Debits")
+        static let credits = Localizable.tr("Localizable", "transaction.type.credits", fallback: "Credits")
     }
     
     // MARK: Categories

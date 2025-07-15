@@ -14,37 +14,35 @@ public struct CategoryListContainerView: View {
     
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject private var model: Category
+    @EnvironmentObject private var router: Router
     
     // MARK: Body
     
     public var body: some View {
         SHContainerView(title: Localizable.Modules.categories) {
-            Group {
-                switch model.listState {
-                case .loading:
-                    SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
-                case .success:
-                    CategorySectionListView()
-                case .empty:
-                    SHEmptyView(
-                        title: Localizable.Categories.emptyStateTitle,
-                        description: Localizable.Categories.emptyStateDescription,
-                        icon: .add,
-                        color: .onBackground(colorScheme: colorScheme),
-                        onColor: .background(colorScheme: colorScheme),
-                        action: handleAdd
-                    )
-                case .failure(let fCError):
-                    SHFeedbackView(
-                        type: .error,
-                        title: Localizable.Categories.errorStateTitle,
-                        description: fCError.message,
-                        primaryButtonTitle: Localizable.Commons.tryAgain,
-                        primaryAction: handleGetCategories
-                    )
-                }
+            switch model.listState {
+            case .loading:
+                SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
+            case .success:
+                CategorySectionListView()
+            case .empty:
+                SHEmptyView(
+                    title: Localizable.Categories.emptyStateTitle,
+                    description: Localizable.Categories.emptyStateDescription,
+                    icon: .add,
+                    color: .onBackground(colorScheme: colorScheme),
+                    onColor: .background(colorScheme: colorScheme),
+                    action: handleAdd
+                )
+            case .failure(let fCError):
+                SHFeedbackView(
+                    type: .error,
+                    title: Localizable.Categories.errorStateTitle,
+                    description: fCError.message,
+                    primaryButtonTitle: Localizable.Commons.tryAgain,
+                    primaryAction: handleGetCategories
+                )
             }
-            .padding(.small)
         }
         .onAppear(perform: handleGetCategories)
         .toolbar {
@@ -63,9 +61,7 @@ public struct CategoryListContainerView: View {
     // MARK: Private methods
     
     private func handleAdd() {
-        Task {
-            await model.read()
-        }
+        router.push(.categoryForm())
     }
     
     private func handleGetCategories() {
