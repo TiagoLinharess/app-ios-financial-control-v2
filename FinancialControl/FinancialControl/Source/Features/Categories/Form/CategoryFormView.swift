@@ -13,33 +13,50 @@ struct CategoryFormView: View {
     // MARK: Properties
     
     private let id: String?
-    @State private var name: String
     @State private var transactionType: TransactionType
+    @State private var icon: SHIconType
+    @State private var name: String
+    @State private var presentIconSelector: Bool = false
     @Environment(\.colorScheme) private var colorScheme
+    @EnvironmentObject private var router: Router
     
     // MARK: Init
     
     init(category: CategoryViewModel? = nil) {
         self.id = category?.id
-        self.name = category?.name ?? ""
         self.transactionType = category?.transactionType ?? .income
+        self.icon = .coin
+        self.name = category?.name ?? String()
     }
     
     // MARK: Body
     
     var body: some View {
         SHContainerView(title: handleTitle()) {
-            VStack(spacing: .small) {
-                Text("picker")
-                SHTextField(
-                    title: Localizable.Commons.name,
-                    color: .onBackground(colorScheme: colorScheme),
-                    font: .montserrat,
-                    text: $name
-                )
+            VStack(spacing: .medium) {
+                ScrollView(.vertical) {
+                    VStack(spacing: .medium) {
+                        TransactionTypeSelectorView(selectedTransactionType: $transactionType)
+                        HStack {
+                            IconSelectorButton(
+                                icon: icon,
+                                color: .onBackground(colorScheme: colorScheme),
+                                action: handlePresentIconSelector
+                            )
+                            Spacer()
+                        }
+                        SHTextField(
+                            title: Localizable.Commons.name,
+                            color: .onBackground(colorScheme: colorScheme),
+                            font: .montserrat,
+                            text: $name
+                        )
+                    }
+                    .padding(.small)
+                }
                 Spacer()
                 SHButton(
-                    title: "criar",
+                    title: Localizable.Commons.create,
                     style: .primary(
                         .brand(colorScheme: colorScheme),
                         .onBrand(colorScheme: colorScheme)
@@ -48,15 +65,22 @@ struct CategoryFormView: View {
                     isLoading: false,
                     action: handleSubmit
                 )
+                .padding(.small)
             }
-            .padding(.small)
+        }
+        .sheet(isPresented: $presentIconSelector) {
+            IconSelectorView(selectedIcon: $icon, isPresented: $presentIconSelector)
         }
     }
     
     // MARK: Private methods
     
     private func handleTitle() -> String {
-        id == nil ? "Nova categoria" : "Editar categoria"
+        id == nil ? Localizable.Categories.new : Localizable.Categories.edit
+    }
+    
+    private func handlePresentIconSelector() {
+        presentIconSelector = true
     }
     
     private func handleSubmit() {

@@ -5,6 +5,8 @@
 //  Created by Tiago Linhares on 11/07/25.
 //
 
+import SharpnezDesignSystemSwiftUI
+
 enum TransactionType: Int, CaseIterable {
     case income = 0
     case debit = 1
@@ -17,22 +19,33 @@ enum TransactionType: Int, CaseIterable {
     var title: String {
         switch self {
         case .income:
-            return Localizable.TransactionType.income
+            Localizable.TransactionType.income
         case .debit:
-            return Localizable.TransactionType.debit
+            Localizable.TransactionType.debit
         case .credit:
-            return Localizable.TransactionType.credit
+            Localizable.TransactionType.credit
         }
     }
     
     var listTitle: String {
         switch self {
         case .income:
-            return Localizable.TransactionType.incomes
+            Localizable.TransactionType.incomes
         case .debit:
-            return Localizable.TransactionType.debits
+            Localizable.TransactionType.debits
         case .credit:
-            return Localizable.TransactionType.credits
+            Localizable.TransactionType.credits
+        }
+    }
+    
+    var icon: SHIconType {
+        switch self {
+        case .income:
+            .wallet
+        case .debit:
+            .coin
+        case .credit:
+            .cardPos
         }
     }
 }

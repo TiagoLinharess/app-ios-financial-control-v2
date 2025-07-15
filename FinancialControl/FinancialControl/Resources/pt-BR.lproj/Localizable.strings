@@ -19,12 +19,15 @@
 "commons.sign.out" = "sair";
 "commons.new" = "novo";
 "commons.update" = "editar";
+"commons.create" = "criar";
 "commons.try.again" = "carregar novamente";
 "commons.menu" = "Menu";
 "commons.name" = "Nome";
-"commons.payment.type" = "Tipo de pagamento";
+"commons.transaction.type" = "Tipo de pagamento";
 "commons.name.empty" = "Preencha o campo \"nome\"";
 "commons.title" = "Financial Control";
+"commons.icon" = "Ícone";
+"commons.select.icon" = "Selecione o ícone";
 
 // MARK: Modules
 
@@ -57,3 +60,5 @@
 "categories.empty.state.title" = "Você ainda não possui categorias!";
 "categories.empty.state.description" = "clique no “+” para adicionar uma categoria";
 "categories.error.state.title" = "Ops, ocorreu um erro ao carregar suas categorias...";
+"categories.new" = "Nova categoria";
+"categories.edit" = "Editar categoria";

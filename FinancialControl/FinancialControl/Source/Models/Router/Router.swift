@@ -5,8 +5,8 @@
 //  Created by Tiago Linhares on 15/06/25.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 // MARK: Router
 

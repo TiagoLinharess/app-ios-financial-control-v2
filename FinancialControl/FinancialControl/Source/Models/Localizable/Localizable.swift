@@ -25,12 +25,15 @@ enum Localizable {
         static let signOut = Localizable.tr("Localizable", "commons.sign.out", fallback: "sign out")
         static let new = Localizable.tr("Localizable", "commons.new", fallback: "new")
         static let update = Localizable.tr("Localizable", "commons.update", fallback: "update")
+        static let create = Localizable.tr("Localizable", "commons.create", fallback: "create")
         static let tryAgain = Localizable.tr("Localizable", "commons.try.again", fallback: "try again")
         static let menu = Localizable.tr("Localizable", "commons.menu", fallback: "Menu")
         static let name = Localizable.tr("Localizable", "commons.name", fallback: "Name")
         static let transactionType = Localizable.tr("Localizable", "commons.transaction.type", fallback: "Transaction type")
         static let emptyName = Localizable.tr("Localizable", "commons.name.empty", fallback: "Fill the field \"name\".")
         static let title = Localizable.tr("Localizable", "commons.title", fallback: "Financial Control")
+        static let icon = Localizable.tr("Localizable", "commons.icon", fallback: "Icon")
+        static let selectIcon = Localizable.tr("Localizable", "commons.select.icon", fallback: "Select icon")
     }
     
     // MARK: Modules
@@ -73,6 +76,8 @@ enum Localizable {
         static let emptyStateTitle = Localizable.tr("Localizable", "categories.empty.state.title", fallback: "You don't have any categories yet!")
         static let emptyStateDescription = Localizable.tr("Localizable", "categories.empty.state.description", fallback: "Click the “+” to add a category")
         static let errorStateTitle = Localizable.tr("Localizable", "categories.error.state.title", fallback: "Oops, an error occurred while loading your categories")
+        static let new = Localizable.tr("Localizable", "categories.new", fallback: "New Category")
+        static let edit = Localizable.tr("Localizable", "categories.edit", fallback: "Update Category")
     }
 }
 

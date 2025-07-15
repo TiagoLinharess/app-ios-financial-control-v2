@@ -19,12 +19,15 @@
 "commons.sign.out" = "sign out";
 "commons.new" = "new";
 "commons.update" = "update";
+"commons.create" = "create";
 "commons.try.again" = "try again";
 "commons.menu" = "Menu";
 "commons.name" = "Name";
 "commons.transaction.type" = "Transaction type";
 "commons.name.empty" = "Fill the field \"name\"";
 "commons.title" = "Financial Control";
+"commons.icon" = "Icon";
+"commons.select.icon" = "Select icon";
 
 // MARK: Modules
 
@@ -57,4 +60,5 @@
 "categories.empty.state.title" = "You don't have any categories yet!";
 "categories.empty.state.description" = "Click the “+” to add a category";
 "categories.error.state.title" = "Oops, an error occurred while loading your categories...";
-
+"categories.new" = "New category";
+"categories.edit" = "Update category";
