@@ -19,6 +19,7 @@ struct CategoryFormView: View {
     @State private var presentIconSelector: Bool = false
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject private var router: Router
+    @EnvironmentObject private var model: Category
     
     // MARK: Init
     
@@ -71,6 +72,8 @@ struct CategoryFormView: View {
         .sheet(isPresented: $presentIconSelector) {
             IconSelectorView(selectedIcon: $icon, isPresented: $presentIconSelector)
         }
+        .toastView(toast: $model.toast)
+        .onTapGesture(perform: closeKeyboard)
     }
     
     // MARK: Private methods
@@ -84,6 +87,21 @@ struct CategoryFormView: View {
     }
     
     private func handleSubmit() {
-        print("submited")
+        if id == nil {
+            handleCreate()
+        }
+    }
+    
+    private func handleCreate() {
+        Task {
+            let addModel = AddCategoryViewModel(
+                transactionType: transactionType,
+                icon: icon,
+                name: name
+            )
+            if await model.create(model: addModel) {
+                router.pop()
+            }
+        }
     }
 }

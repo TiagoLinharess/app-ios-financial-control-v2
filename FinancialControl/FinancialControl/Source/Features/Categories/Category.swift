@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import SharpnezDesignSystemSwiftUI
 
 final class Category: ObservableObject {
     
@@ -16,6 +17,8 @@ final class Category: ObservableObject {
     
     @Published private(set) var categories: [CategoryViewModel] = []
     @Published private(set) var listState: CategoryViewState = .loading
+    @Published private(set) var isFormLoading: Bool = false
+    @Published var toast: SHToastViewModel?
     
     // MARK: Init
     
@@ -36,15 +39,45 @@ final class Category: ObservableObject {
         }
     }
     
-    func create(model: AddCategoryViewModel) async throws {
-        try await service.create(model: model)
+    func create(model: AddCategoryViewModel) async -> Bool {
+        defer { isFormLoading = false }
+        do {
+            try validateName(name: model.name)
+            isFormLoading = true
+            try await service.create(model: model)
+            return true
+        } catch {
+            return handleFormError(error: error)
+        }
     }
     
-    func update(model: CategoryViewModel) async throws {
-        try await service.update(model: model)
+    func update(model: CategoryViewModel) async -> Bool {
+        defer { isFormLoading = false }
+        do {
+            try validateName(name: model.name)
+            isFormLoading = true
+            try await service.update(model: model)
+            return true
+        } catch {
+            return handleFormError(error: error)
+        }
     }
     
     func delete(id: String) async throws {
         try await service.delete(id: id)
+    }
+    
+    // MARK: Private methods
+    
+    private func handleFormError(error: Error) -> Bool {
+        let message = ((error as? FCError) ?? FCError.generic).message
+        toast = SHToastViewModel(style: .error, font: .montserrat, message: message)
+        return false
+    }
+    
+    private func validateName(name: String) throws {
+        if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            throw FCError.custom(Localizable.Commons.emptyName)
+        }
     }
 }

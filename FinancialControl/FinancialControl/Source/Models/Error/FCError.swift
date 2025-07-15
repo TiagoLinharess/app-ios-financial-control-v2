@@ -13,6 +13,7 @@ enum FCError: Error {
     case userCanceledLogin
     case sessionExpired
     case parseError
+    case custom(String)
     
     init(value: String) {
         switch value {
@@ -35,6 +36,8 @@ enum FCError: Error {
             Localizable.Error.parseError
         case .sessionExpired:
             Localizable.Error.sessionExpired
+        case .custom(let message):
+            message
         }
     }
 }
