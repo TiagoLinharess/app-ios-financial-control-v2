@@ -5,8 +5,8 @@
 //  Created by Tiago Linhares on 15/06/25.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 // MARK: Router
 
@@ -33,6 +33,12 @@ final class Router: ObservableObject {
     
     @ViewBuilder func getDestination(from destination: Destination) -> some View {
         switch destination {
+        case .categories:
+            CategoryListContainerView()
+        case .categoryDetail(let id):
+            CategoryDetailView(id: id)
+        case .categoryForm(let viewModel):
+            CategoryFormView(category: viewModel)
         default:
             Text("in development")
         }
@@ -43,4 +49,7 @@ final class Router: ObservableObject {
 
 enum Destination: Hashable {
     case categories
+    case categoryDetail(String)
+    case categoryForm(CategoryViewModel? = nil)
+    case products
 }

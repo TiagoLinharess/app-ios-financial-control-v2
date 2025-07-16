@@ -8,9 +8,37 @@
 
 // MARK: Error
 
-"error.user.permission" = "Permissão de acesso ao Google não foi concedida.";
-"error.user.canceled.login" = "O login foi cancelado pelo usuário.";
-"error.generic" = "Ocorreu um erro inesperado.";
+"error.user.permission" = "Permissão de acesso ao Google não foi concedida";
+"error.user.canceled.login" = "O login foi cancelado pelo usuário";
+"error.generic" = "Ocorreu um erro inesperado";
+"error.session.expired" = "Sua sessão expirou. Por favor, logue-se novamente";
+"error.parse.error" = "Ocorreu um erro ao processar os dados. Por favor, tente novamente mais tarde";
+
+// MARK: Commons
+
+"commons.sign.out" = "sair";
+"commons.go.back" = "voltar";
+"commons.delete" = "deletar";
+"commons.new" = "novo";
+"commons.update" = "editar";
+"commons.create" = "criar";
+"commons.try.again" = "carregar novamente";
+"commons.menu" = "Menu";
+"commons.name" = "Nome";
+"commons.transaction.type" = "Tipo de pagamento";
+"commons.name.empty" = "Preencha o campo \"nome\"";
+"commons.title" = "Financial Control";
+"commons.icon" = "Ícone";
+"commons.select.icon" = "Selecione o ícone";
+"commons.created.at" = "Data de criação: %@";
+
+// MARK: Modules
+
+"module.home" = "Início";
+"module.budgets" = "Orçamentos";
+"module.bills" = "Contas";
+"module.settings" = "Configurações";
+"module.categories" = "Categorias";
 
 // MARK: Login
 
@@ -21,33 +49,21 @@
 
 "unlogged.login.to.continue" = "Efetue o login para continuar";
 
-// MARK: Commons
+// MARK: Transaction type
 
-"commons.menu" = "Menu";
-"commons.sign.out" = "sair";
-"commons.new" = "Novo";
-"commons.update" = "Editar";
-"commons.oops" = "Oops!";
-"commons.ok" = "ok";
-"commons.name" = "Nome";
-"commons.payment.type" = "Tipo de pagamento";
-"commons.name.empty" = "Preencha o campo \"nome\".";
-"commons.title" = "Financial Control";
+"transaction.type.income" = "Entrada";
+"transaction.type.debit" = "Débito";
+"transaction.type.credit" = "Crédito";
+"transaction.type.incomes" = "Entradas";
+"transaction.type.debits" = "Débitos";
+"transaction.type.credits" = "Créditos";
 
-// MARK: Modules
+// MARK: Categories
 
-"module.home" = "Início";
-"module.budgets" = "Orçamentos";
-"module.bills" = "Contas";
-"module.settings" = "Configurações";
-"module.categories" = "Categorias";
-
-// MARK: Payment type
-
-"payment.type.income" = "Entrada";
-"payment.type.outcome" = "Saída";
-"payment.type.credit" = "Crédito";
-
-// MARK: Sub Payment type
-
-"sub.payment.type.form.title" = " Sub-tipo de pagamento";
+"categories.empty.state.title" = "Você ainda não possui categorias!";
+"categories.empty.state.description" = "clique no “+” para adicionar uma categoria";
+"categories.error.state.title" = "Ops, ocorreu um erro ao carregar suas categorias...";
+"categories.new" = "Nova categoria";
+"categories.edit" = "Editar categoria";
+"categories.delete.title" = "Deseja deletar a categoria?";
+"categories.delete.description" = "Se você possuir uma transação atrelada a categoria, ela não poderá ser deletada";

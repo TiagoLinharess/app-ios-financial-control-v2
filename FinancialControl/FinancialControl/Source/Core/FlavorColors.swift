@@ -9,7 +9,7 @@ import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
 final class FlavorColors: FlavorColorsProtocol {
-    let background: String = "#E2E2E2"
+    let background: String = "#F7F7F7"
     let onBackground: String = "#0A0F36"
     let onBackgroundBody: String = "#323232"
     let onBackgroundWeak: String = "#585858"
@@ -30,7 +30,7 @@ final class FlavorColors: FlavorColorsProtocol {
     let onBackgroundWeakDark: String = "#A7A7A7"
     let brandDark: String = "#3B70A2"
     let onBrandDark: String = "#FFFFFF"
-    let surfaceDark: String = "#131C5F"
+    let surfaceDark: String = "#0F164A"
     let onSurfaceDark: String = "#FFFFFF"
     let successDark: String = "#09AC0E"
     let onSuccessDark: String = "#E2E2E2"

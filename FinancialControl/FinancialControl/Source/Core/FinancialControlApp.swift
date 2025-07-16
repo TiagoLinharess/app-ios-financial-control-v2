@@ -5,8 +5,8 @@
 //  Created by Tiago Linhares on 13/06/25.
 //
 
-import GoogleSignIn
 import Firebase
+import GoogleSignIn
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
@@ -17,6 +17,9 @@ struct FinancialControlApp: App {
     
     @Environment(\.scenePhase) var scenePhase
     @StateObject private var authentication: Authentication = Authentication()
+    @StateObject private var router = Router()
+    @StateObject private var sideMenu = SideMenu()
+    @StateObject private var category: Category = Category()
     @State private var showLaunchScreen: Bool = true
     
     // MARK: Init
@@ -32,6 +35,10 @@ struct FinancialControlApp: App {
         WindowGroup {
             baseView
                 .environmentObject(authentication)
+                .environmentObject(router)
+                .environmentObject(sideMenu)
+                .environmentObject(category)
+                .onAppear(perform: startSingleton)
         }
     }
     
@@ -62,5 +69,9 @@ struct FinancialControlApp: App {
         }
         
         authentication.validateSession()
+    }
+    
+    func startSingleton() {
+        SessionSingleton.shared.setAuthentication(authentication)
     }
 }

@@ -15,6 +15,40 @@ enum Localizable {
         static let userPermission = Localizable.tr("Localizable", "error.user.permission", fallback: "Google access permission not granted.")
         static let userCanceledLogin = Localizable.tr("Localizable", "error.user.canceled.login", fallback: "The user canceled the sign-in flow.")
         static let generic = Localizable.tr("Localizable", "error.generic", fallback: "An unexpected error has occurred.")
+        static let sessionExpired = Localizable.tr("Localizable", "error.session.expired", fallback: "Your session has expired. Please log in again.")
+        static let parseError = Localizable.tr("Localizable", "error.parse.error", fallback: "An error occurred while processing the data. Please try again later.")
+    }
+    
+    // MARK: Commons
+    
+    enum Commons {
+        static let signOut = Localizable.tr("Localizable", "commons.sign.out", fallback: "sign out")
+        static let goBack = Localizable.tr("Localizable", "commons.go.back", fallback: "go back")
+        static let delete = Localizable.tr("Localizable", "commons.delete", fallback: "delete")
+        static let new = Localizable.tr("Localizable", "commons.new", fallback: "new")
+        static let update = Localizable.tr("Localizable", "commons.update", fallback: "update")
+        static let create = Localizable.tr("Localizable", "commons.create", fallback: "create")
+        static let tryAgain = Localizable.tr("Localizable", "commons.try.again", fallback: "try again")
+        static let menu = Localizable.tr("Localizable", "commons.menu", fallback: "Menu")
+        static let name = Localizable.tr("Localizable", "commons.name", fallback: "Name")
+        static let transactionType = Localizable.tr("Localizable", "commons.transaction.type", fallback: "Transaction type")
+        static let emptyName = Localizable.tr("Localizable", "commons.name.empty", fallback: "Fill the field \"name\".")
+        static let title = Localizable.tr("Localizable", "commons.title", fallback: "Financial Control")
+        static let icon = Localizable.tr("Localizable", "commons.icon", fallback: "Icon")
+        static let selectIcon = Localizable.tr("Localizable", "commons.select.icon", fallback: "Select icon")
+        static func createdAt(_ dateString: String) -> String {
+            Localizable.tr("Localizable", "commons.created.at", dateString, fallback: "Created at: %@")
+        }
+    }
+    
+    // MARK: Modules
+    
+    enum Modules {
+        static let home = Localizable.tr("Localizable", "module.home", fallback: "Home")
+        static let budgets = Localizable.tr("Localizable", "module.budgets", fallback: "Budgets")
+        static let bills = Localizable.tr("Localizable", "module.bills", fallback: "Bills")
+        static let settings = Localizable.tr("Localizable", "module.settings", fallback: "Settings")
+        static let categories = Localizable.tr("Localizable", "module.categories", fallback: "Categories")
     }
     
     // MARK: Login
@@ -30,43 +64,27 @@ enum Localizable {
         static let loginToContinue = Localizable.tr("Localizable", "unlogged.login.to.continue", fallback: "Efetue o login para continuar")
     }
     
-    // MARK: Commons
+    // MARK: Transaction type
     
-    enum Commons {
-        static let menu = Localizable.tr("Localizable", "commons.menu", fallback: "Menu")
-        static let signOut = Localizable.tr("Localizable", "commons.sign.out", fallback: "sign out")
-        static let new = Localizable.tr("Localizable", "commons.new", fallback: "New")
-        static let update = Localizable.tr("Localizable", "commons.update", fallback: "Update")
-        static let oops = Localizable.tr("Localizable", "commons.oops", fallback: "Oops!")
-        static let ok = Localizable.tr("Localizable", "commons.ok", fallback: "ok")
-        static let name = Localizable.tr("Localizable", "commons.name", fallback: "Name")
-        static let paymentType = Localizable.tr("Localizable", "commons.payment.type", fallback: "Payment type")
-        static let emptyName = Localizable.tr("Localizable", "commons.name.empty", fallback: "Fill the field \"name\".")
-        static let title = Localizable.tr("Localizable", "commons.title", fallback: "Financial Control")
+    enum TransactionType {
+        static let income = Localizable.tr("Localizable", "transaction.type.income", fallback: "Income")
+        static let debit = Localizable.tr("Localizable", "transaction.type.debit", fallback: "Debit")
+        static let credit = Localizable.tr("Localizable", "transaction.type.credit", fallback: "Credit")
+        static let incomes = Localizable.tr("Localizable", "transaction.type.incomes", fallback: "Incomes")
+        static let debits = Localizable.tr("Localizable", "transaction.type.debits", fallback: "Debits")
+        static let credits = Localizable.tr("Localizable", "transaction.type.credits", fallback: "Credits")
     }
     
-    // MARK: Modules
+    // MARK: Categories
     
-    enum Modules {
-        static let home = Localizable.tr("Localizable", "module.home", fallback: "Home")
-        static let budgets = Localizable.tr("Localizable", "module.budgets", fallback: "Budgets")
-        static let bills = Localizable.tr("Localizable", "module.bills", fallback: "Bills")
-        static let settings = Localizable.tr("Localizable", "module.settings", fallback: "Settings")
-        static let categories = Localizable.tr("Localizable", "module.categories", fallback: "Categories")
-    }
-    
-    // MARK: Payment type
-    
-    enum PaymentType {
-        static let income = Localizable.tr("Localizable", "payment.type.income", fallback: "Income")
-        static let outcome = Localizable.tr("Localizable", "payment.type.outcome", fallback: "Outcome")
-        static let credit = Localizable.tr("Localizable", "payment.type.credit", fallback: "Credit")
-    }
-    
-    // MARK: Sub Payment type
-    
-    enum SubPaymentType {
-        static let formTitle = Localizable.tr("Localizable", "sub.payment.type.form.title", fallback: " Sub payment type")
+    enum Categories {
+        static let emptyStateTitle = Localizable.tr("Localizable", "categories.empty.state.title", fallback: "You don't have any categories yet!")
+        static let emptyStateDescription = Localizable.tr("Localizable", "categories.empty.state.description", fallback: "Click the “+” to add a category")
+        static let errorStateTitle = Localizable.tr("Localizable", "categories.error.state.title", fallback: "Oops, an error occurred while loading your categories")
+        static let new = Localizable.tr("Localizable", "categories.new", fallback: "New Category")
+        static let edit = Localizable.tr("Localizable", "categories.edit", fallback: "Update Category")
+        static let deleteTitle = Localizable.tr("Localizable", "categories.delete.title", fallback: "Do you want to delete the category?")
+        static let deleteDescription = Localizable.tr("Localizable", "categories.delete.description", fallback: "If you have a transaction linked to the category, it cannot be deleted")
     }
 }
 

@@ -6,7 +6,6 @@
 //
 
 import Combine
-import SwiftUI
 
 @MainActor
 final class Authentication: ObservableObject {
@@ -28,6 +27,7 @@ final class Authentication: ObservableObject {
     func login() async throws {
         user = try await service.login()
         presentLogin = false
+        // TODO: Implementar criação de categorias no primeiro login
     }
     
     func logout() async throws {
