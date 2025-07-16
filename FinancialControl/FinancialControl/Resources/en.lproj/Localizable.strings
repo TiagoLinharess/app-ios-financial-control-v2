@@ -17,6 +17,8 @@
 // MARK: Commons
 
 "commons.sign.out" = "sign out";
+"commons.go.back" = "go back";
+"commons.delete" = "delete";
 "commons.new" = "new";
 "commons.update" = "update";
 "commons.create" = "create";
@@ -28,6 +30,7 @@
 "commons.title" = "Financial Control";
 "commons.icon" = "Icon";
 "commons.select.icon" = "Select icon";
+"commons.created.at" = "Created at: %@";
 
 // MARK: Modules
 
@@ -62,3 +65,5 @@
 "categories.error.state.title" = "Oops, an error occurred while loading your categories...";
 "categories.new" = "New category";
 "categories.edit" = "Update category";
+"categories.delete.title" = "Do you want to delete the category?";
+"categories.delete.description" = "If you have a transaction linked to the category, it cannot be deleted";

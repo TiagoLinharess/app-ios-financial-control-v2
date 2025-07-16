@@ -15,13 +15,11 @@ public struct CategoryListItemView: View {
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject private var router: Router
     private let category: CategoryViewModel
-    private let isLast: Bool
     
     // MARK: Init
     
-    init(category: CategoryViewModel, isLast: Bool) {
+    init(category: CategoryViewModel) {
         self.category = category
-        self.isLast = isLast
     }
     
     // MARK: Body
@@ -29,6 +27,11 @@ public struct CategoryListItemView: View {
     public var body: some View {
         Button(action: handleTap) {
             HStack {
+                SHIcon(icon: category.icon)
+                    .resizable()
+                    .renderingMode(.template)
+                    .foregroundStyle(Color.onSurface(colorScheme: colorScheme))
+                    .frame(width: .big, height: .big)
                 Text(category.name)
                     .configureWithSH(
                         color: .onSurface(colorScheme: colorScheme),
@@ -36,15 +39,11 @@ public struct CategoryListItemView: View {
                     )
                 Spacer()
             }
-            .contentShape(Rectangle())
+            .padding(.small)
+            .background(Color.surface(colorScheme: colorScheme))
+            .clipShape(RoundedRectangle(cornerRadius: .small))
         }
         .buttonStyle(.plain)
-        if !isLast {
-            Divider()
-                .background(
-                    Color.onSurface(colorScheme: colorScheme)
-                )
-        }
     }
     
     // MARK: Private methods

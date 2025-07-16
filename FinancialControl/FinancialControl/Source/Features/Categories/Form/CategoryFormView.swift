@@ -13,6 +13,7 @@ struct CategoryFormView: View {
     // MARK: Properties
     
     private let id: String?
+    private let createdAt: Date?
     @State private var transactionType: TransactionType
     @State private var icon: SHIconType
     @State private var name: String
@@ -25,6 +26,7 @@ struct CategoryFormView: View {
     
     init(category: CategoryViewModel? = nil) {
         self.id = category?.id
+        self.createdAt = category?.createdAt
         self.transactionType = category?.transactionType ?? .income
         self.icon = .coin
         self.name = category?.name ?? String()
@@ -63,7 +65,7 @@ struct CategoryFormView: View {
                         .onBrand(colorScheme: colorScheme)
                     ),
                     font: .montserrat,
-                    isLoading: false,
+                    isLoading: model.isFormLoading,
                     action: handleSubmit
                 )
                 .padding(.small)
@@ -87,7 +89,9 @@ struct CategoryFormView: View {
     }
     
     private func handleSubmit() {
-        if id == nil {
+        if let id, let createdAt {
+            handleUpdate(id: id, createdAt: createdAt)
+        } else {
             handleCreate()
         }
     }
@@ -100,6 +104,21 @@ struct CategoryFormView: View {
                 name: name
             )
             if await model.create(model: addModel) {
+                router.pop()
+            }
+        }
+    }
+    
+    private func handleUpdate(id: String, createdAt: Date) {
+        Task {
+            let editModel = CategoryViewModel(
+                id: id,
+                transactionType: transactionType,
+                icon: icon,
+                name: name,
+                createdAt: createdAt
+            )
+            if await model.update(model: editModel) {
                 router.pop()
             }
         }

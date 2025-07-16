@@ -17,6 +17,8 @@
 // MARK: Commons
 
 "commons.sign.out" = "sair";
+"commons.go.back" = "voltar";
+"commons.delete" = "deletar";
 "commons.new" = "novo";
 "commons.update" = "editar";
 "commons.create" = "criar";
@@ -28,6 +30,7 @@
 "commons.title" = "Financial Control";
 "commons.icon" = "Ícone";
 "commons.select.icon" = "Selecione o ícone";
+"commons.created.at" = "Data de criação: %@";
 
 // MARK: Modules
 
@@ -62,3 +65,5 @@
 "categories.error.state.title" = "Ops, ocorreu um erro ao carregar suas categorias...";
 "categories.new" = "Nova categoria";
 "categories.edit" = "Editar categoria";
+"categories.delete.title" = "Deseja deletar a categoria?";
+"categories.delete.description" = "Se você possuir uma transação atrelada a categoria, ela não poderá ser deletada";

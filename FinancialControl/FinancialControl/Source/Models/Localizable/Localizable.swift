@@ -23,6 +23,8 @@ enum Localizable {
     
     enum Commons {
         static let signOut = Localizable.tr("Localizable", "commons.sign.out", fallback: "sign out")
+        static let goBack = Localizable.tr("Localizable", "commons.go.back", fallback: "go back")
+        static let delete = Localizable.tr("Localizable", "commons.delete", fallback: "delete")
         static let new = Localizable.tr("Localizable", "commons.new", fallback: "new")
         static let update = Localizable.tr("Localizable", "commons.update", fallback: "update")
         static let create = Localizable.tr("Localizable", "commons.create", fallback: "create")
@@ -34,6 +36,9 @@ enum Localizable {
         static let title = Localizable.tr("Localizable", "commons.title", fallback: "Financial Control")
         static let icon = Localizable.tr("Localizable", "commons.icon", fallback: "Icon")
         static let selectIcon = Localizable.tr("Localizable", "commons.select.icon", fallback: "Select icon")
+        static func createdAt(_ dateString: String) -> String {
+            Localizable.tr("Localizable", "commons.created.at", dateString, fallback: "Created at: %@")
+        }
     }
     
     // MARK: Modules
@@ -78,6 +83,8 @@ enum Localizable {
         static let errorStateTitle = Localizable.tr("Localizable", "categories.error.state.title", fallback: "Oops, an error occurred while loading your categories")
         static let new = Localizable.tr("Localizable", "categories.new", fallback: "New Category")
         static let edit = Localizable.tr("Localizable", "categories.edit", fallback: "Update Category")
+        static let deleteTitle = Localizable.tr("Localizable", "categories.delete.title", fallback: "Do you want to delete the category?")
+        static let deleteDescription = Localizable.tr("Localizable", "categories.delete.description", fallback: "If you have a transaction linked to the category, it cannot be deleted")
     }
 }
 

@@ -24,6 +24,7 @@ final class Category: ObservableObject {
     
     init(service: CategoryServiceProtocol = CategoryService()) {
         self.service = service
+        Task(operation: read)
     }
     
     // MARK: Public methods
@@ -45,6 +46,7 @@ final class Category: ObservableObject {
             try validateName(name: model.name)
             isFormLoading = true
             try await service.create(model: model)
+            await read()
             return true
         } catch {
             return handleFormError(error: error)
@@ -57,14 +59,24 @@ final class Category: ObservableObject {
             try validateName(name: model.name)
             isFormLoading = true
             try await service.update(model: model)
+            await read()
             return true
         } catch {
             return handleFormError(error: error)
         }
     }
     
-    func delete(id: String) async throws {
-        try await service.delete(id: id)
+    func delete(id: String) async -> Bool {
+        // TODO: Quando tiver transações, implementar regra de deleção
+        defer { isFormLoading = false }
+        do {
+            isFormLoading = true
+            try await service.delete(id: id)
+            await read()
+            return true
+        } catch {
+            return handleFormError(error: error)
+        }
     }
     
     // MARK: Private methods

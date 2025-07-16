@@ -30,23 +30,20 @@ struct CategoryListView: View {
     // MARK: Body
     
     var body: some View {
-        VStack(spacing: .extraSmall) {
+        LazyVStack(spacing: .extraSmall) {
             SHSection(
                 text: transactionType.listTitle,
                 color: .onBackgroundBody(colorScheme: colorScheme),
                 font: .caption(.montserrat, .semiBold)
             )
-            VStack(spacing: .small) {
-                ForEach(categories) { category in
-                    CategoryListItemView(
-                        category: category,
-                        isLast: category == categories.last
-                    )
+            HStack {
+                SHFlowLayout {
+                    ForEach(categories) { category in
+                        CategoryListItemView(category: category,)
+                    }
                 }
+                Spacer()
             }
-            .padding(.small)
-            .background(Color.surface(colorScheme: colorScheme))
-            .clipShape(RoundedRectangle(cornerRadius: .small))
         }
     }
 }
