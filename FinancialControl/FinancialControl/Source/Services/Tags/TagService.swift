@@ -1,30 +1,30 @@
 //
-//  CategoryService.swift
+//  TagService.swift
 //  FinancialControl
 //
-//  Created by Tiago Linhares on 11/07/25.
+//  Created by Tiago Linhares on 17/07/25.
 //
 
 import FirebaseAuth
 
-protocol CategoryServiceProtocol {
-    func read() async throws -> [CategoryViewModel]
-    func create(model: AddCategoryViewModel) async throws
-    func update(model: CategoryViewModel) async throws
+protocol TagServiceProtocol {
+    func read() async throws -> [TagViewModel]
+    func create(model: AddTagViewModel) async throws
+    func update(model: TagViewModel) async throws
     func delete(id: String) async throws
 }
 
-final class CategoryService: FCService, CategoryServiceProtocol {
+final class TagService: FCService, TagServiceProtocol {
     
     // MARK: Properties
     
-    private let repository: CategoryRepositoryProtocol
+    private let repository: TagRepositoryProtocol
     private let auth: Auth
     
     // MARK: Init
     
     init(
-        repository: CategoryRepositoryProtocol = CategoryRepository(),
+        repository: TagRepositoryProtocol = TagRepository(),
         auth: Auth = .auth(),
     ) {
         self.repository = repository
@@ -33,19 +33,19 @@ final class CategoryService: FCService, CategoryServiceProtocol {
     
     // MARK: Public methods
     
-    func read() async throws -> [CategoryViewModel] {
+    func read() async throws -> [TagViewModel] {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
             return try await repository.read(userID: userID)
-                .compactMap { response -> CategoryViewModel? in
-                    CategoryViewModel(from: response)
+                .compactMap { response -> TagViewModel? in
+                    TagViewModel(from: response)
                 }
         } catch {
             throw await super.handleError(error: error)
         }
     }
     
-    func create(model: AddCategoryViewModel) async throws {
+    func create(model: AddTagViewModel) async throws {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
             try await repository.create(requestModel: model.toRequestModel(userID: userID))
@@ -54,7 +54,7 @@ final class CategoryService: FCService, CategoryServiceProtocol {
         }
     }
     
-    func update(model: CategoryViewModel) async throws {
+    func update(model: TagViewModel) async throws {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
             try await repository.update(requestModel: model.toRequestModel(userID: userID))

@@ -11,7 +11,7 @@ protocol CategoryRepositoryProtocol {
     func read(userID: String) async throws -> [CategoryResponseModel]
     func create(requestModel: AddCategoryRequestModel) async throws
     func update(requestModel: EditCategoryRequestModel) async throws
-    func delete(id: String, userID: String) async throws
+    func delete(id: String) async throws
 }
 
 final class CategoryRepository: CategoryRepositoryProtocol {
@@ -48,7 +48,7 @@ final class CategoryRepository: CategoryRepositoryProtocol {
             .updateData(requestModel, reference: requestModel.id)
     }
     
-    func delete(id: String, userID: String) async throws {
+    func delete(id: String) async throws {
         try await database.collection(.categories)
             .document(id)
             .delete()

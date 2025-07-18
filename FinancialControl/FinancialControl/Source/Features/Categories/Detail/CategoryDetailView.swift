@@ -115,7 +115,7 @@ struct CategoryDetailView: View {
     private func handleDeleteCategory() {
         Task {
             if await model.delete(id: id) {
-                router.pop()
+                handleGoBack()
             }
         }
     }

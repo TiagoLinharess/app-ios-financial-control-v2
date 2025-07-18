@@ -20,6 +20,7 @@ struct FinancialControlApp: App {
     @StateObject private var router = Router()
     @StateObject private var sideMenu = SideMenu()
     @StateObject private var category: Category = Category()
+    @StateObject private var tag: Tag = Tag()
     @State private var showLaunchScreen: Bool = true
     
     // MARK: Init
@@ -38,6 +39,7 @@ struct FinancialControlApp: App {
                 .environmentObject(router)
                 .environmentObject(sideMenu)
                 .environmentObject(category)
+                .environmentObject(tag)
                 .onAppear(perform: startSingleton)
         }
     }
@@ -48,7 +50,7 @@ struct FinancialControlApp: App {
             LaunchScreenView(isShowing: $showLaunchScreen)
         } else {
             AppContainerView()
-                .onAppear(perform: authentication.validateSession)
+                .onAppear(perform: handleAppContext)
                 .onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
                 }
@@ -63,15 +65,23 @@ struct FinancialControlApp: App {
     
     // MARK: Private methods
     
-    func validateScenePhase(oldValue: ScenePhase, newValue: ScenePhase) {
+    private func validateScenePhase(oldValue: ScenePhase, newValue: ScenePhase) {
         guard newValue == .active && (oldValue == .background || oldValue == .inactive) else {
             return
         }
         
-        authentication.validateSession()
+        handleAppContext()
     }
     
-    func startSingleton() {
+    private func handleAppContext() {
+        authentication.validateSession()
+        
+        guard authentication.user != nil else { return }
+        Task(operation: category.read)
+        Task(operation: tag.read)
+    }
+    
+    private func startSingleton() {
         SessionSingleton.shared.setAuthentication(authentication)
     }
 }

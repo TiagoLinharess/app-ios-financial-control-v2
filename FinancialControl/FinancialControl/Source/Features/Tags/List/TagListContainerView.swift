@@ -1,40 +1,40 @@
 //
-//  CategoryListContainerView.swift
+//  TagListContainerView.swift
 //  FinancialControl
 //
-//  Created by Tiago Linhares on 14/07/25.
+//  Created by Tiago Linhares on 18/07/25.
 //
 
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-public struct CategoryListContainerView: View {
+struct TagListContainerView: View {
     
     // MARK: Properties
     
     @Environment(\.colorScheme) private var colorScheme
-    @EnvironmentObject private var model: Category
     @EnvironmentObject private var router: Router
+    @EnvironmentObject private var model: Tag
     
     // MARK: Body
     
-    public var body: some View {
-        SHContainerView(title: Localizable.Modules.categories) {
+    var body: some View {
+        SHContainerView(title: Localizable.Modules.tags) {
             switch model.listState {
             case .loading:
                 SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
             case .success:
-                CategorySectionListView()
-                    .refreshable(action: handleGetCategories)
+                TagListView()
+                    .refreshable(action: handleGetTags)
             case .empty:
                 emptyStateView
             case .failure(let fCError):
                 SHFeedbackView(
                     type: .error,
-                    title: Localizable.Categories.errorStateTitle,
+                    title: Localizable.Tags.errorStateTitle,
                     description: fCError.message,
                     primaryButtonTitle: Localizable.Commons.tryAgain,
-                    primaryAction: handleGetCategories
+                    primaryAction: handleGetTags
                 )
             }
         }
@@ -55,24 +55,24 @@ public struct CategoryListContainerView: View {
     private var emptyStateView: some View {
         ScrollView(.vertical) {
             SHEmptyView(
-                title: Localizable.Categories.emptyStateTitle,
-                description: Localizable.Categories.emptyStateDescription,
+                title: Localizable.Tags.emptyStateTitle,
+                description: Localizable.Tags.emptyStateDescription,
                 icon: .add,
                 color: .onBackground(colorScheme: colorScheme),
                 onColor: .background(colorScheme: colorScheme),
                 action: handleAdd
             )
         }
-        .refreshable(action: handleGetCategories)
+        .refreshable(action: handleGetTags)
     }
     
     // MARK: Private methods
     
     private func handleAdd() {
-        router.push(.categoryForm())
+        router.push(.tagForm())
     }
     
-    private func handleGetCategories() {
+    private func handleGetTags() {
         Task(operation: model.read)
     }
 }

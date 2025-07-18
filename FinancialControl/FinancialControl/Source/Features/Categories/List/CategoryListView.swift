@@ -39,7 +39,7 @@ struct CategoryListView: View {
             HStack {
                 SHFlowLayout {
                     ForEach(categories) { category in
-                        CategoryListItemView(category: category,)
+                        CategoryListItemView(category: category)
                     }
                 }
                 Spacer()

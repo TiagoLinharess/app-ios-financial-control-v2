@@ -36,6 +36,8 @@ enum Localizable {
         static let title = Localizable.tr("Localizable", "commons.title", fallback: "Financial Control")
         static let icon = Localizable.tr("Localizable", "commons.icon", fallback: "Icon")
         static let selectIcon = Localizable.tr("Localizable", "commons.select.icon", fallback: "Select icon")
+        static let selectTextColor = Localizable.tr("Localizable", "commons.select.text.color", fallback: "Select text color")
+        static let selectBackgroundColor = Localizable.tr("Localizable", "commons.select.background.color", fallback: "Select background color")
         static func createdAt(_ dateString: String) -> String {
             Localizable.tr("Localizable", "commons.created.at", dateString, fallback: "Created at: %@")
         }
@@ -49,6 +51,7 @@ enum Localizable {
         static let bills = Localizable.tr("Localizable", "module.bills", fallback: "Bills")
         static let settings = Localizable.tr("Localizable", "module.settings", fallback: "Settings")
         static let categories = Localizable.tr("Localizable", "module.categories", fallback: "Categories")
+        static let tags = Localizable.tr("Localizable", "module.tags", fallback: "Tags")
     }
     
     // MARK: Login
@@ -85,6 +88,21 @@ enum Localizable {
         static let edit = Localizable.tr("Localizable", "categories.edit", fallback: "Update Category")
         static let deleteTitle = Localizable.tr("Localizable", "categories.delete.title", fallback: "Do you want to delete the category?")
         static let deleteDescription = Localizable.tr("Localizable", "categories.delete.description", fallback: "If you have a transaction linked to the category, it cannot be deleted")
+    }
+    
+    // MARK: Tags
+    
+    enum Tags {
+        static let new = Localizable.tr("Localizable", "tags.new", fallback: "New Tag")
+        static let edit = Localizable.tr("Localizable", "tags.edit", fallback: "Update Tag")
+        static func item(_ text: String) -> String {
+            Localizable.tr("Localizable", "tags.item", text, fallback: "#%@")
+        }
+        static let emptyStateTitle = Localizable.tr("Localizable", "tags.empty.state.title", fallback: "You don't have any tags yet!")
+        static let emptyStateDescription = Localizable.tr("Localizable", "tags.empty.state.description", fallback: "Click the “+” to add a tag")
+        static let errorStateTitle = Localizable.tr("Localizable", "tags.error.state.title", fallback: "Oops, an error occurred while loading your tags")
+        static let deleteTitle = Localizable.tr("Localizable", "tags.delete.title", fallback: "Do you want to delete the tag?")
+        static let deleteDescription = Localizable.tr("Localizable", "tags.delete.description", fallback: "If you have a transaction linked to the tag, it cannot be deleted")
     }
 }
 

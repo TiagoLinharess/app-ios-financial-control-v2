@@ -1,28 +1,29 @@
 //
-//  Category.swift
+//  Tag.swift
 //  FinancialControl
 //
-//  Created by Tiago Linhares on 11/07/25.
+//  Created by Tiago Linhares on 17/07/25.
 //
 
 import Combine
 import Foundation
 import SharpnezDesignSystemSwiftUI
 
-final class Category: ObservableObject {
+final class Tag: ObservableObject {
     
     // MARK: Properties
     
-    private let service: CategoryServiceProtocol
+    private let service: TagServiceProtocol
     
-    @Published private(set) var categories: [CategoryViewModel] = []
-    @Published private(set) var listState: CategoryViewState = .loading
+    @Published private(set) var tags: [TagViewModel] = []
+    @Published private(set) var listState: TagViewState = .loading
     @Published private(set) var isFormLoading: Bool = false
+    @Published private(set) var isDeleteLoading: Bool = false
     @Published var toast: SHToastViewModel?
     
     // MARK: Init
     
-    init(service: CategoryServiceProtocol = CategoryService()) {
+    init(service: TagServiceProtocol = TagService()) {
         self.service = service
     }
     
@@ -31,15 +32,15 @@ final class Category: ObservableObject {
     func read() async {
         listState = .loading
         do {
-            let categories = try await service.read()
-            self.categories = categories
-            listState = categories.isEmpty ? .empty : .success
+            let tags = try await service.read()
+            self.tags = tags
+            listState = tags.isEmpty ? .empty : .success
         } catch {
             listState = .failure((error as? FCError) ?? FCError.generic)
         }
     }
     
-    func create(model: AddCategoryViewModel) async -> Bool {
+    func create(model: AddTagViewModel) async -> Bool {
         defer { isFormLoading = false }
         do {
             try validateName(name: model.name)
@@ -52,7 +53,7 @@ final class Category: ObservableObject {
         }
     }
     
-    func update(model: CategoryViewModel) async -> Bool {
+    func update(model: TagViewModel) async -> Bool {
         defer { isFormLoading = false }
         do {
             try validateName(name: model.name)
@@ -67,9 +68,9 @@ final class Category: ObservableObject {
     
     func delete(id: String) async -> Bool {
         // TODO: Quando tiver transações, implementar regra de deleção
-        defer { isFormLoading = false }
+        defer { isDeleteLoading = false }
         do {
-            isFormLoading = true
+            isDeleteLoading = true
             try await service.delete(id: id)
             await read()
             return true
