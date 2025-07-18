@@ -8,14 +8,14 @@
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-// TODO: Localizable
 struct TagFormView: View {
     
     // MARK: Properties
     
     private let id: String?
     private let createdAt: Date?
-    @State private var color: Color
+    @State private var textColor: Color
+    @State private var backgroundColor: Color
     @State private var name: String
     @State private var deleteAlertPresented: Bool = false
     @Environment(\.colorScheme) private var colorScheme
@@ -27,7 +27,8 @@ struct TagFormView: View {
     init(tag: TagViewModel? = nil) {
         self.id = tag?.id
         self.createdAt = tag?.createdAt
-        self.color = tag?.color ?? .blue
+        self.backgroundColor = tag?.backgroundColor ?? .brand()
+        self.textColor = tag?.textColor ?? .onBrand()
         self.name = tag?.name ?? String()
     }
     
@@ -38,17 +39,29 @@ struct TagFormView: View {
             VStack(spacing: .medium) {
                 ScrollView(.vertical) {
                     VStack(spacing: .medium) {
+                        TagItemView(
+                            name: name,
+                            backgroundColor: backgroundColor,
+                            textColor: textColor
+                        )
                         SHTextField(
                             title: Localizable.Commons.name,
                             color: .onBackground(colorScheme: colorScheme),
                             font: .montserrat,
                             text: $name
                         )
-                        ColorPicker(selection: $color) {
-                            Text("Selecione a cor")
+                        ColorPicker(selection: $backgroundColor) {
+                            Text(Localizable.Commons.selectBackgroundColor)
                                 .configureWithSH(
                                     color: .onBackground(colorScheme: colorScheme),
-                                    font: .body(.montserrat, .regular)
+                                    font: .body(.montserrat, .medium)
+                                )
+                        }
+                        ColorPicker(selection: $textColor) {
+                            Text(Localizable.Commons.selectTextColor)
+                                .configureWithSH(
+                                    color: .onBackground(colorScheme: colorScheme),
+                                    font: .body(.montserrat, .medium)
                                 )
                         }
                     }
@@ -57,13 +70,14 @@ struct TagFormView: View {
                 Spacer()
                 VStack(spacing: .small) {
                     SHButton(
-                        title: handleTitle(),
+                        title: handleButtonTitle(),
                         style: .primary(
                             .brand(colorScheme: colorScheme),
                             .onBrand(colorScheme: colorScheme)
                         ),
                         font: .montserrat,
                         isLoading: model.isFormLoading,
+                        isDisabled: model.isDeleteLoading,
                         action: handleSubmit
                     )
                     if id != nil {
@@ -75,6 +89,7 @@ struct TagFormView: View {
                             ),
                             font: .montserrat,
                             isLoading: model.isDeleteLoading,
+                            isDisabled: model.isFormLoading,
                             action: handleTapDelete
                         )
                     }
@@ -86,8 +101,8 @@ struct TagFormView: View {
         .onTapGesture(perform: closeKeyboard)
         .alert(isPresented: $deleteAlertPresented) {
             Alert(
-                title: Text(Localizable.Categories.deleteTitle),
-                message: Text(Localizable.Categories.deleteDescription),
+                title: Text(Localizable.Tags.deleteTitle),
+                message: Text(Localizable.Tags.deleteDescription),
                 primaryButton: .destructive(
                     Text(Localizable.Commons.delete),
                     action: handleDeleteCategory
@@ -100,7 +115,7 @@ struct TagFormView: View {
     // MARK: Private methods
     
     private func handleTitle() -> String {
-        id == nil ? "Nova Tag" : "Editar Tag"
+        id == nil ? Localizable.Tags.new : Localizable.Tags.edit
     }
     
     private func handleButtonTitle() -> String {
@@ -117,7 +132,11 @@ struct TagFormView: View {
     
     private func handleCreate() {
         Task {
-            let addModel = AddTagViewModel(color: color, name: name)
+            let addModel = AddTagViewModel(
+                backgroundColor: backgroundColor,
+                textColor: textColor,
+                name: name
+            )
             if await model.create(model: addModel) {
                 router.pop()
             }
@@ -128,7 +147,8 @@ struct TagFormView: View {
         Task {
             let editModel = TagViewModel(
                 id: id,
-                color: color,
+                backgroundColor: backgroundColor,
+                textColor: textColor,
                 name: name,
                 createdAt: createdAt
             )

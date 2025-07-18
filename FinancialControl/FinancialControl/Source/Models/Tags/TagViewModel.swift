@@ -11,13 +11,15 @@ import SwiftUI
 
 struct TagViewModel: Identifiable, Equatable, Hashable {
     let id: String
-    let color: Color
+    let backgroundColor: Color
+    let textColor: Color
     let name: String
     let createdAt: Date
     
-    init(id: String, color: Color, name: String, createdAt: Date) {
+    init(id: String, backgroundColor: Color, textColor: Color, name: String, createdAt: Date) {
         self.id = id
-        self.color = color
+        self.backgroundColor = backgroundColor
+        self.textColor = textColor
         self.name = name
         self.createdAt = createdAt
     }
@@ -25,7 +27,8 @@ struct TagViewModel: Identifiable, Equatable, Hashable {
     init?(from response: TagResponseModel) {
         guard let id = response.id else { return nil }
         self.id = id
-        self.color = Color(hex: response.color)
+        self.backgroundColor = Color(hex: response.backgroundColor)
+        self.textColor = Color(hex: response.textColor)
         self.name = response.name
         self.createdAt = response.createdAt
     }
@@ -35,7 +38,9 @@ struct TagViewModel: Identifiable, Equatable, Hashable {
             id: id,
             userID: userID,
             name: name,
-            color: color.toHexString(includeAlpha: true) ?? "#3B70A2",
+            backgroundColor: backgroundColor
+                .toHexString(includeAlpha: true) ?? FlavorColors().brand,
+            textColor: textColor.toHexString(includeAlpha: true) ?? FlavorColors().onBrand,
             createdAt: createdAt
         )
     }

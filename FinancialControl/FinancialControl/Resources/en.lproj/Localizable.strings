@@ -30,6 +30,8 @@
 "commons.title" = "Financial Control";
 "commons.icon" = "Icon";
 "commons.select.icon" = "Select icon";
+"commons.select.background.color" = "Select background color";
+"commons.select.text.color" = "Select text color";
 "commons.created.at" = "Created at: %@";
 
 // MARK: Modules
@@ -39,6 +41,7 @@
 "module.bills" = "Bills";
 "module.settings" = "Settings";
 "module.categories" = "Categories";
+"module.tags" = "Tags";
 
 // MARK: Login
 
@@ -67,3 +70,14 @@
 "categories.edit" = "Update category";
 "categories.delete.title" = "Do you want to delete the category?";
 "categories.delete.description" = "If you have a transaction linked to the category, it cannot be deleted";
+
+// MARK: Tags
+
+"tags.new" = "New Tag";
+"tags.edit" = "Update Tag";
+"tags.item" = "#%@";
+"tags.empty.state.title" = "You don't have any tags yet!";
+"tags.empty.state.description" = "Click the “+” to add a tag";
+"tags.error.state.title" = "Oops, an error occurred while loading your tags...";
+"tags.delete.title" = "Do you want to delete the tag?";
+"tags.delete.description" = "If you have a transaction linked to the tag, it cannot be deleted";

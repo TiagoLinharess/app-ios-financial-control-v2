@@ -19,8 +19,7 @@ struct TagListContainerView: View {
     // MARK: Body
     
     var body: some View {
-        // TODO: Localizable
-        SHContainerView(title: "Tags") {
+        SHContainerView(title: Localizable.Modules.tags) {
             switch model.listState {
             case .loading:
                 SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
@@ -32,7 +31,7 @@ struct TagListContainerView: View {
             case .failure(let fCError):
                 SHFeedbackView(
                     type: .error,
-                    title: Localizable.Categories.errorStateTitle,
+                    title: Localizable.Tags.errorStateTitle,
                     description: fCError.message,
                     primaryButtonTitle: Localizable.Commons.tryAgain,
                     primaryAction: handleGetTags
@@ -56,8 +55,8 @@ struct TagListContainerView: View {
     private var emptyStateView: some View {
         ScrollView(.vertical) {
             SHEmptyView(
-                title: Localizable.Categories.emptyStateTitle,
-                description: Localizable.Categories.emptyStateDescription,
+                title: Localizable.Tags.emptyStateTitle,
+                description: Localizable.Tags.emptyStateDescription,
                 icon: .add,
                 color: .onBackground(colorScheme: colorScheme),
                 onColor: .background(colorScheme: colorScheme),

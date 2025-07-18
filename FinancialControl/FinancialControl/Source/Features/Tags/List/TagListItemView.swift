@@ -25,10 +25,11 @@ public struct TagListItemView: View {
     
     public var body: some View {
         Button(action: handleTap) {
-            Text(tag.name)
-                .padding(.small)
-                .background(tag.color)
-                .clipShape(RoundedRectangle(cornerRadius: .small))
+            TagItemView(
+                name: tag.name,
+                backgroundColor: tag.backgroundColor,
+                textColor: tag.textColor
+            )
         }
         .buttonStyle(.plain)
     }
