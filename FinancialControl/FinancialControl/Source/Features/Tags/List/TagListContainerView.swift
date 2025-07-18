@@ -8,7 +8,6 @@
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-// TODO: ScrollView no erro quebra o layout
 struct TagListContainerView: View {
     
     // MARK: Properties
@@ -26,7 +25,8 @@ struct TagListContainerView: View {
             case .loading:
                 SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
             case .success:
-                Text("list")
+                TagListView()
+                    .refreshable(action: handleGetTags)
             case .empty:
                 emptyStateView
             case .failure(let fCError):
@@ -37,6 +37,17 @@ struct TagListContainerView: View {
                     primaryButtonTitle: Localizable.Commons.tryAgain,
                     primaryAction: handleGetTags
                 )
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: handleAdd) {
+                    SHIcon(icon: .add)
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundStyle(Color.onBackground(colorScheme: colorScheme))
+                        .frame(width: .medium, height: .medium)
+                }
             }
         }
     }
@@ -59,6 +70,7 @@ struct TagListContainerView: View {
     // MARK: Private methods
     
     private func handleAdd() {
+        router.push(.tagForm())
     }
     
     private func handleGetTags() {

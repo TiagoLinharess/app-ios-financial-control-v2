@@ -6,13 +6,15 @@
 //
 
 import Foundation
+import SharpnezDesignSystemSwiftUI
+import SwiftUI
 
 struct AddTagViewModel {
-    let color: String
+    let color: Color
     let name: String
     let createdAt: Date
     
-    init(color: String, name: String) {
+    init(color: Color, name: String) {
         self.color = color
         self.name = name
         self.createdAt = Date()
@@ -22,7 +24,7 @@ struct AddTagViewModel {
         return AddTagRequestModel(
             userID: userID,
             name: name,
-            color: color,
+            color: color.toHexString(includeAlpha: true) ?? "#3B70A2",
             createdAt: createdAt
         )
     }

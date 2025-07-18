@@ -41,6 +41,8 @@ final class Router: ObservableObject {
             CategoryFormView(category: viewModel)
         case .tags:
             TagListContainerView()
+        case .tagForm(let viewModel):
+            TagFormView(tag: viewModel)
         default:
             Text("in development")
         }
@@ -54,5 +56,6 @@ enum Destination: Hashable {
     case categoryDetail(String)
     case categoryForm(CategoryViewModel? = nil)
     case tags
+    case tagForm(TagViewModel? = nil)
     case creditcard
 }

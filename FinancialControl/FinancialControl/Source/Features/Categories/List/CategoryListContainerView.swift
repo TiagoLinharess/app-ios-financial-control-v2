@@ -25,6 +25,7 @@ public struct CategoryListContainerView: View {
                 SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
             case .success:
                 CategorySectionListView()
+                    .refreshable(action: handleGetCategories)
             case .empty:
                 emptyStateView
             case .failure(let fCError):
