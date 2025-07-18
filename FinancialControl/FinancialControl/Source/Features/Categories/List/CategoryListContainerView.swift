@@ -21,29 +21,32 @@ public struct CategoryListContainerView: View {
     public var body: some View {
         SHContainerView(title: Localizable.Modules.categories) {
             ScrollView(.vertical) {
-                switch model.listState {
-                case .loading:
-                    SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
-                case .success:
-                    CategorySectionListView()
-                case .empty:
-                    SHEmptyView(
-                        title: Localizable.Categories.emptyStateTitle,
-                        description: Localizable.Categories.emptyStateDescription,
-                        icon: .add,
-                        color: .onBackground(colorScheme: colorScheme),
-                        onColor: .background(colorScheme: colorScheme),
-                        action: handleAdd
-                    )
-                case .failure(let fCError):
-                    SHFeedbackView(
-                        type: .error,
-                        title: Localizable.Categories.errorStateTitle,
-                        description: fCError.message,
-                        primaryButtonTitle: Localizable.Commons.tryAgain,
-                        primaryAction: handleGetCategories
-                    )
+                Group {
+                    switch model.listState {
+                    case .loading:
+                        SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
+                    case .success:
+                        CategorySectionListView()
+                    case .empty:
+                        SHEmptyView(
+                            title: Localizable.Categories.emptyStateTitle,
+                            description: Localizable.Categories.emptyStateDescription,
+                            icon: .add,
+                            color: .onBackground(colorScheme: colorScheme),
+                            onColor: .background(colorScheme: colorScheme),
+                            action: handleAdd
+                        )
+                    case .failure(let fCError):
+                        SHFeedbackView(
+                            type: .error,
+                            title: Localizable.Categories.errorStateTitle,
+                            description: fCError.message,
+                            primaryButtonTitle: Localizable.Commons.tryAgain,
+                            primaryAction: handleGetCategories
+                        )
+                    }
                 }
+                .padding(.one)
             }
             .refreshable(action: handleGetCategories)
         }

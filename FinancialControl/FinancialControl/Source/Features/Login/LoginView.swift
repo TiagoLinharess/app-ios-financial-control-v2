@@ -14,6 +14,7 @@ struct LoginView: View {
     // MARK: Properties
     
     @EnvironmentObject private var authentication: Authentication
+    @EnvironmentObject private var category: Category
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     @State private var toast: SHToastViewModel?
     @State private var isLoading: Bool = false
@@ -68,6 +69,7 @@ struct LoginView: View {
             isLoading = true
             do {
                 try await authentication.login()
+                await category.read()
             } catch {
                 var message: String = error.localizedDescription
                 if let fcError = error as? FCError {

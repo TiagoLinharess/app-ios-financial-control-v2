@@ -24,7 +24,6 @@ final class Category: ObservableObject {
     
     init(service: CategoryServiceProtocol = CategoryService()) {
         self.service = service
-        Task(operation: read)
     }
     
     // MARK: Public methods

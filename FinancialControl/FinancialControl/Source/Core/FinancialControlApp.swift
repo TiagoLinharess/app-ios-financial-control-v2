@@ -48,7 +48,7 @@ struct FinancialControlApp: App {
             LaunchScreenView(isShowing: $showLaunchScreen)
         } else {
             AppContainerView()
-                .onAppear(perform: authentication.validateSession)
+                .onAppear(perform: handleAppContext)
                 .onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
                 }
@@ -63,15 +63,22 @@ struct FinancialControlApp: App {
     
     // MARK: Private methods
     
-    func validateScenePhase(oldValue: ScenePhase, newValue: ScenePhase) {
+    private func validateScenePhase(oldValue: ScenePhase, newValue: ScenePhase) {
         guard newValue == .active && (oldValue == .background || oldValue == .inactive) else {
             return
         }
         
-        authentication.validateSession()
+        handleAppContext()
     }
     
-    func startSingleton() {
+    private func handleAppContext() {
+        authentication.validateSession()
+        
+        guard authentication.user != nil else { return }
+        Task(operation: category.read)
+    }
+    
+    private func startSingleton() {
         SessionSingleton.shared.setAuthentication(authentication)
     }
 }
