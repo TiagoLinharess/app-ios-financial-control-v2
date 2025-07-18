@@ -31,6 +31,7 @@ final class TagRepository: TagRepositoryProtocol {
     func read(userID: String) async throws -> [TagResponseModel] {
         let snapshot = try await database.collection(.tags)
             .whereField("user_id", isEqualTo: userID)
+            .order(by: "created_at")
             .getDocuments()
         
         return snapshot

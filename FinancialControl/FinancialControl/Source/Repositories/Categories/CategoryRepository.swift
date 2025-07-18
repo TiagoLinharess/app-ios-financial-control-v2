@@ -31,6 +31,7 @@ final class CategoryRepository: CategoryRepositoryProtocol {
     func read(userID: String) async throws -> [CategoryResponseModel] {
         let snapshot = try await database.collection(.categories)
             .whereField("user_id", isEqualTo: userID)
+            .order(by: "created_at")
             .getDocuments()
         
         return snapshot
