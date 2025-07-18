@@ -18,6 +18,7 @@ final class Tag: ObservableObject {
     @Published private(set) var tags: [TagViewModel] = []
     @Published private(set) var listState: TagViewState = .loading
     @Published private(set) var isFormLoading: Bool = false
+    @Published private(set) var isDeleteLoading: Bool = false
     @Published var toast: SHToastViewModel?
     
     // MARK: Init
@@ -67,9 +68,9 @@ final class Tag: ObservableObject {
     
     func delete(id: String) async -> Bool {
         // TODO: Quando tiver transações, implementar regra de deleção
-        defer { isFormLoading = false }
+        defer { isDeleteLoading = false }
         do {
-            isFormLoading = true
+            isDeleteLoading = true
             try await service.delete(id: id)
             await read()
             return true

@@ -36,6 +36,6 @@ public struct TagListItemView: View {
     // MARK: Private methods
     
     private func handleTap() {
-        print("detail")
+        router.push(.tagForm(tag))
     }
 }
