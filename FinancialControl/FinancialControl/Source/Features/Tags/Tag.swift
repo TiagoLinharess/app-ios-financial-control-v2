@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import SharpnezDesignSystemSwiftUI
 
-final class Tag {
+final class Tag: ObservableObject {
     
     // MARK: Properties
     

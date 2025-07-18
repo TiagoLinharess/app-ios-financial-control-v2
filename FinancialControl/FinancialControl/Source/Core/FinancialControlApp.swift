@@ -20,6 +20,7 @@ struct FinancialControlApp: App {
     @StateObject private var router = Router()
     @StateObject private var sideMenu = SideMenu()
     @StateObject private var category: Category = Category()
+    @StateObject private var tag: Tag = Tag()
     @State private var showLaunchScreen: Bool = true
     
     // MARK: Init
@@ -76,6 +77,7 @@ struct FinancialControlApp: App {
         
         guard authentication.user != nil else { return }
         Task(operation: category.read)
+        Task(operation: tag.read)
     }
     
     private func startSingleton() {
