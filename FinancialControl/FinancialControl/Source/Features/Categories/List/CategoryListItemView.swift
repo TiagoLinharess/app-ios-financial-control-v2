@@ -26,22 +26,7 @@ public struct CategoryListItemView: View {
     
     public var body: some View {
         Button(action: handleTap) {
-            HStack {
-                SHIcon(icon: category.icon)
-                    .resizable()
-                    .renderingMode(.template)
-                    .foregroundStyle(Color.onSurface(colorScheme: colorScheme))
-                    .frame(width: .big, height: .big)
-                Text(category.name)
-                    .configureWithSH(
-                        color: .onSurface(colorScheme: colorScheme),
-                        font: .body(.poppins, .regular)
-                    )
-                Spacer()
-            }
-            .padding(.small)
-            .background(Color.surface(colorScheme: colorScheme))
-            .clipShape(RoundedRectangle(cornerRadius: .small))
+            CategoryItemView(icon: category.icon, name: category.name)
         }
         .buttonStyle(.plain)
     }
