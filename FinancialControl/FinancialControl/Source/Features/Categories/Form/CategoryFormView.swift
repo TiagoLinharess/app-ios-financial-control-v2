@@ -39,6 +39,7 @@ struct CategoryFormView: View {
             VStack(spacing: .medium) {
                 ScrollView(.vertical) {
                     VStack(spacing: .medium) {
+                        CategoryItemView(icon: icon, name: name)
                         TransactionTypeSelectorView(selectedTransactionType: $transactionType)
                         HStack {
                             IconSelectorButton(
@@ -59,7 +60,7 @@ struct CategoryFormView: View {
                 }
                 Spacer()
                 SHButton(
-                    title: Localizable.Commons.create,
+                    title: handleButtonTitle(),
                     style: .primary(
                         .brand(colorScheme: colorScheme),
                         .onBrand(colorScheme: colorScheme)
@@ -82,6 +83,10 @@ struct CategoryFormView: View {
     
     private func handleTitle() -> String {
         id == nil ? Localizable.Categories.new : Localizable.Categories.edit
+    }
+    
+    private func handleButtonTitle() -> String {
+        id == nil ? Localizable.Commons.create : Localizable.Commons.update
     }
     
     private func handlePresentIconSelector() {

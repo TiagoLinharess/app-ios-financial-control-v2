@@ -13,6 +13,7 @@ struct UnLoggedView: View {
     // MARK: Properties
     
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    @EnvironmentObject private var authentication: Authentication
     
     // MARK: Body
     
@@ -23,7 +24,23 @@ struct UnLoggedView: View {
                     color: .onBackground(colorScheme: colorScheme),
                     font: .title3(.montserrat, .bold)
                 )
+                .padding(.small)
+            Spacer()
+            SHButton(
+                title: Localizable.Login.button,
+                iconRenderingMode: .original,
+                style: .ghost(.onBackground(colorScheme: colorScheme)),
+                font: .montserrat,
+                action: handleClickLogin
+            )
+            .padding(.small)
         }
+    }
+    
+    // MARK: Private methods
+    
+    private func handleClickLogin() {
+        authentication.presentLogin = true
     }
 }
 

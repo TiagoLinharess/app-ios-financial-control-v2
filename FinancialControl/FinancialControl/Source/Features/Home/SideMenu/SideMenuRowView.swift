@@ -48,7 +48,7 @@ struct SideMenuRowView: View {
         .padding(.small)
         .background(Color.surface(colorScheme: colorScheme).ignoresSafeArea())
         .clipShape(RoundedRectangle(cornerRadius: .small))
-        .padding(.bottom, .small)
+        .padding(.bottom, .extraSmall)
         .onTapGesture(perform: handleTap)
     }
     
