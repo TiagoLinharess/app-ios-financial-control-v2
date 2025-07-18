@@ -24,7 +24,7 @@ final class TagService: FCService, TagServiceProtocol {
     // MARK: Init
     
     init(
-        repository:TagRepositoryProtocol = TagRepository(),
+        repository: TagRepositoryProtocol = TagRepository(),
         auth: Auth = .auth(),
     ) {
         self.repository = repository

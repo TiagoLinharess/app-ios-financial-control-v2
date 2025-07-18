@@ -39,6 +39,7 @@ struct FinancialControlApp: App {
                 .environmentObject(router)
                 .environmentObject(sideMenu)
                 .environmentObject(category)
+                .environmentObject(tag)
                 .onAppear(perform: startSingleton)
         }
     }

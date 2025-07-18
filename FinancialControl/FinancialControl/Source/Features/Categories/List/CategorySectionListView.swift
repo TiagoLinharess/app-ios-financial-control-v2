@@ -17,14 +17,16 @@ struct CategorySectionListView: View {
     // MARK: Body
     
     var body: some View {
-        LazyVStack(spacing: .small) {
-            ForEach(TransactionType.allCases, id: \.self) { transactionType in
-                let filtered = model.categories.filter { $0.transactionType == transactionType }
-                if !filtered.isEmpty {
-                    CategoryListView(transactionType: transactionType, categories: filtered)
+        ScrollView(.vertical) {
+            LazyVStack(spacing: .small) {
+                ForEach(TransactionType.allCases, id: \.self) { transactionType in
+                    let filtered = model.categories.filter { $0.transactionType == transactionType }
+                    if !filtered.isEmpty {
+                        CategoryListView(transactionType: transactionType, categories: filtered)
+                    }
                 }
             }
+            .padding(.small)
         }
-        .padding(.small)
     }
 }

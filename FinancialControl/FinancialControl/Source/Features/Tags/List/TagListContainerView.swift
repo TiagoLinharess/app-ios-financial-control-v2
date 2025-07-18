@@ -1,30 +1,32 @@
 //
-//  CategoryListContainerView.swift
+//  TagListContainerView.swift
 //  FinancialControl
 //
-//  Created by Tiago Linhares on 14/07/25.
+//  Created by Tiago Linhares on 18/07/25.
 //
 
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-public struct CategoryListContainerView: View {
+// TODO: ScrollView no erro quebra o layout
+struct TagListContainerView: View {
     
     // MARK: Properties
     
     @Environment(\.colorScheme) private var colorScheme
-    @EnvironmentObject private var model: Category
     @EnvironmentObject private var router: Router
+    @EnvironmentObject private var model: Tag
     
     // MARK: Body
     
-    public var body: some View {
-        SHContainerView(title: Localizable.Modules.categories) {
+    var body: some View {
+        // TODO: Localizable
+        SHContainerView(title: "Tags") {
             switch model.listState {
             case .loading:
                 SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
             case .success:
-                CategorySectionListView()
+                Text("list")
             case .empty:
                 emptyStateView
             case .failure(let fCError):
@@ -33,19 +35,8 @@ public struct CategoryListContainerView: View {
                     title: Localizable.Categories.errorStateTitle,
                     description: fCError.message,
                     primaryButtonTitle: Localizable.Commons.tryAgain,
-                    primaryAction: handleGetCategories
+                    primaryAction: handleGetTags
                 )
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button(action: handleAdd) {
-                    SHIcon(icon: .add)
-                        .resizable()
-                        .renderingMode(.template)
-                        .foregroundStyle(Color.onBackground(colorScheme: colorScheme))
-                        .frame(width: .medium, height: .medium)
-                }
             }
         }
     }
@@ -62,16 +53,15 @@ public struct CategoryListContainerView: View {
                 action: handleAdd
             )
         }
-        .refreshable(action: handleGetCategories)
+        .refreshable(action: handleGetTags)
     }
     
     // MARK: Private methods
     
     private func handleAdd() {
-        router.push(.categoryForm())
     }
     
-    private func handleGetCategories() {
+    private func handleGetTags() {
         Task(operation: model.read)
     }
 }
