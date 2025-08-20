@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 enum FCError: Error {
     case generic
     case userPermission
