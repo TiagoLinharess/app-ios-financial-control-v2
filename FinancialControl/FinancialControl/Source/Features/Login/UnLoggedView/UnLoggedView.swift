@@ -13,7 +13,7 @@ struct UnLoggedView: View {
     // MARK: Properties
     
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    @EnvironmentObject private var authentication: Authentication
+    @EnvironmentObject private var authentication: AuthenticationManager
     
     // MARK: Body
     

@@ -11,7 +11,7 @@ struct AppContainerView: View {
     
     // MARK: Properties
     
-    @EnvironmentObject private var authentication: Authentication
+    @EnvironmentObject private var authentication: AuthenticationManager
     @EnvironmentObject private var router: Router
     
     // MARK: Body

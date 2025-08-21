@@ -8,8 +8,8 @@
 import Combine
 
 protocol SessionSingletonProtocol {
-    func getAuthentication() -> Authentication?
-    func setAuthentication(_ authentication: Authentication?)
+    func getAuthentication() -> AuthenticationManager?
+    func setAuthentication(_ authentication: AuthenticationManager?)
     func remakeSession() async throws
 }
 
@@ -21,17 +21,17 @@ final class SessionSingleton: SessionSingletonProtocol {
     
     // MARK: Properties
     
-    private var authentication: Authentication?
+    private var authentication: AuthenticationManager?
     
     // MARK: Get
     
-    func getAuthentication() -> Authentication? {
+    func getAuthentication() -> AuthenticationManager? {
         authentication
     }
     
     // MARK: Set
     
-    func setAuthentication(_ authentication: Authentication?) {
+    func setAuthentication(_ authentication: AuthenticationManager?) {
         self.authentication = authentication
     }
     

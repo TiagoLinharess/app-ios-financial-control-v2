@@ -10,20 +10,20 @@ import SwiftUI
 
 struct LaunchScreenView: View {
     
-    // MARK: - Properties
+    // MARK: Properties
     
     @State private var isLogoBounced = false
     @State private var isLogoHidden = false
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     @Binding private var isShowing: Bool
     
-    // MARK: - Init
+    // MARK: Init
     
     init(isShowing: Binding<Bool>) {
         self._isShowing = isShowing
     }
     
-    // MARK: - Body
+    // MARK: Body
     
     var body: some View {
         ZStack {
@@ -42,7 +42,7 @@ struct LaunchScreenView: View {
         }
     }
     
-    // MARK: - Private Methods
+    // MARK: Private Methods
     
     private func startAnimationSequence() {
         Task {

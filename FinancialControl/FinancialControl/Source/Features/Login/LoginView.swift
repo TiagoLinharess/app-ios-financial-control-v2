@@ -13,7 +13,7 @@ struct LoginView: View {
     
     // MARK: Properties
     
-    @EnvironmentObject private var authentication: Authentication
+    @EnvironmentObject private var authentication: AuthenticationManager
     @EnvironmentObject private var category: Category
     @EnvironmentObject private var tag: Tag
     @Environment(\.colorScheme) private var colorScheme: ColorScheme

@@ -16,7 +16,7 @@ struct FinancialControlApp: App {
     // MARK: Properties
     
     @Environment(\.scenePhase) var scenePhase
-    @StateObject private var authentication: Authentication = Authentication()
+    @StateObject private var authentication: AuthenticationManager = AuthenticationManager()
     @StateObject private var router = Router()
     @StateObject private var sideMenu = SideMenu()
     @StateObject private var category: Category = Category()

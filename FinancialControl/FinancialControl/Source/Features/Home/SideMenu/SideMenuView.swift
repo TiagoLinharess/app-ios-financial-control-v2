@@ -13,7 +13,7 @@ public struct SideMenuView: View {
     // MARK: Properties
     
     @EnvironmentObject private var sideMenu: SideMenu
-    @EnvironmentObject private var authentication: Authentication
+    @EnvironmentObject private var authentication: AuthenticationManager
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     @State private var isLoading: Bool = false
     @State private var toast: SHToastViewModel?
