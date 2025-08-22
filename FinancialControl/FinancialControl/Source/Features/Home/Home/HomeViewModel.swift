@@ -1,5 +1,5 @@
 //
-//  SideMenuViewModel.swift
+//  HomeViewModel.swift
 //  FinancialControl
 //
 //  Created by Tiago Linhares on 22/08/25.
@@ -9,14 +9,14 @@ import Combine
 import SwiftUI
 import SharpnezDesignSystemSwiftUI
 
-protocol SideMenuViewModelProtocol: ObservableObject {
+protocol HomeViewModelProtocol: ObservableObject {
     var isLoading: Bool { get }
     var toast: SHToastViewModel? { get set }
     func logout() async
 }
 
 
-final class SideMenuViewModel: SideMenuViewModelProtocol {
+final class HomeViewModel: HomeViewModelProtocol {
     
     // MARK: Properties
     

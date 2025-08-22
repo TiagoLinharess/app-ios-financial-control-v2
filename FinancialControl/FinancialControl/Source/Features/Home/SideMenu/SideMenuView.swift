@@ -8,22 +8,36 @@
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-struct SideMenuView<ViewModel: SideMenuViewModelProtocol>: View {
+struct SideMenuView<Content: View>: View {
     
     // MARK: Properties
     
-    @StateObject private var viewModel: ViewModel
     @EnvironmentObject private var sideMenuState: SideMenuState
-    @EnvironmentObject private var authentication: AuthenticationManager
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
+    private var isLoading: Bool
+    private var onLogout: () -> Void
+    @ViewBuilder private let content: Content
     
-    init(viewModel: ViewModel) {
-        self._viewModel = StateObject(wrappedValue: viewModel)
+    // MARK: Init
+    
+    init(isLoading: Bool, onLogout: @escaping () -> Void, @ViewBuilder content: () -> Content) {
+        self.isLoading = isLoading
+        self.onLogout = onLogout
+        self.content = content()
     }
     
     // MARK: Body
     
     public var body: some View {
+        ZStack {
+            content
+            sidebar
+        }
+    }
+    
+    // MARK: Subviews
+    
+    private var sidebar: some View {
         ZStack(alignment: .bottom) {
             if (sideMenuState.isExpanded) {
                 Color.black
@@ -56,8 +70,8 @@ struct SideMenuView<ViewModel: SideMenuViewModelProtocol>: View {
                                     .onError(colorScheme: colorScheme)
                                 ),
                                 font: .montserrat,
-                                isLoading: viewModel.isLoading,
-                                action: handleClickLogout
+                                isLoading: isLoading,
+                                action: onLogout
                             )
 #if os(iOS)
                             .padding(.bottom, .small)
@@ -82,19 +96,11 @@ struct SideMenuView<ViewModel: SideMenuViewModelProtocol>: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         .ignoresSafeArea()
         .animation(.easeInOut, value: sideMenuState.isExpanded)
-        .toastView(toast: $viewModel.toast)
     }
     
     // MARK: Private methods
     
     private func handleTapGesture() {
         sideMenuState.isExpanded.toggle()
-    }
-    
-    func handleClickLogout() {
-        Task {
-            await viewModel.logout()
-            authentication.user = nil // TODO: Remover a necessidade de alterar o estado aqui
-        }
     }
 }

@@ -25,30 +25,22 @@ struct AppContainerView<ViewModel: AppContainerViewModelProtocol>: View {
     // MARK: Body
     
     var body: some View {
-        Group {
-            if authentication.user == nil {
-                LoginView(viewModel: LoginViewModel()) // TODO: Melhorar
-            } else {
-                contentView
-            }
+        NavigationStack(path: $router.path) {
+            router.start()
         }
-        .onAppear(perform: handleAppContext)
+        .onAppear(perform: handleStart)
         .onChange(of: scenePhase) { oldValue, newValue in
             validateScenePhase(oldValue: oldValue, newValue: newValue)
         }
     }
     
-    @ViewBuilder
-    private var contentView: some View {
-        NavigationStack(path: $router.path) {
-            HomeContainerView()
-                .navigationDestination(for: Destination.self) { destination in
-                    router.getDestination(from: destination)
-                }
+    // MARK: Private methods
+    
+    private func handleStart() {
+        if viewModel.validateSession() != nil { // TODO: Remover a necessidade de alterar o estado aqui
+            router.push(.home)
         }
     }
-    
-    // MARK: Private methods
     
     private func validateScenePhase(oldValue: ScenePhase, newValue: ScenePhase) {
         guard newValue == .active && (oldValue == .background || oldValue == .inactive) else {
@@ -59,6 +51,8 @@ struct AppContainerView<ViewModel: AppContainerViewModelProtocol>: View {
     }
     
     private func handleAppContext() {
-        authentication.user = viewModel.validateSession() // TODO: Remover a necessidade de alterar o estado aqui
+        if viewModel.validateSession() == nil { // TODO: Remover a necessidade de alterar o estado aqui
+            router.popToRoot()
+        }
     }
 }

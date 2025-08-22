@@ -35,10 +35,25 @@ final class Router: ObservableObject {
     
     func popToRoot() {
         path.removeLast(path.count)
-      }
+    }
     
-    @ViewBuilder func getDestination(from destination: Destination) -> some View { // TODO: Remover nomenclatura de ViewModel
+    @ViewBuilder
+    func start() -> some View {
+        self.getDestination(from: .login)
+            .navigationDestination(for: Destination.self) { destination in
+                self.getDestination(from: destination)
+            }
+    }
+    
+    // MARK: Private methods
+    
+    @ViewBuilder
+    private func getDestination(from destination: Destination) -> some View { // TODO: Remover nomenclatura de ViewModel do que não é ViewModel
         switch destination {
+        case .login:
+            LoginView(viewModel: LoginViewModel())
+        case .home:
+            HomeView(viewModel: HomeViewModel())
         case .categories:
             CategoryListContainerView()
         case .categoryDetail(let id):
@@ -58,6 +73,8 @@ final class Router: ObservableObject {
 // MARK: Navigation Option
 
 enum Destination: Hashable {
+    case login
+    case home
     case categories
     case categoryDetail(String)
     case categoryForm(CategoryViewModel? = nil)
@@ -67,10 +84,11 @@ enum Destination: Hashable {
 }
 
 /*
- - Para ter certeza se isso vai dar certo, fazer um teste de push e pop na login, home e splash com os cenários de: Abrindo o app com login, abrindo o app sem login e logout
- - Fazer um push da splash para o login/home
- - Add login no router
- - Tornar o login a primeira tela do app
+ - FEITO: Para ter certeza se isso vai dar certo, fazer um teste de push e pop na login, home e splash com os cenários de: Abrindo o app com login, abrindo o app sem login e logout
+    - Trabalhar só com push não funciona
+ - FEITO: Fazer um push da splash para o login/home
+ - FEITO: Add login no router
+ - FEITO: Tornar o login a primeira tela do app
  - Remover AuthenticationManager
  - Remover SessionSingleton
  - Criar Session

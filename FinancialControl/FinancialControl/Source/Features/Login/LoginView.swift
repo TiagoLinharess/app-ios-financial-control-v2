@@ -15,6 +15,7 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
     
     @StateObject private var viewModel: ViewModel
     @EnvironmentObject private var authentication: AuthenticationManager
+    @EnvironmentObject private var router: Router
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     // MARK: Init
@@ -76,6 +77,7 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
     }
     
     private func handleDidLogin() {
+        router.push(.home)
         // TODO: Fluxo de login aqui
     }
 }
