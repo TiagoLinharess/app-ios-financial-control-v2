@@ -38,6 +38,6 @@ final class SessionSingleton: SessionSingletonProtocol {
     // MARK: Public methods
     
     func remakeSession() async throws {
-        try await authentication?.logout()
+        authentication?.user = nil
     }
 }

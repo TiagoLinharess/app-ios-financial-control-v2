@@ -23,7 +23,7 @@ enum SideMenuFeature: String, CaseIterable, Hashable, Identifiable {
     var title: String {
         switch self {
         case .categories: Localizable.Modules.categories
-        case .tags: "Tags"
+        case .tags: "Tags" // TODO: Localizable
         }
     }
     

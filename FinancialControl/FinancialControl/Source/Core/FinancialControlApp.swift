@@ -17,7 +17,6 @@ struct FinancialControlApp: App {
     
     @StateObject private var authentication: AuthenticationManager = AuthenticationManager()
     @StateObject private var router = Router()
-    @StateObject private var sideMenu = SideMenu()
     @StateObject private var category: Category = Category()
     @StateObject private var tag: Tag = Tag()
     @State private var showLaunchScreen: Bool = true
@@ -36,7 +35,6 @@ struct FinancialControlApp: App {
             baseView
                 .environmentObject(authentication)
                 .environmentObject(router)
-                .environmentObject(sideMenu)
                 .environmentObject(category)
                 .environmentObject(tag)
                 .onAppear(perform: startSingleton)

@@ -12,14 +12,15 @@ struct HomeContainerView: View {
     
     // MARK: Properties
     
-    @EnvironmentObject private var sideMenu: SideMenu
+    @StateObject private var sideMenuState = SideMenuState()
     
     // MARK: Body
     
     var body: some View {
         ZStack{
             HomeView()
-            SideMenuContainerView()
+            SideMenuView(viewModel: SideMenuViewModel()) // TODO: Melhorar
         }
+        .environmentObject(sideMenuState)
     }
 }

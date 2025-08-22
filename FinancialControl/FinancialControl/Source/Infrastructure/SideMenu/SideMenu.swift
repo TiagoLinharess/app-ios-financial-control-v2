@@ -7,9 +7,6 @@
 
 import Combine
 
-final class SideMenu: ObservableObject {
-    
-    // MARK: Properties
-    
+final class SideMenuState: ObservableObject {
     @Published var isExpanded: Bool = false
 }

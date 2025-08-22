@@ -13,7 +13,7 @@ struct SideMenuRowView: View {
     // MARK: Properties
     
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    @EnvironmentObject private var sideMenu: SideMenu
+    @EnvironmentObject private var sideMenuState: SideMenuState
     @EnvironmentObject private var router: Router
     private let feature: SideMenuFeature
     
@@ -55,7 +55,7 @@ struct SideMenuRowView: View {
     // MARK: Private methods
     
     private func handleTap() {
-        sideMenu.isExpanded.toggle()
+        sideMenuState.isExpanded.toggle()
         router.push(feature.toDestination)
     }
 }

@@ -12,7 +12,7 @@ struct HomeView: View {
     
     // MARK: Properties
     
-    @EnvironmentObject private var sideMenu: SideMenu
+    @EnvironmentObject private var sideMenuState: SideMenuState
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     // MARK: Body
@@ -28,7 +28,7 @@ struct HomeView: View {
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: handleClickMenu) {
-                    SHIcon(icon: sideMenu.isExpanded ? .close : .menu)
+                    SHIcon(icon: sideMenuState.isExpanded ? .close : .menu)
                         .resizable()
                         .renderingMode(.template)
                         .foregroundStyle(Color.onBackground(colorScheme: colorScheme))
@@ -41,6 +41,6 @@ struct HomeView: View {
     // MARK: Private methods
     
     func handleClickMenu() {
-        sideMenu.isExpanded.toggle()
+        sideMenuState.isExpanded.toggle()
     }
 }
