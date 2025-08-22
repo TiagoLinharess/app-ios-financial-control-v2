@@ -15,7 +15,13 @@ final class Router: ObservableObject {
     
     // MARK: Properties
     
-    @Published var path = NavigationPath()
+    @Published var path: NavigationPath
+    
+    // MARK: Init
+    
+    init(path: NavigationPath = NavigationPath()) {
+        self.path = path
+    }
     
     // MARK: Methods
     
@@ -31,7 +37,7 @@ final class Router: ObservableObject {
         path.removeLast(path.count)
       }
     
-    @ViewBuilder func getDestination(from destination: Destination) -> some View {
+    @ViewBuilder func getDestination(from destination: Destination) -> some View { // TODO: Remover nomenclatura de ViewModel
         switch destination {
         case .categories:
             CategoryListContainerView()
@@ -59,3 +65,15 @@ enum Destination: Hashable {
     case tagForm(TagViewModel? = nil)
     case creditcard
 }
+
+/*
+ - Para ter certeza se isso vai dar certo, fazer um teste de push e pop na login, home e splash com os cenários de: Abrindo o app com login, abrindo o app sem login e logout
+ - Fazer um push da splash para o login/home
+ - Add login no router
+ - Tornar o login a primeira tela do app
+ - Remover AuthenticationManager
+ - Remover SessionSingleton
+ - Criar Session
+ - Remover a logica das views AppContainerView, SideMenuView e LoginView e tratar com Session em suas viewModels
+ - Implementar um meio ou do Session controlar o Router, ou do Router reagir a mudanças de estado no session
+ */
