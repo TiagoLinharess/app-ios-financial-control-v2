@@ -23,10 +23,6 @@ final class AuthenticationManager: ObservableObject {
     
     // MARK: Public methods
     
-    func login() async throws {
-        user = try await service.login()
-    }
-    
     func logout() async throws {
         try await service.logout()
         user = nil

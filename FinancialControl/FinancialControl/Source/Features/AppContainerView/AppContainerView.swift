@@ -27,7 +27,7 @@ struct AppContainerView<ViewModel: AppContainerViewModelProtocol>: View {
     var body: some View {
         Group {
             if authentication.user == nil {
-                LoginView()
+                LoginView(viewModel: LoginViewModel()) // TODO: Melhorar
             } else {
                 contentView
             }
