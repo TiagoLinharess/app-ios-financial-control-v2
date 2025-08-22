@@ -15,7 +15,6 @@ struct FinancialControlApp: App {
     
     // MARK: Properties
     
-    @Environment(\.scenePhase) var scenePhase
     @StateObject private var authentication: AuthenticationManager = AuthenticationManager()
     @StateObject private var router = Router()
     @StateObject private var sideMenu = SideMenu()
@@ -49,37 +48,15 @@ struct FinancialControlApp: App {
         if showLaunchScreen {
             LaunchScreenView(isShowing: $showLaunchScreen)
         } else {
-            AppContainerView()
-                .onAppear(perform: handleAppContext)
+            AppContainerView(viewModel: AppContainerViewModel()) // TODO: Melhorar
                 .onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
                 }
-                .fullScreenCover(isPresented: $authentication.presentLogin) {
-                    LoginView()
-                }
-                .onChange(of: scenePhase) { oldValue, newValue in
-                    validateScenePhase(oldValue: oldValue, newValue: newValue)
-                }
+                
         }
     }
     
     // MARK: Private methods
-    
-    private func validateScenePhase(oldValue: ScenePhase, newValue: ScenePhase) {
-        guard newValue == .active && (oldValue == .background || oldValue == .inactive) else {
-            return
-        }
-        
-        handleAppContext()
-    }
-    
-    private func handleAppContext() {
-        authentication.validateSession()
-        
-        guard authentication.user != nil else { return }
-        Task(operation: category.read)
-        Task(operation: tag.read)
-    }
     
     private func startSingleton() {
         SessionSingleton.shared.setAuthentication(authentication)

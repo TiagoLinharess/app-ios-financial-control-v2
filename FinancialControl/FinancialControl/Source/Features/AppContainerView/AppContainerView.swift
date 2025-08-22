@@ -7,20 +7,34 @@
 
 import SwiftUI
 
-struct AppContainerView: View {
+struct AppContainerView<ViewModel: AppContainerViewModelProtocol>: View {
     
     // MARK: Properties
     
+    private let viewModel: ViewModel
+    @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject private var authentication: AuthenticationManager
     @EnvironmentObject private var router: Router
+    
+    // MARK: Init
+    
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
     
     // MARK: Body
     
     var body: some View {
-        if authentication.user == nil {
-            UnLoggedView()
-        } else {
-            contentView
+        Group {
+            if authentication.user == nil {
+                LoginView()
+            } else {
+                contentView
+            }
+        }
+        .onAppear(perform: handleAppContext)
+        .onChange(of: scenePhase) { oldValue, newValue in
+            validateScenePhase(oldValue: oldValue, newValue: newValue)
         }
     }
     
@@ -32,5 +46,19 @@ struct AppContainerView: View {
                     router.getDestination(from: destination)
                 }
         }
+    }
+    
+    // MARK: Private methods
+    
+    private func validateScenePhase(oldValue: ScenePhase, newValue: ScenePhase) {
+        guard newValue == .active && (oldValue == .background || oldValue == .inactive) else {
+            return
+        }
+        
+        handleAppContext()
+    }
+    
+    private func handleAppContext() {
+        authentication.user = viewModel.validateSession() // TODO: Remover a necessidade de alterar o estado aqui
     }
 }

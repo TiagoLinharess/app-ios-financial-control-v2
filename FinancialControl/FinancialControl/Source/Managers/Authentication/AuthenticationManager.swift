@@ -12,7 +12,6 @@ final class AuthenticationManager: ObservableObject {
     
     // MARK: Properties
     
-    @Published var presentLogin: Bool = false
     @Published var user: UserModel?
     private let service: AuthenticationServiceProtocol
     
@@ -26,22 +25,10 @@ final class AuthenticationManager: ObservableObject {
     
     func login() async throws {
         user = try await service.login()
-        presentLogin = false
-        // TODO: Implementar criação de categorias e tags no primeiro login
     }
     
     func logout() async throws {
         try await service.logout()
         user = nil
-        presentLogin = true
-    }
-    
-    func validateSession() {
-        if let user = service.validateSession() {
-            self.user = user
-            presentLogin = false
-        } else {
-            presentLogin = true
-        }
     }
 }
