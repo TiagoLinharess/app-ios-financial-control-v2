@@ -34,6 +34,6 @@ public struct CategoryListItemView: View {
     // MARK: Private methods
     
     private func handleTap() {
-        router.push(.categoryDetail(category.id))
+        router.push(.categoryForm(category))
     }
 }

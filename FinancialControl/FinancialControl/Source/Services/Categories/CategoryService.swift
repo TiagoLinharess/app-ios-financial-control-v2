@@ -48,6 +48,7 @@ final class CategoryService: FCService, CategoryServiceProtocol {
     func create(model: AddCategoryDataModel) async throws {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
+            try validateName(name: model.name)
             try await repository.create(requestModel: model.toRequestModel(userID: userID))
         } catch {
             throw await super.handleError(error: error)
@@ -57,6 +58,7 @@ final class CategoryService: FCService, CategoryServiceProtocol {
     func update(model: CategoryDataModel) async throws {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
+            try validateName(name: model.name)
             try await repository.update(requestModel: model.toRequestModel(userID: userID))
         } catch {
             throw await super.handleError(error: error)
@@ -68,6 +70,14 @@ final class CategoryService: FCService, CategoryServiceProtocol {
             try await repository.delete(id: id)
         } catch {
             throw await super.handleError(error: error)
+        }
+    }
+    
+    // MARK: Private methods
+    
+    private func validateName(name: String) throws {
+        if name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            throw FCError.custom(Localizable.Commons.emptyName)
         }
     }
 }
