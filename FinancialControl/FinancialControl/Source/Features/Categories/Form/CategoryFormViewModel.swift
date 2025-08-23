@@ -29,7 +29,7 @@ final class CategoryFormViewModel: CategoryFormViewModelProtocol {
     
     // MARK: Properties
     
-    private let service: CategoryServiceProtocol
+    private let worker: CategoryFormWorkerProtocol
     private let createdAt: Date?
     let id: String?
     @Published var transactionType: TransactionType
@@ -50,8 +50,8 @@ final class CategoryFormViewModel: CategoryFormViewModelProtocol {
     
     // MARK: Init
     
-    init(model: CategoryDataModel?, service: CategoryServiceProtocol = CategoryService()) {
-        self.service = service
+    init(model: CategoryDataModel?, worker: CategoryFormWorkerProtocol = CategoryFormWorker()) {
+        self.worker = worker
         self.id = model?.id
         self.createdAt = model?.createdAt
         self.transactionType = model?.transactionType ?? .income
@@ -80,7 +80,7 @@ final class CategoryFormViewModel: CategoryFormViewModelProtocol {
         isDeleteLoading = true
         do {
             guard let id else { throw FCError.generic }
-            try await service.delete(id: id)
+            try await worker.delete(id: id)
             return true
         } catch {
             handleError(error: error)
@@ -97,7 +97,7 @@ final class CategoryFormViewModel: CategoryFormViewModelProtocol {
                 icon: icon,
                 name: name
             )
-            try await service.create(model: model)
+            try await worker.create(model: model)
             return true
         } catch {
             handleError(error: error)
@@ -114,7 +114,7 @@ final class CategoryFormViewModel: CategoryFormViewModelProtocol {
                 name: name,
                 createdAt: createdAt
             )
-            try await service.update(model: model)
+            try await worker.update(model: model)
             return true
         } catch {
             handleError(error: error)

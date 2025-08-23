@@ -25,6 +25,12 @@ open class FCService {
         }
     }
     
+    func validateIsEmpty(text: String, errorMessage: String) throws {
+        if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            throw FCError.custom(errorMessage)
+        }
+    }
+    
     // MARK: Private methods
     
     func handleSessionError() async -> Error {

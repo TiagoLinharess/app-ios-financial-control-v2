@@ -27,15 +27,15 @@ final class CategoryListViewModel: CategoryListViewModelProtocol {
     
     // MARK: Properties
     
-    private let service: CategoryServiceProtocol
+    private let worker: CategoryListWorkerProtocol
     @Published private(set) var categories: [CategoryDataModel] = []
     @Published private(set) var viewState: CategoryListViewState = .loading
     @Published var toast: SHToastViewModel?
     
     // MARK: Init
     
-    init(service: CategoryServiceProtocol = CategoryService()) {
-        self.service = service
+    init(worker: CategoryListWorkerProtocol = CategoryListWorker()) {
+        self.worker = worker
     }
     
     // MARK: Public methods
@@ -43,7 +43,7 @@ final class CategoryListViewModel: CategoryListViewModelProtocol {
     func read() async {
         viewState = .loading
         do {
-            let categories = try await service.read()
+            let categories = try await worker.read()
             self.categories = categories
             viewState = categories.isEmpty ? .empty : .success
         } catch {
