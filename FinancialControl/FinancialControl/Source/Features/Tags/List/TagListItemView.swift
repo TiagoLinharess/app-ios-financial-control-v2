@@ -12,12 +12,12 @@ public struct TagListItemView: View {
     
     // MARK: Properties
     
-    private let tag: TagViewModel
+    private let tag: TagDataModel
     @EnvironmentObject private var router: Router
     
     // MARK: Init
     
-    init(tag: TagViewModel) {
+    init(tag: TagDataModel) {
         self.tag = tag
     }
     

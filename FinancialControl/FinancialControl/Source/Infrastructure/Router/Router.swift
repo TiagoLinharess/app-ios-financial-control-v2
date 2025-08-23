@@ -56,7 +56,7 @@ final class Router: ObservableObject {
     // MARK: Private methods
     
     @ViewBuilder
-    private func getDestination(from destination: Destination) -> some View { // TODO: Remover nomenclatura de ViewModel do que não é ViewModel
+    private func getDestination(from destination: Destination) -> some View {
         switch destination {
         case .login:
             LoginView(viewModel: LoginViewModel())
@@ -66,12 +66,12 @@ final class Router: ObservableObject {
             CategoryListContainerView()
         case .categoryDetail(let id):
             CategoryDetailView(id: id)
-        case .categoryForm(let viewModel):
-            CategoryFormView(category: viewModel)
+        case .categoryForm(let model):
+            CategoryFormView(category: model)
         case .tags:
             TagListContainerView()
-        case .tagForm(let viewModel):
-            TagFormView(tag: viewModel)
+        case .tagForm(let model):
+            TagFormView(tag: model)
         default:
             Text("in development")
         }
@@ -95,8 +95,8 @@ enum Destination: Hashable {
     case home
     case categories
     case categoryDetail(String)
-    case categoryForm(CategoryViewModel? = nil)
+    case categoryForm(CategoryDataModel? = nil)
     case tags
-    case tagForm(TagViewModel? = nil)
+    case tagForm(TagDataModel? = nil)
     case creditcard
 }

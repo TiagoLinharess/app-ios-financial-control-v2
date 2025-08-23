@@ -1,5 +1,5 @@
 //
-//  AddTagViewModel.swift
+//  AddTagDataModel.swift
 //  FinancialControl
 //
 //  Created by Tiago Linhares on 17/07/25.
@@ -9,7 +9,7 @@ import Foundation
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-struct AddTagViewModel {
+struct AddTagDataModel {
     let backgroundColor: Color
     let textColor: Color
     let name: String

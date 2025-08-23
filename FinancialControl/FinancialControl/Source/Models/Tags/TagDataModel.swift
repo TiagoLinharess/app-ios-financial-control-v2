@@ -1,5 +1,5 @@
 //
-//  TagViewModel.swift
+//  TagDataModel.swift
 //  FinancialControl
 //
 //  Created by Tiago Linhares on 17/07/25.
@@ -9,7 +9,7 @@ import Foundation
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-struct TagViewModel: Identifiable, Equatable, Hashable {
+struct TagDataModel: Identifiable, Equatable, Hashable {
     let id: String
     let backgroundColor: Color
     let textColor: Color

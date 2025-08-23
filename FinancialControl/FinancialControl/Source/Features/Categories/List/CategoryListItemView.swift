@@ -14,11 +14,11 @@ public struct CategoryListItemView: View {
     
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject private var router: Router
-    private let category: CategoryViewModel
+    private let category: CategoryDataModel
     
     // MARK: Init
     
-    init(category: CategoryViewModel) {
+    init(category: CategoryDataModel) {
         self.category = category
     }
     

@@ -8,9 +8,9 @@
 import FirebaseAuth
 
 protocol CategoryServiceProtocol {
-    func read() async throws -> [CategoryViewModel]
-    func create(model: AddCategoryViewModel) async throws
-    func update(model: CategoryViewModel) async throws
+    func read() async throws -> [CategoryDataModel]
+    func create(model: AddCategoryDataModel) async throws
+    func update(model: CategoryDataModel) async throws
     func delete(id: String) async throws
 }
 
@@ -33,19 +33,19 @@ final class CategoryService: FCService, CategoryServiceProtocol {
     
     // MARK: Public methods
     
-    func read() async throws -> [CategoryViewModel] {
+    func read() async throws -> [CategoryDataModel] {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
             return try await repository.read(userID: userID)
-                .compactMap { response -> CategoryViewModel? in
-                    CategoryViewModel(from: response)
+                .compactMap { response -> CategoryDataModel? in
+                    CategoryDataModel(from: response)
                 }
         } catch {
             throw await super.handleError(error: error)
         }
     }
     
-    func create(model: AddCategoryViewModel) async throws {
+    func create(model: AddCategoryDataModel) async throws {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
             try await repository.create(requestModel: model.toRequestModel(userID: userID))
@@ -54,7 +54,7 @@ final class CategoryService: FCService, CategoryServiceProtocol {
         }
     }
     
-    func update(model: CategoryViewModel) async throws {
+    func update(model: CategoryDataModel) async throws {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
             try await repository.update(requestModel: model.toRequestModel(userID: userID))

@@ -15,7 +15,7 @@ final class Category: ObservableObject {
     
     private let service: CategoryServiceProtocol
     
-    @Published private(set) var categories: [CategoryViewModel] = []
+    @Published private(set) var categories: [CategoryDataModel] = []
     @Published private(set) var listState: CategoryViewState = .loading
     @Published private(set) var isFormLoading: Bool = false
     @Published var toast: SHToastViewModel?
@@ -39,7 +39,7 @@ final class Category: ObservableObject {
         }
     }
     
-    func create(model: AddCategoryViewModel) async -> Bool {
+    func create(model: AddCategoryDataModel) async -> Bool {
         defer { isFormLoading = false }
         do {
             try validateName(name: model.name)
@@ -52,7 +52,7 @@ final class Category: ObservableObject {
         }
     }
     
-    func update(model: CategoryViewModel) async -> Bool {
+    func update(model: CategoryDataModel) async -> Bool {
         defer { isFormLoading = false }
         do {
             try validateName(name: model.name)

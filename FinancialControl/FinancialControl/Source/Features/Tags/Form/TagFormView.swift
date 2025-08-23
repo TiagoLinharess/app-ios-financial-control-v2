@@ -24,7 +24,7 @@ struct TagFormView: View {
     
     // MARK: Init
     
-    init(tag: TagViewModel? = nil) {
+    init(tag: TagDataModel? = nil) {
         self.id = tag?.id
         self.createdAt = tag?.createdAt
         self.backgroundColor = tag?.backgroundColor ?? .brand()
@@ -132,7 +132,7 @@ struct TagFormView: View {
     
     private func handleCreate() {
         Task {
-            let addModel = AddTagViewModel(
+            let addModel = AddTagDataModel(
                 backgroundColor: backgroundColor,
                 textColor: textColor,
                 name: name
@@ -145,7 +145,7 @@ struct TagFormView: View {
     
     private func handleUpdate(id: String, createdAt: Date) {
         Task {
-            let editModel = TagViewModel(
+            let editModel = TagDataModel(
                 id: id,
                 backgroundColor: backgroundColor,
                 textColor: textColor,

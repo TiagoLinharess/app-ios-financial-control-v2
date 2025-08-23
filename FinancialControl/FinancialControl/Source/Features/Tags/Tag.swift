@@ -15,7 +15,7 @@ final class Tag: ObservableObject {
     
     private let service: TagServiceProtocol
     
-    @Published private(set) var tags: [TagViewModel] = []
+    @Published private(set) var tags: [TagDataModel] = []
     @Published private(set) var listState: TagViewState = .loading
     @Published private(set) var isFormLoading: Bool = false
     @Published private(set) var isDeleteLoading: Bool = false
@@ -40,7 +40,7 @@ final class Tag: ObservableObject {
         }
     }
     
-    func create(model: AddTagViewModel) async -> Bool {
+    func create(model: AddTagDataModel) async -> Bool {
         defer { isFormLoading = false }
         do {
             try validateName(name: model.name)
@@ -53,7 +53,7 @@ final class Tag: ObservableObject {
         }
     }
     
-    func update(model: TagViewModel) async -> Bool {
+    func update(model: TagDataModel) async -> Bool {
         defer { isFormLoading = false }
         do {
             try validateName(name: model.name)

@@ -24,7 +24,7 @@ struct CategoryFormView: View {
     
     // MARK: Init
     
-    init(category: CategoryViewModel? = nil) {
+    init(category: CategoryDataModel? = nil) {
         self.id = category?.id
         self.createdAt = category?.createdAt
         self.transactionType = category?.transactionType ?? .income
@@ -103,7 +103,7 @@ struct CategoryFormView: View {
     
     private func handleCreate() {
         Task {
-            let addModel = AddCategoryViewModel(
+            let addModel = AddCategoryDataModel(
                 transactionType: transactionType,
                 icon: icon,
                 name: name
@@ -116,7 +116,7 @@ struct CategoryFormView: View {
     
     private func handleUpdate(id: String, createdAt: Date) {
         Task {
-            let editModel = CategoryViewModel(
+            let editModel = CategoryDataModel(
                 id: id,
                 transactionType: transactionType,
                 icon: icon,

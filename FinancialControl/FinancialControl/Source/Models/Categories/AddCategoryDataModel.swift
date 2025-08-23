@@ -1,5 +1,5 @@
 //
-//  AddCategoryViewModel.swift
+//  AddCategoryDataModel.swift
 //  FinancialControl
 //
 //  Created by Tiago Linhares on 14/07/25.
@@ -8,7 +8,7 @@
 import SharpnezDesignSystemSwiftUI
 import Foundation
 
-struct AddCategoryViewModel {
+struct AddCategoryDataModel {
     let transactionType: TransactionType
     let icon: SHIconType
     let name: String

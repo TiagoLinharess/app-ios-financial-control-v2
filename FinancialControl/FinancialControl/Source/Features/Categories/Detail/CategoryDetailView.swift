@@ -120,7 +120,7 @@ struct CategoryDetailView: View {
         }
     }
     
-    private func handleEdit(category: CategoryViewModel) {
+    private func handleEdit(category: CategoryDataModel) {
         router.push(.categoryForm(category))
     }
     

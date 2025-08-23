@@ -15,13 +15,13 @@ struct CategoryListView: View {
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject private var model: Category
     private let transactionType: TransactionType
-    private let categories: [CategoryViewModel]
+    private let categories: [CategoryDataModel]
     
     // MARK: Init
     
     init(
         transactionType: TransactionType,
-        categories: [CategoryViewModel]
+        categories: [CategoryDataModel]
     ) {
         self.transactionType = transactionType
         self.categories = categories

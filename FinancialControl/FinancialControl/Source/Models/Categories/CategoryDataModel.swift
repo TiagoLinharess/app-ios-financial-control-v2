@@ -1,5 +1,5 @@
 //
-//  CategoryViewModel.swift
+//  CategoryDataModel.swift
 //  FinancialControl
 //
 //  Created by Tiago Linhares on 11/07/25.
@@ -8,7 +8,7 @@
 import SharpnezDesignSystemSwiftUI
 import Foundation
 
-struct CategoryViewModel: Identifiable, Equatable, Hashable {
+struct CategoryDataModel: Identifiable, Equatable, Hashable {
     let id: String
     let transactionType: TransactionType
     let icon: SHIconType
