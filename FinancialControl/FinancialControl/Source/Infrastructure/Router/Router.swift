@@ -8,6 +8,12 @@
 import Combine
 import SwiftUI
 
+// MARK: Delegate
+
+protocol RouterDelegate: AnyObject {
+    func remakeSession()
+}
+
 // MARK: Router
 
 @MainActor
@@ -15,12 +21,14 @@ final class Router: ObservableObject {
     
     // MARK: Properties
     
+    @FCSession private var session: any FCSessionModelProtocol
     @Published var path: NavigationPath
     
     // MARK: Init
     
     init(path: NavigationPath = NavigationPath()) {
         self.path = path
+        session.delegate = self
     }
     
     // MARK: Methods
@@ -70,9 +78,19 @@ final class Router: ObservableObject {
     }
 }
 
-// MARK: Navigation Option
+extension Router: RouterDelegate {
+    
+    // MARK: Delegate implementation
+    
+    func remakeSession() {
+        popToRoot()
+    }
+}
 
 enum Destination: Hashable {
+    
+    // MARK: Navigation Option
+    
     case login
     case home
     case categories
@@ -82,16 +100,3 @@ enum Destination: Hashable {
     case tagForm(TagViewModel? = nil)
     case creditcard
 }
-
-/*
- - FEITO: Para ter certeza se isso vai dar certo, fazer um teste de push e pop na login, home e splash com os cenários de: Abrindo o app com login, abrindo o app sem login e logout
-    - Trabalhar só com push não funciona
- - FEITO: Fazer um push da splash para o login/home
- - FEITO: Add login no router
- - FEITO: Tornar o login a primeira tela do app
- - Remover AuthenticationManager
- - Remover SessionSingleton
- - Criar Session
- - Remover a logica das views AppContainerView, SideMenuView e LoginView e tratar com Session em suas viewModels
- - Implementar um meio ou do Session controlar o Router, ou do Router reagir a mudanças de estado no session
- */

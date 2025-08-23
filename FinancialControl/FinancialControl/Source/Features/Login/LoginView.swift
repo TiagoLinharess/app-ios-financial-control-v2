@@ -5,7 +5,6 @@
 //  Created by Tiago Linhares on 09/07/25.
 //
 
-import FirebaseAuth
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
@@ -14,7 +13,6 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
     // MARK: Properties
     
     @StateObject private var viewModel: ViewModel
-    @EnvironmentObject private var authentication: AuthenticationManager
     @EnvironmentObject private var router: Router
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
@@ -70,9 +68,9 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
     
     func handleClickLogin() {
         Task {
-            guard let user = await viewModel.login() else { return }
-            authentication.user = user // TODO: Remover a necessidade de alterar o estado aqui
-            handleDidLogin()
+            if await viewModel.login() {
+                handleDidLogin()
+            }
         }
     }
     

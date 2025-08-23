@@ -13,8 +13,7 @@ struct AppContainerView<ViewModel: AppContainerViewModelProtocol>: View {
     
     private let viewModel: ViewModel
     @Environment(\.scenePhase) var scenePhase
-    @EnvironmentObject private var authentication: AuthenticationManager
-    @EnvironmentObject private var router: Router
+    @StateObject private var router = Router()
     
     // MARK: Init
     
@@ -32,12 +31,13 @@ struct AppContainerView<ViewModel: AppContainerViewModelProtocol>: View {
         .onChange(of: scenePhase) { oldValue, newValue in
             validateScenePhase(oldValue: oldValue, newValue: newValue)
         }
+        .environmentObject(router)
     }
     
     // MARK: Private methods
     
     private func handleStart() {
-        if viewModel.validateSession() != nil { // TODO: Remover a necessidade de alterar o estado aqui
+        if viewModel.sessionValidated() {
             router.push(.home)
         }
     }
@@ -51,7 +51,7 @@ struct AppContainerView<ViewModel: AppContainerViewModelProtocol>: View {
     }
     
     private func handleAppContext() {
-        if viewModel.validateSession() == nil { // TODO: Remover a necessidade de alterar o estado aqui
+        if !viewModel.sessionValidated() {
             router.popToRoot()
         }
     }

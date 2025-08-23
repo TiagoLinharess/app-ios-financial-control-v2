@@ -20,15 +20,9 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     // MARK: Properties
     
-    private let service: AuthenticationServiceProtocol
+    @FCSession private var session: any FCSessionModelProtocol
     @Published var isLoading: Bool = false
     @Published var toast: SHToastViewModel?
-    
-    // MARK: Init
-    
-    init(service: AuthenticationServiceProtocol = AuthenticationService()) {
-        self.service = service
-    }
     
     // MARK: Public methods
     
@@ -36,7 +30,7 @@ final class HomeViewModel: HomeViewModelProtocol {
         defer { isLoading = false }
         isLoading = true
         do {
-            try await service.logout()
+            try await session.logout()
         } catch {
             var message: String = error.localizedDescription
             if let fcError = error as? FCError {

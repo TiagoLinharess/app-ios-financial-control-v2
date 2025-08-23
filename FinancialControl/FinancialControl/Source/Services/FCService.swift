@@ -11,13 +11,7 @@ open class FCService {
     
     // MARK: Properties
     
-    let session: SessionSingletonProtocol
-    
-    // MARK: Init
-    
-    init(session: SessionSingletonProtocol = SessionSingleton.shared) {
-        self.session = session
-    }
+    @FCSession private var session: any FCSessionModelProtocol
     
     // MARK: Public methods
     

@@ -8,7 +8,7 @@
 import Combine
 
 protocol AppContainerViewModelProtocol {
-    func validateSession() -> UserModel?
+    func sessionValidated() -> Bool
 }
 
 @MainActor
@@ -16,17 +16,11 @@ final class AppContainerViewModel: AppContainerViewModelProtocol {
     
     // MARK: Properties
     
-    private let service: AuthenticationServiceProtocol
-    
-    // MARK: Init
-    
-    init(service: AuthenticationServiceProtocol = AuthenticationService()) {
-        self.service = service
-    }
+    @FCSession private var session: any FCSessionModelProtocol
     
     // MARK: Public methods
     
-    func validateSession() -> UserModel? {
-        service.validateSession()
+    func sessionValidated() -> Bool {
+        session.validateSession()
     }
 }

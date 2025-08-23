@@ -15,7 +15,6 @@ struct HomeView<ViewModel: HomeViewModelProtocol>: View {
     @StateObject private var viewModel: ViewModel
     @StateObject private var sideMenuState = SideMenuState()
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    @EnvironmentObject private var authentication: AuthenticationManager
     @EnvironmentObject private var router: Router
     
     // MARK: Init
@@ -60,7 +59,6 @@ struct HomeView<ViewModel: HomeViewModelProtocol>: View {
     private func handleClickLogout() {
         Task {
             await viewModel.logout()
-            authentication.user = nil // TODO: Remover a necessidade de alterar o estado aqui
             router.popToRoot()
         }
     }

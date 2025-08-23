@@ -5,9 +5,7 @@
 //  Created by Tiago Linhares on 13/06/25.
 //
 
-import Firebase
 import GoogleSignIn
-import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
 @main
@@ -15,48 +13,26 @@ struct FinancialControlApp: App {
     
     // MARK: Properties
     
-    @StateObject private var authentication: AuthenticationManager = AuthenticationManager()
-    @StateObject private var router = Router()
-    @StateObject private var category: Category = Category()
-    @StateObject private var tag: Tag = Tag()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @State private var showLaunchScreen: Bool = true
-    
-    // MARK: Init
-    
-    init() {
-        FirebaseApp.configure()
-        DesignSystemConfiguration.start(flavorColors: FlavorColors())
-    }
     
     // MARK: Body
     
     var body: some Scene {
         WindowGroup {
-            baseView
-                .environmentObject(authentication)
-                .environmentObject(router)
-                .environmentObject(category)
-                .environmentObject(tag)
-                .onAppear(perform: startSingleton)
+            appView
         }
     }
     
     @ViewBuilder
-    private var baseView: some View {
+    private var appView: some View {
         if showLaunchScreen {
             LaunchScreenView(isShowing: $showLaunchScreen)
         } else {
-            AppContainerView(viewModel: AppContainerViewModel()) // TODO: Melhorar
+            AppContainerView(viewModel: AppContainerViewModel())
                 .onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
                 }
-                
         }
-    }
-    
-    // MARK: Private methods
-    
-    private func startSingleton() {
-        SessionSingleton.shared.setAuthentication(authentication)
     }
 }
