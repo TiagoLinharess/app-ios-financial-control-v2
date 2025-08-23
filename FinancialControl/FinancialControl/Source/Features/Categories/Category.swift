@@ -16,7 +16,6 @@ final class Category: ObservableObject {
     private let service: CategoryServiceProtocol
     
     @Published private(set) var categories: [CategoryDataModel] = []
-    @Published private(set) var listState: CategoryViewState = .loading
     @Published private(set) var isFormLoading: Bool = false
     @Published var toast: SHToastViewModel?
     
@@ -29,14 +28,6 @@ final class Category: ObservableObject {
     // MARK: Public methods
     
     func read() async {
-        listState = .loading
-        do {
-            let categories = try await service.read()
-            self.categories = categories
-            listState = categories.isEmpty ? .empty : .success
-        } catch {
-            listState = .failure((error as? FCError) ?? FCError.generic)
-        }
     }
     
     func create(model: AddCategoryDataModel) async -> Bool {

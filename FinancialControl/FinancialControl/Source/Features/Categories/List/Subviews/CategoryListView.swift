@@ -13,7 +13,6 @@ struct CategoryListView: View {
     // MARK: Properties
     
     @Environment(\.colorScheme) private var colorScheme
-    @EnvironmentObject private var model: Category
     private let transactionType: TransactionType
     private let categories: [CategoryDataModel]
     

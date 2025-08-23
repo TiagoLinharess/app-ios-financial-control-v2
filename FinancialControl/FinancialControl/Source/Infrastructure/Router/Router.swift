@@ -63,7 +63,7 @@ final class Router: ObservableObject {
         case .home:
             HomeView(viewModel: HomeViewModel())
         case .categories:
-            CategoryListContainerView()
+            CategoryListContainerView(viewModel: CategoryListViewModel())
         case .categoryDetail(let id):
             CategoryDetailView(id: id)
         case .categoryForm(let model):

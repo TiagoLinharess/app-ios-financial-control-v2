@@ -12,7 +12,13 @@ struct CategorySectionListView: View {
     
     // MARK: Properties
     
-    @EnvironmentObject private var model: Category
+    private let categories: [CategoryDataModel]
+    
+    // MARK: Init
+    
+    init(categories: [CategoryDataModel]) {
+        self.categories = categories
+    }
     
     // MARK: Body
     
@@ -20,7 +26,7 @@ struct CategorySectionListView: View {
         ScrollView(.vertical) {
             LazyVStack(spacing: .small) {
                 ForEach(TransactionType.allCases, id: \.self) { transactionType in
-                    let filtered = model.categories.filter { $0.transactionType == transactionType }
+                    let filtered = categories.filter { $0.transactionType == transactionType }
                     if !filtered.isEmpty {
                         CategoryListView(transactionType: transactionType, categories: filtered)
                     }
