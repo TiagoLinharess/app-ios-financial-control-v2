@@ -29,7 +29,7 @@ final class TagFormViewModel: TagFormViewModelProtocol {
     
     // MARK: Properties
     
-    private let service: TagServiceProtocol
+    private let worker: TagFormWorkerProtocol
     private let createdAt: Date?
     let id: String?
     @Published var textColor: Color
@@ -50,8 +50,8 @@ final class TagFormViewModel: TagFormViewModelProtocol {
     
     // MARK: Init
     
-    init(model: TagDataModel?, service: TagServiceProtocol = TagService()) {
-        self.service = service
+    init(model: TagDataModel?, worker: TagFormWorkerProtocol = TagFormWorker()) {
+        self.worker = worker
         self.id = model?.id
         self.createdAt = model?.createdAt
         self.textColor = model?.textColor ?? .onBrand()
@@ -80,7 +80,7 @@ final class TagFormViewModel: TagFormViewModelProtocol {
         isDeleteLoading = true
         do {
             guard let id else { throw FCError.generic }
-            try await service.delete(id: id)
+            try await worker.delete(id: id)
             return true
         } catch {
             handleFormError(error: error)
@@ -97,7 +97,7 @@ final class TagFormViewModel: TagFormViewModelProtocol {
                 textColor: textColor,
                 name: name
             )
-            try await service.create(model: model)
+            try await worker.create(model: model)
             return true
         } catch {
             handleFormError(error: error)
@@ -116,7 +116,7 @@ final class TagFormViewModel: TagFormViewModelProtocol {
                 name: name,
                 createdAt: createdAt
             )
-            try await service.update(model: model)
+            try await worker.update(model: model)
             return true
         } catch {
             handleFormError(error: error)

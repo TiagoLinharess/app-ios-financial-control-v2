@@ -1,27 +1,27 @@
 //
-//  DeleteCategoryService.swift
+//  TagService.swift
 //  FinancialControl
 //
-//  Created by Tiago Linhares on 23/08/25.
+//  Created by Tiago Linhares on 17/07/25.
 //
 
 import FirebaseAuth
 
-protocol DeleteCategoryServiceProtocol {
-    func delete(id: String) async throws
+protocol DeleteTagServiceProtocol {
+    func execute(id: String) async throws
 }
 
-final class DeleteCategoryService: FCService, DeleteCategoryServiceProtocol {
+final class DeleteTagService: FCService, DeleteTagServiceProtocol {
     
     // MARK: Properties
     
-    private let repository: CategoryRepositoryProtocol
+    private let repository: TagRepositoryProtocol
     private let auth: Auth
     
     // MARK: Init
     
     init(
-        repository: CategoryRepositoryProtocol = CategoryRepository(),
+        repository: TagRepositoryProtocol = TagRepository(),
         auth: Auth = .auth(),
     ) {
         self.repository = repository
@@ -30,7 +30,7 @@ final class DeleteCategoryService: FCService, DeleteCategoryServiceProtocol {
     
     // MARK: Public methods
     
-    func delete(id: String) async throws {
+    func execute(id: String) async throws {
         do {
             guard auth.currentUser?.uid != nil else { throw FCError.sessionExpired }
             try await repository.delete(id: id)

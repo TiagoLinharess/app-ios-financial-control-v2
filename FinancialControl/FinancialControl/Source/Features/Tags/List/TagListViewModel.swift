@@ -26,14 +26,14 @@ final class TagListViewModel: TagListViewModelProtocol {
     
     // MARK: Properties
     
-    private let service: TagServiceProtocol
+    private let worker: TagListWorkerProtocol
     @Published private(set) var tags: [TagDataModel] = []
     @Published private(set) var viewState: TagListViewState = .loading
     
     // MARK: Init
     
-    init(service: TagServiceProtocol = TagService()) {
-        self.service = service
+    init(worker: TagListWorkerProtocol = TagListWorker()) {
+        self.worker = worker
     }
     
     // MARK: Public methods
@@ -41,7 +41,7 @@ final class TagListViewModel: TagListViewModelProtocol {
     func read() async {
         viewState = .loading
         do {
-            let tags = try await service.read()
+            let tags = try await worker.read()
             self.tags = tags
             viewState = tags.isEmpty ? .empty : .success
         } catch {
