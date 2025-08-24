@@ -67,7 +67,7 @@ final class Router: ObservableObject {
         case .categoryForm(let model):
             CategoryFormView(viewModel: CategoryFormViewModel(model: model))
         case .tags:
-            TagListContainerView()
+            TagListContainerView(viewModel: TagListViewModel())
         case .tagForm(let model):
             TagFormView(tag: model)
         default:

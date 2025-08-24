@@ -18,7 +18,6 @@ enum CategoryListViewState {
 protocol CategoryListViewModelProtocol: ObservableObject {
     var categories: [CategoryDataModel] { get }
     var viewState: CategoryListViewState { get }
-    var toast: SHToastViewModel? { get set }
     func read() async
 }
 
@@ -30,7 +29,6 @@ final class CategoryListViewModel: CategoryListViewModelProtocol {
     private let worker: CategoryListWorkerProtocol
     @Published private(set) var categories: [CategoryDataModel] = []
     @Published private(set) var viewState: CategoryListViewState = .loading
-    @Published var toast: SHToastViewModel?
     
     // MARK: Init
     

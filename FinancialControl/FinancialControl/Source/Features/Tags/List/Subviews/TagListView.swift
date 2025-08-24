@@ -12,8 +12,14 @@ struct TagListView: View {
     
     // MARK: Properties
     
+    private let tags: [TagDataModel]
     @Environment(\.colorScheme) private var colorScheme
-    @EnvironmentObject private var model: Tag
+    
+    // MARK: Init
+    
+    init(tags: [TagDataModel]) {
+        self.tags = tags
+    }
     
     // MARK: Body
     
@@ -21,7 +27,7 @@ struct TagListView: View {
         ScrollView(.vertical) {
             LazyVStack(alignment: .leading, spacing: .extraSmall) {
                 SHFlowLayout {
-                    ForEach(model.tags) { tag in
+                    ForEach(tags) { tag in
                         TagListItemView(tag: tag)
                     }
                 }

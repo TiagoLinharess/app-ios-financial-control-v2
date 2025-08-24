@@ -16,7 +16,6 @@ final class Tag: ObservableObject {
     private let service: TagServiceProtocol
     
     @Published private(set) var tags: [TagDataModel] = []
-    @Published private(set) var listState: TagViewState = .loading
     @Published private(set) var isFormLoading: Bool = false
     @Published private(set) var isDeleteLoading: Bool = false
     @Published var toast: SHToastViewModel?
@@ -29,16 +28,7 @@ final class Tag: ObservableObject {
     
     // MARK: Public methods
     
-    func read() async {
-        listState = .loading
-        do {
-            let tags = try await service.read()
-            self.tags = tags
-            listState = tags.isEmpty ? .empty : .success
-        } catch {
-            listState = .failure((error as? FCError) ?? FCError.generic)
-        }
-    }
+
     
     func create(model: AddTagDataModel) async -> Bool {
         defer { isFormLoading = false }
@@ -46,7 +36,6 @@ final class Tag: ObservableObject {
             try validateName(name: model.name)
             isFormLoading = true
             try await service.create(model: model)
-            await read()
             return true
         } catch {
             return handleFormError(error: error)
@@ -59,7 +48,6 @@ final class Tag: ObservableObject {
             try validateName(name: model.name)
             isFormLoading = true
             try await service.update(model: model)
-            await read()
             return true
         } catch {
             return handleFormError(error: error)
@@ -72,7 +60,6 @@ final class Tag: ObservableObject {
         do {
             isDeleteLoading = true
             try await service.delete(id: id)
-            await read()
             return true
         } catch {
             return handleFormError(error: error)

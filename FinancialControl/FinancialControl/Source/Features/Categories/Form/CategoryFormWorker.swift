@@ -42,6 +42,7 @@ final class CategoryFormWorker: CategoryFormWorkerProtocol {
     }
     
     func delete(id: String) async throws {
+        // TODO: Implementar o request de transações com a categoria para deleção apenas quando não estiver transações
         try await deleteService.delete(id: id)
     }
 }
