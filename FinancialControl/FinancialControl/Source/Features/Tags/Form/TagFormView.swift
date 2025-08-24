@@ -8,56 +8,46 @@
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-struct TagFormView: View {
+struct TagFormView<ViewModel: TagFormViewModelProtocol>: View {
     
     // MARK: Properties
-    
-    private let id: String?
-    private let createdAt: Date?
-    @State private var textColor: Color
-    @State private var backgroundColor: Color
-    @State private var name: String
-    @State private var deleteAlertPresented: Bool = false
+
+    @StateObject private var viewModel: ViewModel
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject private var router: Router
-    @EnvironmentObject private var model: Tag
     
     // MARK: Init
     
-    init(tag: TagViewModel? = nil) {
-        self.id = tag?.id
-        self.createdAt = tag?.createdAt
-        self.backgroundColor = tag?.backgroundColor ?? .brand()
-        self.textColor = tag?.textColor ?? .onBrand()
-        self.name = tag?.name ?? String()
+    init(viewModel: ViewModel) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
     // MARK: Body
     
     var body: some View {
-        SHContainerView(title: handleTitle()) {
+        SHContainerView(title: viewModel.title) {
             VStack(spacing: .medium) {
                 ScrollView(.vertical) {
                     VStack(spacing: .medium) {
                         TagItemView(
-                            name: name,
-                            backgroundColor: backgroundColor,
-                            textColor: textColor
+                            name: viewModel.name,
+                            backgroundColor: viewModel.backgroundColor,
+                            textColor: viewModel.textColor
                         )
                         SHTextField(
                             title: Localizable.Commons.name,
                             color: .onBackground(colorScheme: colorScheme),
                             font: .montserrat,
-                            text: $name
+                            text: $viewModel.name
                         )
-                        ColorPicker(selection: $backgroundColor) {
+                        ColorPicker(selection: $viewModel.backgroundColor) {
                             Text(Localizable.Commons.selectBackgroundColor)
                                 .configureWithSH(
                                     color: .onBackground(colorScheme: colorScheme),
                                     font: .body(.montserrat, .medium)
                                 )
                         }
-                        ColorPicker(selection: $textColor) {
+                        ColorPicker(selection: $viewModel.textColor) {
                             Text(Localizable.Commons.selectTextColor)
                                 .configureWithSH(
                                     color: .onBackground(colorScheme: colorScheme),
@@ -70,17 +60,17 @@ struct TagFormView: View {
                 Spacer()
                 VStack(spacing: .small) {
                     SHButton(
-                        title: handleButtonTitle(),
+                        title: viewModel.buttonTitle,
                         style: .primary(
                             .brand(colorScheme: colorScheme),
                             .onBrand(colorScheme: colorScheme)
                         ),
                         font: .montserrat,
-                        isLoading: model.isFormLoading,
-                        isDisabled: model.isDeleteLoading,
+                        isLoading: viewModel.isFormLoading,
+                        isDisabled: viewModel.isDeleteLoading,
                         action: handleSubmit
                     )
-                    if id != nil {
+                    if viewModel.id != nil {
                         SHButton(
                             title: Localizable.Commons.delete,
                             style: .primary(
@@ -88,24 +78,24 @@ struct TagFormView: View {
                                 .onError(colorScheme: colorScheme)
                             ),
                             font: .montserrat,
-                            isLoading: model.isDeleteLoading,
-                            isDisabled: model.isFormLoading,
-                            action: handleTapDelete
+                            isLoading: viewModel.isDeleteLoading,
+                            isDisabled: viewModel.isFormLoading,
+                            action: viewModel.handleTapDelete
                         )
                     }
                 }
                 .padding(.small)
             }
         }
-        .toastView(toast: $model.toast)
+        .toastView(toast: $viewModel.toast)
         .onTapGesture(perform: closeKeyboard)
-        .alert(isPresented: $deleteAlertPresented) {
+        .alert(isPresented: $viewModel.deleteAlertPresented) {
             Alert(
                 title: Text(Localizable.Tags.deleteTitle),
                 message: Text(Localizable.Tags.deleteDescription),
                 primaryButton: .destructive(
                     Text(Localizable.Commons.delete),
-                    action: handleDeleteCategory
+                    action: handleDelete
                 ),
                 secondaryButton: .default(Text(Localizable.Commons.goBack))
             )
@@ -114,58 +104,17 @@ struct TagFormView: View {
     
     // MARK: Private methods
     
-    private func handleTitle() -> String {
-        id == nil ? Localizable.Tags.new : Localizable.Tags.edit
-    }
-    
-    private func handleButtonTitle() -> String {
-        id == nil ? Localizable.Commons.create : Localizable.Commons.update
-    }
-    
     private func handleSubmit() {
-        if let id, let createdAt {
-            handleUpdate(id: id, createdAt: createdAt)
-        } else {
-            handleCreate()
-        }
-    }
-    
-    private func handleCreate() {
         Task {
-            let addModel = AddTagViewModel(
-                backgroundColor: backgroundColor,
-                textColor: textColor,
-                name: name
-            )
-            if await model.create(model: addModel) {
+            if await viewModel.submit() {
                 router.pop()
             }
         }
     }
     
-    private func handleUpdate(id: String, createdAt: Date) {
+    private func handleDelete() {
         Task {
-            let editModel = TagViewModel(
-                id: id,
-                backgroundColor: backgroundColor,
-                textColor: textColor,
-                name: name,
-                createdAt: createdAt
-            )
-            if await model.update(model: editModel) {
-                router.pop()
-            }
-        }
-    }
-    
-    private func handleTapDelete() {
-        deleteAlertPresented = true
-    }
-    
-    private func handleDeleteCategory() {
-        Task {
-            guard let id else { return }
-            if await model.delete(id: id) {
+            if await viewModel.delete() {
                 router.pop()
             }
         }

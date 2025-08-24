@@ -5,20 +5,22 @@
 //  Created by Tiago Linhares on 09/07/25.
 //
 
-import FirebaseAuth
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-struct LoginView: View {
+struct LoginView<ViewModel: LoginViewModelProtocol>: View {
     
     // MARK: Properties
     
-    @EnvironmentObject private var authentication: Authentication
-    @EnvironmentObject private var category: Category
-    @EnvironmentObject private var tag: Tag
+    @StateObject private var viewModel: ViewModel
+    @EnvironmentObject private var router: Router
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    @State private var toast: SHToastViewModel?
-    @State private var isLoading: Bool = false
+    
+    // MARK: Init
+    
+    init(viewModel: ViewModel) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     // MARK: Body
     
@@ -53,37 +55,27 @@ struct LoginView: View {
                         .onBrand(colorScheme: colorScheme)
                     ),
                     font: .montserrat,
-                    isLoading: isLoading,
+                    isLoading: viewModel.isLoading,
                     action: handleClickLogin
                 )
             }
             .padding(.small)
         }
-        .toastView(toast: $toast)
+        .toastView(toast: $viewModel.toast)
     }
     
     // MARK: Private methods
     
     func handleClickLogin() {
         Task {
-            defer { isLoading = false }
-            isLoading = true
-            do {
-                try await authentication.login()
-                await handleAppContext()
-            } catch {
-                var message: String = error.localizedDescription
-                if let fcError = error as? FCError {
-                    message = fcError.message
-                }
-                
-                toast = SHToastViewModel(style: .error, font: .montserrat, message: message)
+            if await viewModel.login() {
+                handleDidLogin()
             }
         }
     }
     
-    private func handleAppContext() async {
-        await category.read()
-        await tag.read()
+    private func handleDidLogin() {
+        router.push(.home)
+        // TODO: Fluxo de login aqui
     }
 }

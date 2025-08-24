@@ -11,13 +11,7 @@ open class FCService {
     
     // MARK: Properties
     
-    let session: SessionSingletonProtocol
-    
-    // MARK: Init
-    
-    init(session: SessionSingletonProtocol = SessionSingleton.shared) {
-        self.session = session
-    }
+    @FCSession private var session: any FCSessionModelProtocol
     
     // MARK: Public methods
     
@@ -28,6 +22,12 @@ open class FCService {
             return await handleSessionError()
         default:
             return fcError
+        }
+    }
+    
+    func validateIsEmpty(text: String, errorMessage: String) throws {
+        if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            throw FCError.custom(errorMessage)
         }
     }
     

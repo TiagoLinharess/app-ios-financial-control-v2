@@ -8,81 +8,99 @@
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-public struct SideMenuView: View {
+struct SideMenuView<Content: View>: View {
     
     // MARK: Properties
     
-    @EnvironmentObject private var sideMenu: SideMenu
-    @EnvironmentObject private var authentication: Authentication
+    @EnvironmentObject private var sideMenuState: SideMenuState
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    @State private var isLoading: Bool = false
-    @State private var toast: SHToastViewModel?
+    private var isLoading: Bool
+    private var onLogout: () -> Void
+    @ViewBuilder private let content: Content
+    
+    // MARK: Init
+    
+    init(isLoading: Bool, onLogout: @escaping () -> Void, @ViewBuilder content: () -> Content) {
+        self.isLoading = isLoading
+        self.onLogout = onLogout
+        self.content = content()
+    }
     
     // MARK: Body
     
     public var body: some View {
-        HStack {
-            ZStack{
-                Rectangle()
-                    .fill(.white)
-                    .frame(width: Constants.Sizes.sideBarWidth)
-                    .shadow(color: .purple.opacity(0.1), radius: 5, x: 0, y: 3)
-                VStack(alignment: .center, spacing: .small) {
-                    Text(Localizable.Commons.menu)
-                        .configureWithSH(
-                            color: .onBackground(colorScheme: colorScheme),
-                            font: .title3(.poppins, .regular)
-                        )
-                    ScrollView(.vertical) {
-                        ForEach(SideMenuFeature.allCases, id: \.self){ feature in
-                            SideMenuRowView(feature: feature)
-                        }
-                    }
-                    .scrollBounceBehavior(.basedOnSize)
-                    Spacer()
-                    SHButton(
-                        title: Localizable.Commons.signOut,
-                        style: .primary(
-                            .error(colorScheme: colorScheme),
-                            .onError(colorScheme: colorScheme)
-                        ),
-                        font: .montserrat,
-                        isLoading: isLoading,
-                        action: handleClickLogout
-                    )
+        ZStack {
+            content
+            sidebar
+        }
+    }
+    
+    // MARK: Subviews
+    
+    private var sidebar: some View {
+        ZStack(alignment: .bottom) {
+            if (sideMenuState.isExpanded) {
+                Color.black
+                    .opacity(0.3)
+                    .ignoresSafeArea()
+                    .onTapGesture(perform: handleTapGesture)
+                HStack {
+                    ZStack{
+                        Rectangle()
+                            .fill(.white)
+                            .frame(width: Constants.Sizes.sideBarWidth)
+                            .shadow(color: .purple.opacity(0.1), radius: 5, x: 0, y: 3)
+                        VStack(alignment: .center, spacing: .small) {
+                            Text(Localizable.Commons.menu)
+                                .configureWithSH(
+                                    color: .onBackground(colorScheme: colorScheme),
+                                    font: .title3(.poppins, .regular)
+                                )
+                            ScrollView(.vertical) {
+                                ForEach(SideMenuFeature.allCases, id: \.self){ feature in
+                                    SideMenuRowView(feature: feature)
+                                }
+                            }
+                            .scrollBounceBehavior(.basedOnSize)
+                            Spacer()
+                            SHButton(
+                                title: Localizable.Commons.signOut,
+                                style: .primary(
+                                    .error(colorScheme: colorScheme),
+                                    .onError(colorScheme: colorScheme)
+                                ),
+                                font: .montserrat,
+                                isLoading: isLoading,
+                                action: onLogout
+                            )
 #if os(iOS)
-                    .padding(.bottom, .small)
+                            .padding(.bottom, .small)
 #endif
+                        }
+                        .padding(.top, Constants.Sizes.sideBarTopPadding)
+                        .padding(.small)
+                        .frame(width: Constants.Sizes.sideBarWidth)
+                        .background(
+                            Color.background(colorScheme: colorScheme)
+                        )
+                    }
+                    Spacer()
                 }
-                .padding(.top, Constants.Sizes.sideBarTopPadding)
-                .padding(.small)
-                .frame(width: Constants.Sizes.sideBarWidth)
+                .background(.clear)
+                .transition(.move(edge: .leading))
                 .background(
-                    Color.background(colorScheme: colorScheme)
+                    Color.clear
                 )
             }
-            Spacer()
         }
-        .background(.clear)
-        .toastView(toast: $toast)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+        .ignoresSafeArea()
+        .animation(.easeInOut, value: sideMenuState.isExpanded)
     }
     
     // MARK: Private methods
     
-    func handleClickLogout() {
-        Task {
-            defer { isLoading = false }
-            sideMenu.isExpanded.toggle()
-            isLoading = true
-            do {
-                try await authentication.logout()
-            } catch {
-                toast = SHToastViewModel(
-                    style: .error,
-                    font: .montserrat,
-                    message: error.localizedDescription
-                )
-            }
-        }
+    private func handleTapGesture() {
+        sideMenuState.isExpanded.toggle()
     }
 }

@@ -8,23 +8,29 @@
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-public struct CategoryListContainerView: View {
+struct CategoryListContainerView<ViewModel: CategoryListViewModelProtocol>: View {
     
     // MARK: Properties
     
+    @StateObject private var viewModel: ViewModel
     @Environment(\.colorScheme) private var colorScheme
-    @EnvironmentObject private var model: Category
     @EnvironmentObject private var router: Router
+    
+    // MARK: Init
+    
+    init(viewModel: ViewModel) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     // MARK: Body
     
     public var body: some View {
         SHContainerView(title: Localizable.Modules.categories) {
-            switch model.listState {
+            switch viewModel.viewState {
             case .loading:
                 SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
             case .success:
-                CategorySectionListView()
+                CategorySectionListView(categories: viewModel.categories)
                     .refreshable(action: handleGetCategories)
             case .empty:
                 emptyStateView
@@ -49,6 +55,7 @@ public struct CategoryListContainerView: View {
                 }
             }
         }
+        .onAppear(perform: handleGetCategories)
     }
     
     @ViewBuilder
@@ -73,6 +80,8 @@ public struct CategoryListContainerView: View {
     }
     
     private func handleGetCategories() {
-        Task(operation: model.read)
+        Task {
+            await viewModel.read()
+        }
     }
 }

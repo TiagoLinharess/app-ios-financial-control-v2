@@ -8,23 +8,29 @@
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-struct TagListContainerView: View {
+struct TagListContainerView<ViewModel: TagListViewModelProtocol>: View {
     
     // MARK: Properties
     
+    @StateObject private var viewModel: ViewModel
     @Environment(\.colorScheme) private var colorScheme
     @EnvironmentObject private var router: Router
-    @EnvironmentObject private var model: Tag
+    
+    // MARK: Init
+    
+    init(viewModel: ViewModel) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     // MARK: Body
     
     var body: some View {
         SHContainerView(title: Localizable.Modules.tags) {
-            switch model.listState {
+            switch viewModel.viewState {
             case .loading:
                 SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
             case .success:
-                TagListView()
+                TagListView(tags: viewModel.tags)
                     .refreshable(action: handleGetTags)
             case .empty:
                 emptyStateView
@@ -49,6 +55,7 @@ struct TagListContainerView: View {
                 }
             }
         }
+        .onAppear(perform: handleGetTags)
     }
     
     @ViewBuilder
@@ -73,6 +80,8 @@ struct TagListContainerView: View {
     }
     
     private func handleGetTags() {
-        Task(operation: model.read)
+        Task {
+            await viewModel.read()
+        }
     }
 }

@@ -1,0 +1,38 @@
+//
+//  CategorySectionListView.swift
+//  FinancialControl
+//
+//  Created by Tiago Linhares on 14/07/25.
+//
+
+import SharpnezDesignSystemSwiftUI
+import SwiftUI
+
+struct CategorySectionListView: View {
+    
+    // MARK: Properties
+    
+    private let categories: [CategoryDataModel]
+    
+    // MARK: Init
+    
+    init(categories: [CategoryDataModel]) {
+        self.categories = categories
+    }
+    
+    // MARK: Body
+    
+    var body: some View {
+        ScrollView(.vertical) {
+            LazyVStack(spacing: .small) {
+                ForEach(TransactionType.allCases, id: \.self) { transactionType in
+                    let filtered = categories.filter { $0.transactionType == transactionType }
+                    if !filtered.isEmpty {
+                        CategoryListView(transactionType: transactionType, categories: filtered)
+                    }
+                }
+            }
+            .padding(.small)
+        }
+    }
+}
