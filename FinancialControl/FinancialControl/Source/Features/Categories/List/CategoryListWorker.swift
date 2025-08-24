@@ -24,6 +24,6 @@ final class CategoryListWorker: CategoryListWorkerProtocol {
     // MARK: Public methods
     
     func read() async throws -> [CategoryDataModel] {
-        return try await service.read()
+        return try await service.execute()
     }
 }

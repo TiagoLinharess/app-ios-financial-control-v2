@@ -95,7 +95,7 @@ struct TagFormView<ViewModel: TagFormViewModelProtocol>: View {
                 message: Text(Localizable.Tags.deleteDescription),
                 primaryButton: .destructive(
                     Text(Localizable.Commons.delete),
-                    action: handleDeleteCategory
+                    action: handleDelete
                 ),
                 secondaryButton: .default(Text(Localizable.Commons.goBack))
             )
@@ -112,7 +112,7 @@ struct TagFormView<ViewModel: TagFormViewModelProtocol>: View {
         }
     }
     
-    private func handleDeleteCategory() {
+    private func handleDelete() {
         Task {
             if await viewModel.delete() {
                 router.pop()

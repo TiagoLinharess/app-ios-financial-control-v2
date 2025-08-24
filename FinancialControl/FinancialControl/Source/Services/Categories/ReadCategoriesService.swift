@@ -8,7 +8,7 @@
 import FirebaseAuth
 
 protocol ReadCategoriesServiceProtocol {
-    func read() async throws -> [CategoryDataModel]
+    func execute() async throws -> [CategoryDataModel]
 }
 
 final class ReadCategoriesService: FCService, ReadCategoriesServiceProtocol {
@@ -30,7 +30,7 @@ final class ReadCategoriesService: FCService, ReadCategoriesServiceProtocol {
     
     // MARK: Public methods
     
-    func read() async throws -> [CategoryDataModel] {
+    func execute() async throws -> [CategoryDataModel] {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
             return try await repository.read(userID: userID)

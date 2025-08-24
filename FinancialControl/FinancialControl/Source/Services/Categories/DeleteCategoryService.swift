@@ -8,7 +8,7 @@
 import FirebaseAuth
 
 protocol DeleteCategoryServiceProtocol {
-    func delete(id: String) async throws
+    func execute(id: String) async throws
 }
 
 final class DeleteCategoryService: FCService, DeleteCategoryServiceProtocol {
@@ -30,7 +30,7 @@ final class DeleteCategoryService: FCService, DeleteCategoryServiceProtocol {
     
     // MARK: Public methods
     
-    func delete(id: String) async throws {
+    func execute(id: String) async throws {
         do {
             guard auth.currentUser?.uid != nil else { throw FCError.sessionExpired }
             try await repository.delete(id: id)

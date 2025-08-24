@@ -34,15 +34,15 @@ final class CategoryFormWorker: CategoryFormWorkerProtocol {
     // MARK: Public methods
     
     func create(model: AddCategoryDataModel) async throws {
-        try await createService.create(model: model)
+        try await createService.execute(model: model)
     }
     
     func update(model: CategoryDataModel) async throws {
-        try await updateService.update(model: model)
+        try await updateService.execute(model: model)
     }
     
     func delete(id: String) async throws {
         // TODO: Implementar o request de transações com a categoria para deleção apenas quando não estiver transações
-        try await deleteService.delete(id: id)
+        try await deleteService.execute(id: id)
     }
 }

@@ -15,11 +15,13 @@ protocol CategoryFormViewModelProtocol: ObservableObject {
     var icon: SHIconType { get set }
     var name: String { get set }
     var presentIconSelector: Bool { get set }
+    var deleteAlertPresented: Bool { get set }
     var isFormLoading: Bool { get set }
     var isDeleteLoading: Bool { get set }
     var toast: SHToastViewModel? { get set }
     var title: String { get }
     var buttonTitle: String { get }
+    func handleTapDelete()
     func handlePresentIconSelector()
     func handleSubmit() async -> Bool
     func handleDelete() async -> Bool
@@ -36,6 +38,7 @@ final class CategoryFormViewModel: CategoryFormViewModelProtocol {
     @Published var icon: SHIconType
     @Published var name: String
     @Published var presentIconSelector: Bool = false
+    @Published var deleteAlertPresented: Bool = false
     @Published var isFormLoading: Bool = false
     @Published var isDeleteLoading: Bool = false
     @Published var toast: SHToastViewModel?
@@ -60,6 +63,10 @@ final class CategoryFormViewModel: CategoryFormViewModelProtocol {
     }
     
     // MARK: Public methods
+    
+    func handleTapDelete() {
+        deleteAlertPresented = true
+    }
     
     func handlePresentIconSelector() {
         presentIconSelector = true

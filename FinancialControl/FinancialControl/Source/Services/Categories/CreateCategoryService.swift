@@ -8,7 +8,7 @@
 import FirebaseAuth
 
 protocol CreateCategoryServiceProtocol {
-    func create(model: AddCategoryDataModel) async throws
+    func execute(model: AddCategoryDataModel) async throws
 }
 
 final class CreateCategoryService: FCService, CreateCategoryServiceProtocol {
@@ -30,7 +30,7 @@ final class CreateCategoryService: FCService, CreateCategoryServiceProtocol {
     
     // MARK: Public methods
     
-    func create(model: AddCategoryDataModel) async throws {
+    func execute(model: AddCategoryDataModel) async throws {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
             try validateIsEmpty(text: model.name, errorMessage: Localizable.Commons.emptyName)

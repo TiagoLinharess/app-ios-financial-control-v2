@@ -71,7 +71,7 @@ struct CategoryFormView<ViewModel: CategoryFormViewModelProtocol>: View {
                             font: .montserrat,
                             isLoading: viewModel.isDeleteLoading,
                             isDisabled: viewModel.isFormLoading,
-                            action: handleDelete
+                            action: viewModel.handleTapDelete
                         )
                     }
                 }
@@ -80,6 +80,17 @@ struct CategoryFormView<ViewModel: CategoryFormViewModelProtocol>: View {
         }
         .sheet(isPresented: $viewModel.presentIconSelector) {
             IconSelectorView(selectedIcon: $viewModel.icon, isPresented: $viewModel.presentIconSelector)
+        }
+        .alert(isPresented: $viewModel.deleteAlertPresented) {
+            Alert(
+                title: Text(Localizable.Categories.deleteTitle),
+                message: Text(Localizable.Categories.deleteDescription),
+                primaryButton: .destructive(
+                    Text(Localizable.Commons.delete),
+                    action: handleDelete
+                ),
+                secondaryButton: .default(Text(Localizable.Commons.goBack))
+            )
         }
         .toastView(toast: $viewModel.toast)
         .onTapGesture(perform: closeKeyboard)

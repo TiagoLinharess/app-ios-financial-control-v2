@@ -8,7 +8,7 @@
 import FirebaseAuth
 
 protocol UpdateCategoryServiceProtocol {
-    func update(model: CategoryDataModel) async throws
+    func execute(model: CategoryDataModel) async throws
 }
 
 final class UpdateCategoryService: FCService, UpdateCategoryServiceProtocol {
@@ -30,7 +30,7 @@ final class UpdateCategoryService: FCService, UpdateCategoryServiceProtocol {
     
     // MARK: Public methods
     
-    func update(model: CategoryDataModel) async throws {
+    func execute(model: CategoryDataModel) async throws {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
             try validateIsEmpty(text: model.name, errorMessage: Localizable.Commons.emptyName)
