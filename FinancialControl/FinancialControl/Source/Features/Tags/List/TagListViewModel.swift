@@ -6,8 +6,8 @@
 //
 
 import Combine
-import SwiftUI
 import SharpnezDesignSystemSwiftUI
+import SwiftUI
 
 enum TagListViewState {
     case loading

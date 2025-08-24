@@ -69,7 +69,7 @@ final class Router: ObservableObject {
         case .tags:
             TagListContainerView(viewModel: TagListViewModel())
         case .tagForm(let model):
-            TagFormView(tag: model)
+            TagFormView(viewModel: TagFormViewModel(model: model))
         default:
             Text("in development")
         }
