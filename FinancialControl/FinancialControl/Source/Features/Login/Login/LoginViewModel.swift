@@ -12,7 +12,7 @@ import SharpnezDesignSystemSwiftUI
 protocol LoginViewModelProtocol: ObservableObject {
     var isLoading: Bool { get }
     var toast: SHToastViewModel? { get set }
-    func login() async -> Bool
+    func login() async -> LoginStep?
 }
 
 @MainActor
@@ -20,18 +20,23 @@ final class LoginViewModel: LoginViewModelProtocol {
     
     // MARK: Properties
     
-    @FCSession private var session: any FCSessionModelProtocol
+    private let worker: LoginWorkerProtocol
+    
     @Published var isLoading: Bool = false
     @Published var toast: SHToastViewModel?
     
+    init(worker: LoginWorkerProtocol = LoginWorker()) {
+        self.worker = worker
+    }
+    
     // MARK: Public methods
     
-    func login() async -> Bool {
+    func login() async -> LoginStep? {
         defer { isLoading = false }
         isLoading = true
         do {
-            try await session.login()
-            return true
+            let profile = try await worker.login()
+            return profile != nil ? .existingUser : .newUser
         } catch {
             var message: String = error.localizedDescription
             if let fcError = error as? FCError {
@@ -39,7 +44,7 @@ final class LoginViewModel: LoginViewModelProtocol {
             }
             
             toast = SHToastViewModel(style: .error, font: .montserrat, message: message)
-            return false
+            return nil
         }
     }
 }

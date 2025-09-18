@@ -90,6 +90,7 @@ enum Destination: Hashable {
     // MARK: Navigation Option
     
     case login
+    case firstLoginForm
     case home
     case categories
     case categoryForm(CategoryDataModel? = nil)

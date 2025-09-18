@@ -68,14 +68,12 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
     
     func handleClickLogin() {
         Task {
-            if await viewModel.login() {
-                handleDidLogin()
-            }
+            guard let step = await viewModel.login() else { return }
+            handleDidLogin(step: step)
         }
     }
     
-    private func handleDidLogin() {
-        router.push(.home)
-        // TODO: Fluxo de login aqui
+    private func handleDidLogin(step: LoginStep) {
+        router.push(step.destination)
     }
 }
