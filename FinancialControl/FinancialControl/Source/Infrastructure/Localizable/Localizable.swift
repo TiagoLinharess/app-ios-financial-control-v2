@@ -28,16 +28,22 @@ enum Localizable {
         static let new = Localizable.tr("Localizable", "commons.new", fallback: "new")
         static let update = Localizable.tr("Localizable", "commons.update", fallback: "update")
         static let create = Localizable.tr("Localizable", "commons.create", fallback: "create")
+        static let continueText = Localizable.tr("Localizable", "commons.continue", fallback: "continue")
         static let tryAgain = Localizable.tr("Localizable", "commons.try.again", fallback: "try again")
         static let menu = Localizable.tr("Localizable", "commons.menu", fallback: "Menu")
         static let name = Localizable.tr("Localizable", "commons.name", fallback: "Name")
         static let transactionType = Localizable.tr("Localizable", "commons.transaction.type", fallback: "Transaction type")
         static let emptyName = Localizable.tr("Localizable", "commons.name.empty", fallback: "Fill the field \"name\".")
+        static let emptyNickname = Localizable.tr("Localizable", "commons.name.empty", fallback: "Fill the field \"What can we call you?\"")
         static let title = Localizable.tr("Localizable", "commons.title", fallback: "Financial Control")
         static let icon = Localizable.tr("Localizable", "commons.icon", fallback: "Icon")
         static let selectIcon = Localizable.tr("Localizable", "commons.select.icon", fallback: "Select icon")
         static let selectTextColor = Localizable.tr("Localizable", "commons.select.text.color", fallback: "Select text color")
         static let selectBackgroundColor = Localizable.tr("Localizable", "commons.select.background.color", fallback: "Select background color")
+        static let selectPronoun = Localizable.tr("Localizable", "commons.select.pronoun", fallback: "What are your pronouns?")
+        static let he = Localizable.tr("Localizable", "commons.he", fallback: "He/Him")
+        static let she = Localizable.tr("Localizable", "commons.she", fallback: "She/Her")
+        static let they = Localizable.tr("Localizable", "commons.they", fallback: "They/Them")
         static func createdAt(_ dateString: String) -> String {
             Localizable.tr("Localizable", "commons.created.at", dateString, fallback: "Created at: %@")
         }
@@ -61,10 +67,12 @@ enum Localizable {
         static let button = Localizable.tr("Localizable", "login.button", fallback: "sign in with your Google account")
     }
     
-    // MARK: UnLogged
+    // MARK: Profile
     
-    enum UnLogged {
-        static let loginToContinue = Localizable.tr("Localizable", "unlogged.login.to.continue", fallback: "Efetue o login para continuar")
+    enum Profile {
+        static let title = Localizable.tr("Localizable", "profile.title", fallback: "Welcome to Financial Control!")
+        static let nickname = Localizable.tr("Localizable", "profile.nickname", fallback: "What can we call you?")
+        static let birthdate = Localizable.tr("Localizable", "profile.birthdate", fallback: "What is your date of birth?")
     }
     
     // MARK: Transaction type

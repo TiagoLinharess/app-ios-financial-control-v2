@@ -33,7 +33,7 @@ final class UpdateProfileService: FCService, UpdateProfileServiceProtocol {
     func execute(model: ProfileDataModel) async throws {
         do {
             guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
-            try validateIsEmpty(text: model.nickname, errorMessage: Localizable.Commons.emptyName)
+            try validateIsEmpty(text: model.nickname, errorMessage: Localizable.Commons.emptyNickname)
             try await repository.update(requestModel: model.toRequestModel(userID: userID))
         } catch {
             throw await super.handleError(error: error)

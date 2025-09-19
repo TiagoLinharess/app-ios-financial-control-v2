@@ -10,10 +10,10 @@
 		ED3D3CAC2E252A0300EF75B1 /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = ED3D3CAB2E252A0300EF75B1 /* SharpnezDesignSystemSwiftUI */; };
 		ED6A76E72E1F09D500B66322 /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = ED6A76E62E1F09D500B66322 /* SharpnezDesignSystemSwiftUI */; };
 		ED6E0BFD2E21DC490013803E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = ED6E0BFC2E21DC490013803E /* FirebaseFirestore */; };
+		ED82C7DC2E7D735A00E97362 /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = ED82C7DB2E7D735A00E97362 /* SharpnezDesignSystemSwiftUI */; };
 		ED8DA34D2E2130FE00897E3C /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = ED8DA34C2E2130FE00897E3C /* SharpnezDesignSystemSwiftUI */; };
 		EDBF21552E27C17200D1A277 /* SharpnezCore in Frameworks */ = {isa = PBXBuildFile; productRef = EDBF21542E27C17200D1A277 /* SharpnezCore */; };
 		EDD1891D2E5640F200943277 /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EDD1891C2E5640F200943277 /* SharpnezDesignSystemSwiftUI */; };
-		EDD189202E56490500943277 /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EDD1891F2E56490500943277 /* SharpnezDesignSystemSwiftUI */; };
 		EDDAAB312E27DC9A0025AED9 /* SharpnezDesignSystemSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = EDDAAB302E27DC9A0025AED9 /* SharpnezDesignSystemSwiftUI */; };
 		EDFE8FD02E212EB200F1F9D3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EDFE8FCF2E212EB200F1F9D3 /* FirebaseAuth */; };
 		EDFE8FD22E212EB200F1F9D3 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = EDFE8FD12E212EB200F1F9D3 /* FirebaseCore */; };
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDD189202E56490500943277 /* SharpnezDesignSystemSwiftUI in Frameworks */,
+				ED82C7DC2E7D735A00E97362 /* SharpnezDesignSystemSwiftUI in Frameworks */,
 				ED3D3CAC2E252A0300EF75B1 /* SharpnezDesignSystemSwiftUI in Frameworks */,
 				ED8DA34D2E2130FE00897E3C /* SharpnezDesignSystemSwiftUI in Frameworks */,
 				EDBF21552E27C17200D1A277 /* SharpnezCore in Frameworks */,
@@ -124,7 +124,7 @@
 				EDBF21542E27C17200D1A277 /* SharpnezCore */,
 				EDDAAB302E27DC9A0025AED9 /* SharpnezDesignSystemSwiftUI */,
 				EDD1891C2E5640F200943277 /* SharpnezDesignSystemSwiftUI */,
-				EDD1891F2E56490500943277 /* SharpnezDesignSystemSwiftUI */,
+				ED82C7DB2E7D735A00E97362 /* SharpnezDesignSystemSwiftUI */,
 			);
 			productName = FinancialControl;
 			productReference = ED90B1C02DFC4C1D008AE528 /* FinancialControl.app */;
@@ -159,7 +159,7 @@
 				EDFE8FCE2E212EB200F1F9D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				EDFE8FD32E212EC000F1F9D3 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				EDBF21532E27C17200D1A277 /* XCRemoteSwiftPackageReference "sdk-ios-sharpnez-core" */,
-				EDD1891E2E56490500943277 /* XCRemoteSwiftPackageReference "sdk-ios-sharpnez-design-system-swiftui" */,
+				ED82C7DA2E7D735A00E97362 /* XCLocalSwiftPackageReference "../../../Sharpnez/sdk-ios-sharpnez-design-system-swiftui" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = ED90B1C12DFC4C1D008AE528 /* Products */;
@@ -425,18 +425,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		ED82C7DA2E7D735A00E97362 /* XCLocalSwiftPackageReference "../../../Sharpnez/sdk-ios-sharpnez-design-system-swiftui" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../../Sharpnez/sdk-ios-sharpnez-design-system-swiftui";
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		EDBF21532E27C17200D1A277 /* XCRemoteSwiftPackageReference "sdk-ios-sharpnez-core" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TiagoLinharess/sdk-ios-sharpnez-core";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		EDD1891E2E56490500943277 /* XCRemoteSwiftPackageReference "sdk-ios-sharpnez-design-system-swiftui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/TiagoLinharess/sdk-ios-sharpnez-design-system-swiftui.git";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -474,6 +473,10 @@
 			package = EDFE8FCE2E212EB200F1F9D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
+		ED82C7DB2E7D735A00E97362 /* SharpnezDesignSystemSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SharpnezDesignSystemSwiftUI;
+		};
 		ED8DA34C2E2130FE00897E3C /* SharpnezDesignSystemSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SharpnezDesignSystemSwiftUI;
@@ -485,11 +488,6 @@
 		};
 		EDD1891C2E5640F200943277 /* SharpnezDesignSystemSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = SharpnezDesignSystemSwiftUI;
-		};
-		EDD1891F2E56490500943277 /* SharpnezDesignSystemSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EDD1891E2E56490500943277 /* XCRemoteSwiftPackageReference "sdk-ios-sharpnez-design-system-swiftui" */;
 			productName = SharpnezDesignSystemSwiftUI;
 		};
 		EDDAAB302E27DC9A0025AED9 /* SharpnezDesignSystemSwiftUI */ = {

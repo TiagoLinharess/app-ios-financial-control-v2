@@ -60,6 +60,8 @@ final class Router: ObservableObject {
         switch destination {
         case .login:
             LoginView(viewModel: LoginViewModel())
+        case .firstLoginForm:
+            FirstLoginFormView(viewModel: FirstLoginFormViewModel())
         case .home:
             HomeView(viewModel: HomeViewModel())
         case .categories:

@@ -26,6 +26,8 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     // MARK: Public methods
     
+    // TODO: Verificar se o usuário concluiu os steps de login (saber diferenciar erro de nil no profile) (verificar tbm a quantidade do path ao terminar o fluxo de login)
+    
     func logout() async {
         defer { isLoading = false }
         isLoading = true

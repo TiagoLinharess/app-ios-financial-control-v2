@@ -22,17 +22,23 @@
 "commons.new" = "novo";
 "commons.update" = "editar";
 "commons.create" = "criar";
+"commons.continue" = "continuar";
 "commons.try.again" = "carregar novamente";
 "commons.menu" = "Menu";
 "commons.name" = "Nome";
 "commons.transaction.type" = "Tipo de pagamento";
 "commons.name.empty" = "Preencha o campo \"nome\"";
+"commons.nickname.empty" = "Preencha o campo \"Como podemos te chamar?\"";
 "commons.title" = "Financial Control";
 "commons.icon" = "Ícone";
 "commons.select.icon" = "Selecione o ícone";
 "commons.select.background.color" = "Selecione a cor de fundo";
 "commons.select.text.color" = "Selecione a cor do texto";
 "commons.created.at" = "Data de criação: %@";
+"commons.select.pronoun" = "Quais os seus pronomes?";
+"commons.he" = "Ele/Dele";
+"commons.she" = "Ela/Dela";
+"commons.they" = "Elu/Delu";
 
 // MARK: Modules
 
@@ -48,9 +54,11 @@
 "login.description" = "Bem-vindo(a) ao Financial Control!\nGerencie suas despesas de forma simples\ne segura.";
 "login.button" = "entrar com a sua conta Google";
 
-// MARK: UnLogged
+// MARK: Profile
 
-"unlogged.login.to.continue" = "Efetue o login para continuar";
+"profile.title" = "Bem-vindo ao Financial Control!";
+"profile.nickname" = "Como podemos te chamar?";
+"profile.birthdate" = "Qual a sua data de nascimento?";
 
 // MARK: Transaction type
 

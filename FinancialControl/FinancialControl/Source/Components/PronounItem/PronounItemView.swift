@@ -1,5 +1,5 @@
 //
-//  TransactionTypeItemView.swift
+//  PronounItemView.swift
 //  FinancialControl
 //
 //  Created by Tiago Linhares on 15/07/25.
@@ -8,18 +8,18 @@
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-struct TransactionTypeItemView: View {
+struct PronounItemView: View {
     
     // MARK: Properties
     
-    private let type: TransactionType
+    private let pronoun: Pronoun
     private let color: Color
     private let action: () -> Void
     
     // MARK: Init
     
-    init(type: TransactionType, color: Color, action: @escaping () -> Void) {
-        self.type = type
+    init(pronoun: Pronoun, color: Color, action: @escaping () -> Void) {
+        self.pronoun = pronoun
         self.color = color
         self.action = action
     }
@@ -29,22 +29,15 @@ struct TransactionTypeItemView: View {
     var body: some View {
         Button(action: action) {
             VStack(alignment: .center, spacing: .zero) {
-                SHIcon(icon: type.icon)
-                    .resizable()
-                    .renderingMode(.template)
-                    .foregroundStyle(color)
-                    .frame(width: .big, height: .big)
-                Spacer()
-                Text(type.title)
+                Text(pronoun.name)
                     .configureWithSH(
                         color: color,
                         font: .caption(.montserrat, .regular)
                     )
             }
-            .padding(.vertical, .extraSmall)
-            .frame(width: .superGiant, height: .superGiant)
+            .padding(.extraSmall)
             .overlay {
-                RoundedRectangle(cornerRadius: .small)
+                Capsule()
                     .strokeBorder(color, lineWidth: 1.5)
             }
         }
