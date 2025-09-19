@@ -6,8 +6,11 @@
 //
 
 import FirebaseAuth
+import SharpnezDesignSystemSwiftUI
+import SwiftUI
 
 protocol CreateTagServiceProtocol {
+    func executeBasics() async throws
     func execute(model: AddTagDataModel) async throws
 }
 
@@ -29,6 +32,25 @@ final class CreateTagService: FCService, CreateTagServiceProtocol {
     }
     
     // MARK: Public methods
+    
+    func executeBasics() async throws {
+        do {
+            guard let userID = auth.currentUser?.uid else { throw FCError.sessionExpired }
+            
+            let basicTags: [AddTagDataModel] = [
+                AddTagDataModel(backgroundColor: .green, textColor: .white, name: Localizable.Tags.Basics.salary),
+                AddTagDataModel(backgroundColor: .blue, textColor: .white, name: Localizable.Tags.Basics.streamings),
+                AddTagDataModel(backgroundColor: .red, textColor: .white, name: Localizable.Tags.Basics.food),
+                AddTagDataModel(backgroundColor: .gray, textColor: .white, name: Localizable.Tags.Basics.gasoline),
+            ]
+            
+            for tag in basicTags {
+                try await repository.create(requestModel: tag.toRequestModel(userID: userID))
+            }
+        } catch {
+            throw await super.handleError(error: error)
+        }
+    }
     
     func execute(model: AddTagDataModel) async throws {
         do {

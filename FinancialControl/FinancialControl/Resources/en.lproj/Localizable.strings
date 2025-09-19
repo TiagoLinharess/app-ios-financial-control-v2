@@ -78,6 +78,11 @@
 "categories.edit" = "Update category";
 "categories.delete.title" = "Do you want to delete the category?";
 "categories.delete.description" = "If you have a transaction linked to the category, it cannot be deleted";
+"categories.basics.revenues" = "Receitas";
+"categories.basics.fixed.expenses" = "Despesas fixas";
+"categories.basics.variable.expenses" = "Despesas variáveis";
+"categories.basics.installments" = "Parcelamentos";
+"categories.basics.signatures" = "Assinaturas";
 
 // MARK: Tags
 
@@ -89,3 +94,7 @@
 "tags.error.state.title" = "Oops, an error occurred while loading your tags...";
 "tags.delete.title" = "Do you want to delete the tag?";
 "tags.delete.description" = "If you have a transaction linked to the tag, it cannot be deleted";
+"tags.basics.salary" = "Salario";
+"tags.basics.streamings" = "Streamings";
+"tags.basics.food" = "Comida";
+"tags.basics.gasoline" = "Gasolina";

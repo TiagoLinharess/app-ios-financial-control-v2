@@ -7,12 +7,14 @@
 
 import Combine
 import Foundation
+import SharpnezDesignSystemSwiftUI
 
 protocol FirstLoginFormViewModelProtocol: ObservableObject {
     var nickname: String { get set }
     var pronoun: Pronoun { get set }
     var birthdate: Date { get set }
     var isLoading: Bool { get set }
+    var toast: SHToastViewModel? { get set }
 }
 
 final class FirstLoginFormViewModel: FirstLoginFormViewModelProtocol {
@@ -23,4 +25,5 @@ final class FirstLoginFormViewModel: FirstLoginFormViewModelProtocol {
     @Published var pronoun: Pronoun = .he
     @Published var birthdate: Date = .now
     @Published var isLoading: Bool = false
+    @Published var toast: SHToastViewModel?
 }

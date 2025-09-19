@@ -78,6 +78,11 @@
 "categories.edit" = "Editar categoria";
 "categories.delete.title" = "Deseja deletar a categoria?";
 "categories.delete.description" = "Se você possuir uma transação atrelada a categoria, ela não poderá ser deletada";
+"categories.basics.revenues" = "Revenues";
+"categories.basics.fixed.expenses" = "Fixed expenses";
+"categories.basics.variable.expenses" = "Variable expenses";
+"categories.basics.installments" = "Installments";
+"categories.basics.signatures" = "Signatures";
 
 // MARK: Tags
 
@@ -89,3 +94,7 @@
 "tags.error.state.title" = "Ops, ocorreu um erro ao carregar suas tags...";
 "tags.delete.title" = "Deseja deletar a tag?";
 "tags.delete.description" = "Se você possuir uma transação atrelada a tag, ela não poderá ser deletada";
+"tags.basics.salary" = "Salary";
+"tags.basics.streamings" = "Streamings";
+"tags.basics.food" = "Food";
+"tags.basics.gasoline" = "Gasoline";

@@ -96,6 +96,14 @@ enum Localizable {
         static let edit = Localizable.tr("Localizable", "categories.edit", fallback: "Update Category")
         static let deleteTitle = Localizable.tr("Localizable", "categories.delete.title", fallback: "Do you want to delete the category?")
         static let deleteDescription = Localizable.tr("Localizable", "categories.delete.description", fallback: "If you have a transaction linked to the category, it cannot be deleted")
+        
+        enum Basics {
+            static let revenues = Localizable.tr("Localizable", "categories.basics.revenues", fallback: "Revenues")
+            static let fixedExpenses = Localizable.tr("Localizable", "categories.basics.fixed.expenses", fallback: "Fixed expenses")
+            static let variableExpenses = Localizable.tr("Localizable", "categories.basics.variable.expenses", fallback: "Variable expenses")
+            static let installments = Localizable.tr("Localizable", "categories.basics.installments", fallback: "Installments")
+            static let signatures = Localizable.tr("Localizable", "categories.basics.signatures", fallback: "Signatures")
+        }
     }
     
     // MARK: Tags
@@ -111,6 +119,13 @@ enum Localizable {
         static let errorStateTitle = Localizable.tr("Localizable", "tags.error.state.title", fallback: "Oops, an error occurred while loading your tags")
         static let deleteTitle = Localizable.tr("Localizable", "tags.delete.title", fallback: "Do you want to delete the tag?")
         static let deleteDescription = Localizable.tr("Localizable", "tags.delete.description", fallback: "If you have a transaction linked to the tag, it cannot be deleted")
+        
+        enum Basics {
+            static let salary = Localizable.tr("Localizable", "tags.basics.salary", fallback: "Salary")
+            static let streamings = Localizable.tr("Localizable", "tags.basics.streamings", fallback: "Streamings")
+            static let food = Localizable.tr("Localizable", "tags.basics.food", fallback: "Food")
+            static let gasoline = Localizable.tr("Localizable", "tags.basics.gasoline", fallback: "Gasoline")
+        }
     }
 }
 
