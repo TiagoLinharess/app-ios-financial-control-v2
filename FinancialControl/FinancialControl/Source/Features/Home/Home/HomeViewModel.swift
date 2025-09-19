@@ -9,9 +9,17 @@ import Combine
 import SwiftUI
 import SharpnezDesignSystemSwiftUI
 
+enum HomeViewState {
+    case success(HomeDataModel)
+    case loading
+    case failure(String)
+}
+
 protocol HomeViewModelProtocol: ObservableObject {
-    var isLoading: Bool { get }
+    var isLogoutLoading: Bool { get }
+    var viewState: HomeViewState { get set }
     var toast: SHToastViewModel? { get set }
+    func loadHome() async
     func logout() async
 }
 
@@ -20,25 +28,38 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     // MARK: Properties
     
-    @FCSession private var session: any FCSessionModelProtocol
-    @Published var isLoading: Bool = false
+    private let worker: HomeWorkerProtocol
+    
+    @Published var isLogoutLoading: Bool = false
+    @Published var viewState: HomeViewState = .loading
     @Published var toast: SHToastViewModel?
+    
+    // MARK: Init
+    
+    init(worker: HomeWorkerProtocol = HomeWorker()) {
+        self.worker = worker
+    }
     
     // MARK: Public methods
     
-    // TODO: Verificar se o usuário concluiu os steps de login (saber diferenciar erro de nil no profile) (verificar tbm a quantidade do path ao terminar o fluxo de login)
+    func loadHome() async {
+        viewState = .loading
+        do {
+            let model = try await worker.loadHome()
+            viewState = .success(model)
+        } catch {
+            let message = ((error as? FCError) ?? FCError.generic).message
+            viewState = .failure(message)
+        }
+    }
     
     func logout() async {
-        defer { isLoading = false }
-        isLoading = true
+        defer { isLogoutLoading = false }
+        isLogoutLoading = true
         do {
-            try await session.logout()
+            try await worker.logout()
         } catch {
-            var message: String = error.localizedDescription
-            if let fcError = error as? FCError {
-                message = fcError.message
-            }
-            
+            let message = ((error as? FCError) ?? FCError.generic).message
             toast = SHToastViewModel(style: .error, font: .montserrat, message: message)
         }
     }

@@ -64,12 +64,17 @@ struct FirstLoginFormView<ViewModel: FirstLoginFormViewModelProtocol>: View {
                 .padding(.small)
             }
         }
-        .navigationBarBackButtonHidden()
+        .toastView(toast: $viewModel.toast)
+        .toolbarVisibility(.hidden)
     }
     
     // MARK: Private methods
     
     func handleSubmit() {
-        
+        Task {
+            if let result = await viewModel.submit() {
+                router.push(.firstLoginLoading(step: result))
+            }
+        }
     }
 }

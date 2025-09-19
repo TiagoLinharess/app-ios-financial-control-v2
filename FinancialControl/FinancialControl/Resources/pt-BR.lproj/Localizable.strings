@@ -16,7 +16,9 @@
 
 // MARK: Commons
 
+"commons.ops" = "Ops!";
 "commons.sign.out" = "sair";
+"commons.closing" = "Encerrando";
 "commons.go.back" = "voltar";
 "commons.delete" = "deletar";
 "commons.new" = "novo";
@@ -24,6 +26,7 @@
 "commons.create" = "criar";
 "commons.continue" = "continuar";
 "commons.try.again" = "carregar novamente";
+"commons.back.to.beginning" = "voltar para o início";
 "commons.menu" = "Menu";
 "commons.name" = "Nome";
 "commons.transaction.type" = "Tipo de pagamento";
@@ -59,6 +62,8 @@
 "profile.title" = "Bem-vindo ao Financial Control!";
 "profile.nickname" = "Como podemos te chamar?";
 "profile.birthdate" = "Qual a sua data de nascimento?";
+"profile.finishing" = "Estamos Finalizando a sua conta, aguarde alguns segundos.";
+"profile.already.created" = "Parece que a sua conta ja existe! Vamos cuidar de tudo, não se preocupe.";
 
 // MARK: Transaction type
 
@@ -78,11 +83,11 @@
 "categories.edit" = "Editar categoria";
 "categories.delete.title" = "Deseja deletar a categoria?";
 "categories.delete.description" = "Se você possuir uma transação atrelada a categoria, ela não poderá ser deletada";
-"categories.basics.revenues" = "Revenues";
-"categories.basics.fixed.expenses" = "Fixed expenses";
-"categories.basics.variable.expenses" = "Variable expenses";
-"categories.basics.installments" = "Installments";
-"categories.basics.signatures" = "Signatures";
+"categories.basics.revenues" = "Receitas";
+"categories.basics.fixed.expenses" = "Despesas fixas";
+"categories.basics.variable.expenses" = "Despesas variáveis";
+"categories.basics.installments" = "Parcelamentos";
+"categories.basics.signatures" = "Assinaturas";
 
 // MARK: Tags
 
@@ -94,7 +99,7 @@
 "tags.error.state.title" = "Ops, ocorreu um erro ao carregar suas tags...";
 "tags.delete.title" = "Deseja deletar a tag?";
 "tags.delete.description" = "Se você possuir uma transação atrelada a tag, ela não poderá ser deletada";
-"tags.basics.salary" = "Salary";
+"tags.basics.salary" = "Salario";
 "tags.basics.streamings" = "Streamings";
-"tags.basics.food" = "Food";
-"tags.basics.gasoline" = "Gasoline";
+"tags.basics.food" = "Comida";
+"tags.basics.gasoline" = "Gasolina";
