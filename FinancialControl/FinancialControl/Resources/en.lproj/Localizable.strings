@@ -16,23 +16,32 @@
 
 // MARK: Commons
 
+"commons.ops" = "Ops!";
 "commons.sign.out" = "sign out";
+"commons.closing" = "Closing";
 "commons.go.back" = "go back";
 "commons.delete" = "delete";
 "commons.new" = "new";
 "commons.update" = "update";
 "commons.create" = "create";
+"commons.continue" = "continue";
 "commons.try.again" = "try again";
+"commons.back.to.beginning" = "back to the beginning";
 "commons.menu" = "Menu";
 "commons.name" = "Name";
 "commons.transaction.type" = "Transaction type";
 "commons.name.empty" = "Fill the field \"name\"";
+"commons.nickname.empty" = "Fill the field \"What can we call you?\"";
 "commons.title" = "Financial Control";
 "commons.icon" = "Icon";
 "commons.select.icon" = "Select icon";
 "commons.select.background.color" = "Select background color";
 "commons.select.text.color" = "Select text color";
 "commons.created.at" = "Created at: %@";
+"commons.select.pronoun" = "What are your pronouns?";
+"commons.he" = "He/Him";
+"commons.she" = "She/Her";
+"commons.they" = "They/Them";
 
 // MARK: Modules
 
@@ -48,9 +57,13 @@
 "login.description" = "Welcome to Financial Control!\nManage your expenses simply\nand securely";
 "login.button" = "sign in with your Google account";
 
-// MARK: UnLogged
+// MARK: Profile
 
-"unlogged.login.to.continue" = "Make login to continue";
+"profile.title" = "Welcome to Financial Control!";
+"profile.nickname" = "What can we call you?";
+"profile.birthdate" = "What is your date of birth?";
+"profile.finishing" = "We are finalizing your account, please wait a few seconds.";
+"profile.already.created" = "It looks like your account already exists! We'll take care of everything, don't worry.";
 
 // MARK: Transaction type
 
@@ -70,6 +83,11 @@
 "categories.edit" = "Update category";
 "categories.delete.title" = "Do you want to delete the category?";
 "categories.delete.description" = "If you have a transaction linked to the category, it cannot be deleted";
+"categories.basics.revenues" = "Revenues";
+"categories.basics.fixed.expenses" = "Fixed expenses";
+"categories.basics.variable.expenses" = "Variable expenses";
+"categories.basics.installments" = "Installments";
+"categories.basics.signatures" = "Signatures";
 
 // MARK: Tags
 
@@ -81,3 +99,7 @@
 "tags.error.state.title" = "Oops, an error occurred while loading your tags...";
 "tags.delete.title" = "Do you want to delete the tag?";
 "tags.delete.description" = "If you have a transaction linked to the tag, it cannot be deleted";
+"tags.basics.salary" = "Salary";
+"tags.basics.streamings" = "Streamings";
+"tags.basics.food" = "Food";
+"tags.basics.gasoline" = "Gasoline";

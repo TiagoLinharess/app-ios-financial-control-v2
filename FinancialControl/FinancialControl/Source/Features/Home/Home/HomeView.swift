@@ -26,12 +26,10 @@ struct HomeView<ViewModel: HomeViewModelProtocol>: View {
     // MARK: Body
     
     var body: some View {
-        SideMenuView(isLoading: viewModel.isLoading, onLogout: handleClickLogout) {
+        SideMenuView(isLoading: viewModel.isLogoutLoading, onLogout: handleClickLogout) {
             ZStack {
                 Color.background(colorScheme: colorScheme).ignoresSafeArea()
-                Text("home")
-                    .padding(.small)
-                    .frame(maxWidth: Constants.Sizes.containerWidth)
+                container
             }
             .navigationBarBackButtonHidden()
             .toolbar {
@@ -50,16 +48,52 @@ struct HomeView<ViewModel: HomeViewModelProtocol>: View {
         .toastView(toast: $viewModel.toast)
     }
     
+    private var container: some View {
+        Group {
+            switch viewModel.viewState {
+            case .success(let model):
+                HomeContentView(model: model)
+                    .onAppear {
+                        handleProfileExists(model: model)
+                    }
+            case .loading:
+                SHLoading(style: .large, color: .onBackground(colorScheme: colorScheme))
+            case .failure(let message):
+                SHFeedbackView(
+                    type: .error,
+                    title: Localizable.Commons.ops,
+                    description: message,
+                    primaryButtonTitle: Localizable.Commons.tryAgain,
+                    primaryAction: loadHome,
+                )
+            }
+        }
+        .onAppear(perform: loadHome)
+    }
+    
     // MARK: Private methods
     
     private func handleClickMenu() {
         sideMenuState.isExpanded.toggle()
     }
     
+    private func loadHome() {
+        Task {
+            await viewModel.loadHome()
+        }
+    }
+    
     private func handleClickLogout() {
         Task {
             await viewModel.logout()
             router.popToRoot()
+        }
+    }
+    
+    private func handleProfileExists(model: HomeDataModel) {
+        if model.profile == nil {
+            viewModel.viewState = .loading
+            router.push(.firstLoginForm)
         }
     }
 }

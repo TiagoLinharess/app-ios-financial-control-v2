@@ -60,6 +60,10 @@ final class Router: ObservableObject {
         switch destination {
         case .login:
             LoginView(viewModel: LoginViewModel())
+        case .firstLoginForm:
+            FirstLoginFormView(viewModel: FirstLoginFormViewModel())
+        case .firstLoginLoading(let step):
+            FirstLoginLoading(viewModel: FirstLoginLoadingViewModel(step: step))
         case .home:
             HomeView(viewModel: HomeViewModel())
         case .categories:
@@ -90,6 +94,8 @@ enum Destination: Hashable {
     // MARK: Navigation Option
     
     case login
+    case firstLoginForm
+    case firstLoginLoading(step: FirstLoginStep)
     case home
     case categories
     case categoryForm(CategoryDataModel? = nil)

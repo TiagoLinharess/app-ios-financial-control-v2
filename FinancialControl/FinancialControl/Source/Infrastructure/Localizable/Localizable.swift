@@ -22,22 +22,31 @@ enum Localizable {
     // MARK: Commons
     
     enum Commons {
+        static let ops = Localizable.tr("Localizable", "commons.ops", fallback: "Ops!")
         static let signOut = Localizable.tr("Localizable", "commons.sign.out", fallback: "sign out")
+        static let closing = Localizable.tr("Localizable", "commons.closing", fallback: "Closing")
         static let goBack = Localizable.tr("Localizable", "commons.go.back", fallback: "go back")
         static let delete = Localizable.tr("Localizable", "commons.delete", fallback: "delete")
         static let new = Localizable.tr("Localizable", "commons.new", fallback: "new")
         static let update = Localizable.tr("Localizable", "commons.update", fallback: "update")
         static let create = Localizable.tr("Localizable", "commons.create", fallback: "create")
+        static let continueText = Localizable.tr("Localizable", "commons.continue", fallback: "continue")
         static let tryAgain = Localizable.tr("Localizable", "commons.try.again", fallback: "try again")
+        static let backToBeginning = Localizable.tr("Localizable", "commons.back.to.beginning", fallback: "back to the beginning")
         static let menu = Localizable.tr("Localizable", "commons.menu", fallback: "Menu")
         static let name = Localizable.tr("Localizable", "commons.name", fallback: "Name")
         static let transactionType = Localizable.tr("Localizable", "commons.transaction.type", fallback: "Transaction type")
         static let emptyName = Localizable.tr("Localizable", "commons.name.empty", fallback: "Fill the field \"name\".")
+        static let emptyNickname = Localizable.tr("Localizable", "commons.nickname.empty", fallback: "Fill the field \"What can we call you?\"")
         static let title = Localizable.tr("Localizable", "commons.title", fallback: "Financial Control")
         static let icon = Localizable.tr("Localizable", "commons.icon", fallback: "Icon")
         static let selectIcon = Localizable.tr("Localizable", "commons.select.icon", fallback: "Select icon")
         static let selectTextColor = Localizable.tr("Localizable", "commons.select.text.color", fallback: "Select text color")
         static let selectBackgroundColor = Localizable.tr("Localizable", "commons.select.background.color", fallback: "Select background color")
+        static let selectPronoun = Localizable.tr("Localizable", "commons.select.pronoun", fallback: "What are your pronouns?")
+        static let he = Localizable.tr("Localizable", "commons.he", fallback: "He/Him")
+        static let she = Localizable.tr("Localizable", "commons.she", fallback: "She/Her")
+        static let they = Localizable.tr("Localizable", "commons.they", fallback: "They/Them")
         static func createdAt(_ dateString: String) -> String {
             Localizable.tr("Localizable", "commons.created.at", dateString, fallback: "Created at: %@")
         }
@@ -61,10 +70,14 @@ enum Localizable {
         static let button = Localizable.tr("Localizable", "login.button", fallback: "sign in with your Google account")
     }
     
-    // MARK: UnLogged
+    // MARK: Profile
     
-    enum UnLogged {
-        static let loginToContinue = Localizable.tr("Localizable", "unlogged.login.to.continue", fallback: "Efetue o login para continuar")
+    enum Profile {
+        static let title = Localizable.tr("Localizable", "profile.title", fallback: "Welcome to Financial Control!")
+        static let nickname = Localizable.tr("Localizable", "profile.nickname", fallback: "What can we call you?")
+        static let birthdate = Localizable.tr("Localizable", "profile.birthdate", fallback: "What is your date of birth?")
+        static let finishing = Localizable.tr("Localizable", "profile.finishing", fallback: "We are finalizing your account, please wait a few seconds")
+        static let alreadyCreated = Localizable.tr("Localizable", "profile.already.created", fallback: "It looks like your account already exists! We'll take care of everything, don't worry.")
     }
     
     // MARK: Transaction type
@@ -88,6 +101,14 @@ enum Localizable {
         static let edit = Localizable.tr("Localizable", "categories.edit", fallback: "Update Category")
         static let deleteTitle = Localizable.tr("Localizable", "categories.delete.title", fallback: "Do you want to delete the category?")
         static let deleteDescription = Localizable.tr("Localizable", "categories.delete.description", fallback: "If you have a transaction linked to the category, it cannot be deleted")
+        
+        enum Basics {
+            static let revenues = Localizable.tr("Localizable", "categories.basics.revenues", fallback: "Revenues")
+            static let fixedExpenses = Localizable.tr("Localizable", "categories.basics.fixed.expenses", fallback: "Fixed expenses")
+            static let variableExpenses = Localizable.tr("Localizable", "categories.basics.variable.expenses", fallback: "Variable expenses")
+            static let installments = Localizable.tr("Localizable", "categories.basics.installments", fallback: "Installments")
+            static let signatures = Localizable.tr("Localizable", "categories.basics.signatures", fallback: "Signatures")
+        }
     }
     
     // MARK: Tags
@@ -103,6 +124,13 @@ enum Localizable {
         static let errorStateTitle = Localizable.tr("Localizable", "tags.error.state.title", fallback: "Oops, an error occurred while loading your tags")
         static let deleteTitle = Localizable.tr("Localizable", "tags.delete.title", fallback: "Do you want to delete the tag?")
         static let deleteDescription = Localizable.tr("Localizable", "tags.delete.description", fallback: "If you have a transaction linked to the tag, it cannot be deleted")
+        
+        enum Basics {
+            static let salary = Localizable.tr("Localizable", "tags.basics.salary", fallback: "Salary")
+            static let streamings = Localizable.tr("Localizable", "tags.basics.streamings", fallback: "Streamings")
+            static let food = Localizable.tr("Localizable", "tags.basics.food", fallback: "Food")
+            static let gasoline = Localizable.tr("Localizable", "tags.basics.gasoline", fallback: "Gasoline")
+        }
     }
 }
 

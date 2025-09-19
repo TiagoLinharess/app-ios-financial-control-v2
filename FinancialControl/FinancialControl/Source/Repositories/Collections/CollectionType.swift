@@ -8,4 +8,5 @@
 enum CollectionType: String {
     case categories
     case tags
+    case profiles
 }
