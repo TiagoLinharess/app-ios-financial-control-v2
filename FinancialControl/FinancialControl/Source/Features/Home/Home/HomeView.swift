@@ -80,9 +80,6 @@ struct HomeView<ViewModel: HomeViewModelProtocol>: View {
             switch viewModel.viewState {
             case .success(let model):
                 HomeContentView(model: model)
-                    .onAppear {
-                        handleProfileExists(model: model)
-                    }
             case .loading:
                 SHLoading(
                     style: .large,
@@ -124,13 +121,6 @@ struct HomeView<ViewModel: HomeViewModelProtocol>: View {
         Task {
             await viewModel.logout()
             router.popToRoot()
-        }
-    }
-    
-    private func handleProfileExists(model: HomeDataModel) {
-        if model.profile == nil {
-            viewModel.viewState = .loading
-            router.push(.firstLoginForm)
         }
     }
 }

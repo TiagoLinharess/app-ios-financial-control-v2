@@ -12,17 +12,19 @@ struct ProfileDataModel {
     let nickname: String
     let pronoun: Pronoun
     let birthdate: Date
+    let user: UserDataModel
     let createdAt: Date
     
-    init(id: String, nickname: String, pronoun: Pronoun, birthdate: Date, createdAt: Date) {
+    init(id: String, nickname: String, pronoun: Pronoun, birthdate: Date, createdAt: Date, user: UserDataModel) {
         self.id = id
         self.nickname = nickname
         self.pronoun = pronoun
         self.birthdate = birthdate
+        self.user = user
         self.createdAt = createdAt
     }
     
-    init?(from response: ProfileResponseModel?) {
+    init?(from response: ProfileResponseModel?, and user: UserDataModel) {
         guard let response,
               let id = response.id,
               let pronoun = Pronoun(rawValue: response.pronounID)
@@ -34,13 +36,14 @@ struct ProfileDataModel {
         self.nickname = response.nickname
         self.pronoun = pronoun
         self.birthdate = response.birthdate
+        self.user = user
         self.createdAt = response.createdAt
     }
     
-    func toRequestModel(userID: String) -> EditProfileRequestModel {
+    func toRequestModel() -> EditProfileRequestModel {
         return EditProfileRequestModel(
             id: id,
-            userID: userID,
+            userID: user.uid,
             nickname: nickname,
             pronounID: pronoun.rawValue,
             birthdate: birthdate,

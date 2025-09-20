@@ -6,7 +6,7 @@
 //
 
 protocol LoginWorkerProtocol {
-    func login() async throws -> ProfileDataModel?
+    func login() async throws -> LoginStep
 }
 
 final class LoginWorker: LoginWorkerProtocol {
@@ -14,18 +14,18 @@ final class LoginWorker: LoginWorkerProtocol {
     // MARK: Properties
     
     @FCSession private var session: any FCSessionModelProtocol
-    private let readService: ReadProfileServiceProtocol
+    private let verifyProfileService: VerifyProfileServiceProtocol
     
     // MARK: Init
     
-    init(readService: ReadProfileServiceProtocol = ReadProfileService()) {
-        self.readService = readService
+    init(verifyProfileService: VerifyProfileServiceProtocol = VerifyProfileService()) {
+        self.verifyProfileService = verifyProfileService
     }
     
     // MARK: Public methods
     
-    func login() async throws -> ProfileDataModel? {
+    func login() async throws -> LoginStep {
         try await session.login()
-        return try await readService.execute()
+        return try await verifyProfileService.execute() ? .existingUser : .newUser
     }
 }

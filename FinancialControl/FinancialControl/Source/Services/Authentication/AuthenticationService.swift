@@ -10,14 +10,14 @@ import FirebaseCore
 import GoogleSignIn
 
 protocol AuthenticationServiceProtocol {
-    func login() async throws -> UserModel
+    func login() async throws -> UserDataModel
     func logout() async throws
-    func validateSession() -> UserModel?
+    func validateSession() -> UserDataModel?
 }
 
 @MainActor
 final class AuthenticationService: AuthenticationServiceProtocol {
-    func login() async throws -> UserModel {
+    func login() async throws -> UserDataModel {
         do {
             guard let clientID = FirebaseApp.app()?.options.clientID else {
                 fatalError("no firbase clientID found")
@@ -53,7 +53,7 @@ final class AuthenticationService: AuthenticationServiceProtocol {
             
             try await Auth.auth().signIn(with: credential)
             
-            guard let currentUser = UserModel(from: Auth.auth().currentUser) else {
+            guard let currentUser = UserDataModel(from: Auth.auth().currentUser) else {
                 throw FCError.userPermission
             }
             
@@ -76,7 +76,7 @@ final class AuthenticationService: AuthenticationServiceProtocol {
         }
     }
     
-    func validateSession() -> UserModel? {
-        UserModel(from: Auth.auth().currentUser)
+    func validateSession() -> UserDataModel? {
+        UserDataModel(from: Auth.auth().currentUser)
     }
 }

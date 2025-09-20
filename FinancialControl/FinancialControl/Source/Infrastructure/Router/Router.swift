@@ -63,7 +63,7 @@ final class Router: ObservableObject {
         case .firstLoginForm:
             FirstLoginFormView(viewModel: FirstLoginFormViewModel())
         case .firstLoginLoading(let step):
-            FirstLoginLoading(viewModel: FirstLoginLoadingViewModel(step: step))
+            FirstLoginLoadingView(viewModel: FirstLoginLoadingViewModel(step: step))
         case .home:
             HomeView(viewModel: HomeViewModel())
         case .profile:

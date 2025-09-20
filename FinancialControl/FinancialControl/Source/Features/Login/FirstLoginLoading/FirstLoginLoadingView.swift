@@ -1,5 +1,5 @@
 //
-//  FirstLoginLoading.swift
+//  FirstLoginLoadingView.swift
 //  FinancialControl
 //
 //  Created by Tiago Linhares on 19/09/25.
@@ -8,7 +8,7 @@
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-struct FirstLoginLoading<ViewModel: FirstLoginLoadingViewModelProtocol>: View {
+struct FirstLoginLoadingView<ViewModel: FirstLoginLoadingViewModelProtocol>: View {
     
     // MARK: Properties
     
@@ -54,13 +54,7 @@ struct FirstLoginLoading<ViewModel: FirstLoginLoadingViewModelProtocol>: View {
     
     private func submit() {
         Task {
-            if await viewModel.execute() {
-                if router.path.count > 1 {
-                    router.pop(count: 2)
-                } else {
-                    router.push(.home)
-                }
-            }
+            router.push(.home)
         }
     }
     

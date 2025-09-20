@@ -35,8 +35,7 @@ final class LoginViewModel: LoginViewModelProtocol {
         defer { isLoading = false }
         isLoading = true
         do {
-            let profile = try await worker.login()
-            return profile != nil ? .existingUser : .newUser
+            return try await worker.login()
         } catch {
             var message: String = error.localizedDescription
             if let fcError = error as? FCError {

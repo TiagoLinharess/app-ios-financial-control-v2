@@ -13,23 +13,23 @@ final class FirstLoginFormWorker: FirstLoginFormWorkerProtocol {
     
     // MARK: Properties
     
-    private let readProfileService: ReadProfileServiceProtocol
+    private let verifyProfileService: VerifyProfileServiceProtocol
     private let createProfileService: CreateProfileServiceProtocol
     
     // MARK: Init
     
     init(
-        readProfileService: ReadProfileServiceProtocol = ReadProfileService(),
+        verifyProfileService: VerifyProfileServiceProtocol = VerifyProfileService(),
         createProfileService: CreateProfileServiceProtocol = CreateProfileService(),
     ) {
-        self.readProfileService = readProfileService
+        self.verifyProfileService = verifyProfileService
         self.createProfileService = createProfileService
     }
     
     // MARK: Public methods
     
     func execute(model: AddProfileDataModel) async throws -> FirstLoginStep {
-        if let profile = try await readProfileService.execute() {
+        if try await verifyProfileService.execute() {
             return .alreadyExists
         }
         
