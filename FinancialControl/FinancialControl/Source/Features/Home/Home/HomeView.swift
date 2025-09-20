@@ -16,6 +16,7 @@ struct HomeView<ViewModel: HomeViewModelProtocol>: View {
     @StateObject private var sideMenuState = SideMenuState()
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     @EnvironmentObject private var router: Router
+    @State private var userPhoto: URL?
     
     // MARK: Init
     
@@ -42,8 +43,34 @@ struct HomeView<ViewModel: HomeViewModelProtocol>: View {
                             .frame(width: .medium, height: .medium)
                     }
                 }
+                ToolbarItem(placement: .principal) {
+                    Text(Localizable.Commons.title)
+                        .configureWithSH(
+                            color: .onBackground(colorScheme: colorScheme),
+                            font: .body(.montserrat, .bold)
+                        )
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: handleClickProfile) {
+                        AsyncImage(url: userPhoto) { image in
+                            image
+                                .resizable()
+                                .clipShape(.circle)
+                                .frame(width: .superBig, height: .superBig)
+                        } placeholder: {
+                            SHIcon(icon: .profile)
+                                .resizable()
+                                .renderingMode(.template)
+                                .foregroundStyle(Color.onBackground(colorScheme: colorScheme))
+                                .frame(width: .big, height: .big)
+                        }
+                    }
+                }
+                .sharedBackgroundVisibility(userPhoto != nil ? .hidden : .visible)
             }
         }
+        .onAppear(perform: loadHome)
+        .onAppear(perform: loadUserPhoto)
         .environmentObject(sideMenuState)
         .toastView(toast: $viewModel.toast)
     }
@@ -57,7 +84,10 @@ struct HomeView<ViewModel: HomeViewModelProtocol>: View {
                         handleProfileExists(model: model)
                     }
             case .loading:
-                SHLoading(style: .large, color: .onBackground(colorScheme: colorScheme))
+                SHLoading(
+                    style: .large,
+                    color: .onBackground(colorScheme: colorScheme)
+                )
             case .failure(let message):
                 SHFeedbackView(
                     type: .error,
@@ -68,13 +98,20 @@ struct HomeView<ViewModel: HomeViewModelProtocol>: View {
                 )
             }
         }
-        .onAppear(perform: loadHome)
     }
     
     // MARK: Private methods
     
     private func handleClickMenu() {
         sideMenuState.isExpanded.toggle()
+    }
+    
+    private func handleClickProfile() {
+        router.push(.profile)
+    }
+    
+    private func loadUserPhoto() {
+        userPhoto = viewModel.loadUserPhoto()
     }
     
     private func loadHome() {

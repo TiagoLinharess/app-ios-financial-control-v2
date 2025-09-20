@@ -5,7 +5,10 @@
 //  Created by Tiago Linhares on 19/09/25.
 //
 
+import Foundation
+
 protocol HomeWorkerProtocol {
+    func loadUserPhoto() -> URL?
     func loadHome() async throws -> HomeDataModel
     func logout() async throws
 }
@@ -24,6 +27,10 @@ final class HomeWorker: HomeWorkerProtocol {
     }
     
     // MARK: Public methods
+    
+    func loadUserPhoto() -> URL? {
+        return session.user?.photoURL
+    }
     
     func loadHome() async throws -> HomeDataModel {
         let profileDataModel = try await readProfileService.execute()

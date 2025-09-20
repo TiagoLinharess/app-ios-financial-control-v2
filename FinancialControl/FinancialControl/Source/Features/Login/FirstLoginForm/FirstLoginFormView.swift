@@ -64,6 +64,7 @@ struct FirstLoginFormView<ViewModel: FirstLoginFormViewModelProtocol>: View {
                 .padding(.small)
             }
         }
+        .onTapGesture(perform: closeKeyboard)
         .toastView(toast: $viewModel.toast)
         .toolbarVisibility(.hidden)
     }
