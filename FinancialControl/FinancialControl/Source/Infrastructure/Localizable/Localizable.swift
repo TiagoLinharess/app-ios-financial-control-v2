@@ -50,6 +50,9 @@ enum Localizable {
         static func createdAt(_ dateString: String) -> String {
             Localizable.tr("Localizable", "commons.created.at", dateString, fallback: "Created at: %@")
         }
+        static func inParentheses(_ text: String) -> String {
+            Localizable.tr("Localizable", "commons.in.parentheses", text, fallback: "(%@)")
+        }
     }
     
     // MARK: Modules
@@ -61,6 +64,7 @@ enum Localizable {
         static let settings = Localizable.tr("Localizable", "module.settings", fallback: "Settings")
         static let categories = Localizable.tr("Localizable", "module.categories", fallback: "Categories")
         static let tags = Localizable.tr("Localizable", "module.tags", fallback: "Tags")
+        static let profile = Localizable.tr("Localizable", "module.profile", fallback: "Profile")
     }
     
     // MARK: Login
@@ -78,6 +82,14 @@ enum Localizable {
         static let birthdate = Localizable.tr("Localizable", "profile.birthdate", fallback: "What is your date of birth?")
         static let finishing = Localizable.tr("Localizable", "profile.finishing", fallback: "We are finalizing your account, please wait a few seconds")
         static let alreadyCreated = Localizable.tr("Localizable", "profile.already.created", fallback: "It looks like your account already exists! We'll take care of everything, don't worry.")
+        static let googleAccount = Localizable.tr("Localizable", "profile.detail.google.account", fallback: "Google Account:")
+        static func googleName(_ name: String) -> String {
+            Localizable.tr("Localizable", "profile.detail.google.name", name, fallback: "Name: %@")
+        }
+        static func googleEmail(_ email: String) -> String {
+            Localizable.tr("Localizable", "profile.detail.google.email", email, fallback: "E-mail: %@")
+        }
+        static let googleObservation = Localizable.tr("Localizable", "profile.detail.google.observation", fallback: "Your profile picture and Google account data cannot be managed through the app;\nediting of this data is only allowed on Google platforms.")
     }
     
     // MARK: Transaction type

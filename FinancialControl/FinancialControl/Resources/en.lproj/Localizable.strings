@@ -42,6 +42,7 @@
 "commons.he" = "He/Him";
 "commons.she" = "She/Her";
 "commons.they" = "They/Them";
+"commons.in.parentheses" = "(%@)";
 
 // MARK: Modules
 
@@ -51,6 +52,7 @@
 "module.settings" = "Settings";
 "module.categories" = "Categories";
 "module.tags" = "Tags";
+"module.profile" = "Profile";
 
 // MARK: Login
 
@@ -64,6 +66,10 @@
 "profile.birthdate" = "What is your date of birth?";
 "profile.finishing" = "We are finalizing your account, please wait a few seconds.";
 "profile.already.created" = "It looks like your account already exists! We'll take care of everything, don't worry.";
+"profile.detail.google.account" = "Google Account:";
+"profile.detail.google.name" = "Name: %@";
+"profile.detail.google.email" = "E-mail: %@";
+"profile.detail.google.observation" = "Your profile picture and Google account data cannot be managed through the app;\nediting of this data is only allowed on Google platforms.";
 
 // MARK: Transaction type
 
