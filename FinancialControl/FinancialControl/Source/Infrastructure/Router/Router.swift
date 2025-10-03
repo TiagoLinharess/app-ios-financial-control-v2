@@ -70,6 +70,8 @@ final class Router: ObservableObject {
             ProfileView(viewModel: ProfileViewModel())
         case .profileSettings:
             ProfileSettingsView(viewModel: ProfileSettingsViewModel())
+        case .editProfile:
+            UpdateProfileFormView(viewModel: UpdateProfileFormViewModel())
         case .categories:
             CategoryListContainerView(viewModel: CategoryListViewModel())
         case .categoryForm(let model):
