@@ -68,6 +68,8 @@ final class Router: ObservableObject {
             HomeView(viewModel: HomeViewModel())
         case .profile:
             ProfileView(viewModel: ProfileViewModel())
+        case .profileSettings:
+            ProfileSettingsView(viewModel: ProfileSettingsViewModel())
         case .categories:
             CategoryListContainerView(viewModel: CategoryListViewModel())
         case .categoryForm(let model):
@@ -100,6 +102,9 @@ enum Destination: Hashable {
     case firstLoginLoading(step: FirstLoginStep)
     case home
     case profile
+    case profileSettings
+    case editProfile
+    case terms
     case categories
     case categoryForm(CategoryDataModel? = nil)
     case tags

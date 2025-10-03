@@ -71,6 +71,13 @@
 "profile.detail.google.email" = "E-mail: %@";
 "profile.detail.google.observation" = "Sua foto de perfil e os dados da conta Google não podem ser gerenciadas pelo aplicativo, a edição desses dados é permitida apenas nas plataformas da Google.";
 
+// MARK: Profile Settings
+
+"profile.settings.title" = "Configurações do perfil";
+"profile.settings.delete.account" = "excluir minha conta e dados";
+"profile.settings.edit" = "Editar perfil";
+"profile.settings.terms" = "Termos e condições";
+
 
 // MARK: Transaction type
 

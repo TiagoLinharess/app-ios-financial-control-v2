@@ -13,6 +13,7 @@ struct SideMenuView<Content: View>: View {
     // MARK: Properties
     
     @EnvironmentObject private var sideMenuState: SideMenuState
+    @EnvironmentObject private var router: Router
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     private var isLoading: Bool
     private var onLogout: () -> Void
@@ -58,7 +59,10 @@ struct SideMenuView<Content: View>: View {
                                 )
                             ScrollView(.vertical) {
                                 ForEach(SideMenuFeature.allCases, id: \.self){ feature in
-                                    SideMenuRowView(feature: feature)
+                                    MenuRowView(feature: feature)
+                                        .onTapGesture {
+                                            handleTapItem(feature: feature)
+                                        }
                                 }
                             }
                             .scrollBounceBehavior(.basedOnSize)
@@ -102,5 +106,10 @@ struct SideMenuView<Content: View>: View {
     
     private func handleTapGesture() {
         sideMenuState.isExpanded.toggle()
+    }
+    
+    private func handleTapItem(feature: SideMenuFeature) {
+        sideMenuState.isExpanded.toggle()
+        router.push(feature.toDestination)
     }
 }

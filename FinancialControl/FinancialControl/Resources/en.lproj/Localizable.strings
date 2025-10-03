@@ -71,6 +71,13 @@
 "profile.detail.google.email" = "E-mail: %@";
 "profile.detail.google.observation" = "Your profile picture and Google account data cannot be managed through the app;\nediting of this data is only allowed on Google platforms.";
 
+// MARK: Profile Settings
+
+"profile.settings.title" = "Profile settings";
+"profile.settings.delete.account" = "delete my account";
+"profile.settings.edit" = "Edit profile";
+"profile.settings.terms" = "Terms and contitions";
+
 // MARK: Transaction type
 
 "transaction.type.income" = "Income";

@@ -92,6 +92,15 @@ enum Localizable {
         static let googleObservation = Localizable.tr("Localizable", "profile.detail.google.observation", fallback: "Your profile picture and Google account data cannot be managed through the app;\nediting of this data is only allowed on Google platforms.")
     }
     
+    // MARK: Profile Settings
+    
+    enum ProfileSettings {
+        static let title = Localizable.tr("Localizable", "profile.settings.title", fallback: "Profile settings")
+        static let deleteAccount = Localizable.tr("Localizable", "profile.settings.delete.account", fallback: "delete my account")
+        static let editProfile = Localizable.tr("Localizable", "profile.settings.edit", fallback: "Edit profile")
+        static let terms = Localizable.tr("Localizable", "profile.settings.terms", fallback: "Terms and contitions")
+    }
+    
     // MARK: Transaction type
     
     enum TransactionType {

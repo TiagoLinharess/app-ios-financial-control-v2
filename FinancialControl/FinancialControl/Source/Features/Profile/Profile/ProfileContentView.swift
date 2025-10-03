@@ -59,6 +59,7 @@ struct ProfileContentView: View {
                             font: .body(.montserrat, .regular)
                         )
                 }
+                .padding(.small)
             }
             .refreshable(action: reload)
             Spacer()
@@ -85,8 +86,8 @@ struct ProfileContentView: View {
                     )
                     .multilineTextAlignment(.leading)
             }
+            .padding(.small)
         }
-        .padding(.small)
     }
     
     // MARK: Private methods

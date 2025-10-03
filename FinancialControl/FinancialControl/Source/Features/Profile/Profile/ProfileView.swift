@@ -12,8 +12,9 @@ struct ProfileView<ViewModel: ProfileViewModelProtocol>: View {
     
     // MARK: Properties
     
-    @StateObject private var viewModel: ViewModel
+    @EnvironmentObject private var router: Router
     @Environment(\.colorScheme) private var colorScheme
+    @StateObject private var viewModel: ViewModel
     
     // MARK: Init
     
@@ -41,6 +42,17 @@ struct ProfileView<ViewModel: ProfileViewModelProtocol>: View {
             }
         }
         .onAppear(perform: loadProfile)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: handleClickSettings) {
+                    SHIcon(icon: .settingsEng)
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundStyle(Color.onBackground(colorScheme: colorScheme))
+                        .frame(width: .big, height: .big)
+                }
+            }
+        }
     }
     
     // MARK: Properties
@@ -49,5 +61,9 @@ struct ProfileView<ViewModel: ProfileViewModelProtocol>: View {
         Task {
             await viewModel.loadProfile()
         }
+    }
+    
+    private func handleClickSettings() {
+        router.push(.profileSettings)
     }
 }
