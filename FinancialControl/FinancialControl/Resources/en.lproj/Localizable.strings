@@ -53,6 +53,7 @@
 "module.categories" = "Categories";
 "module.tags" = "Tags";
 "module.profile" = "Profile";
+"module.terms" = "Terms and conditions";
 
 // MARK: Login
 
@@ -76,7 +77,10 @@
 "profile.settings.title" = "Profile settings";
 "profile.settings.delete.account" = "delete my account";
 "profile.settings.edit" = "Edit profile";
-"profile.settings.terms" = "Terms and contitions";
+
+// MARK: Terms
+
+"terms.already.agreed" = "You already agreed with this terms on account creation.";
 
 // MARK: Transaction type
 

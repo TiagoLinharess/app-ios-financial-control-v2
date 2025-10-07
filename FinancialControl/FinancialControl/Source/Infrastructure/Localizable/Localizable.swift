@@ -65,6 +65,7 @@ enum Localizable {
         static let categories = Localizable.tr("Localizable", "module.categories", fallback: "Categories")
         static let tags = Localizable.tr("Localizable", "module.tags", fallback: "Tags")
         static let profile = Localizable.tr("Localizable", "module.profile", fallback: "Profile")
+        static let terms = Localizable.tr("Localizable", "module.terms", fallback: "Terms and conditions")
     }
     
     // MARK: Login
@@ -98,7 +99,12 @@ enum Localizable {
         static let title = Localizable.tr("Localizable", "profile.settings.title", fallback: "Profile settings")
         static let deleteAccount = Localizable.tr("Localizable", "profile.settings.delete.account", fallback: "delete my account")
         static let editProfile = Localizable.tr("Localizable", "profile.settings.edit", fallback: "Edit profile")
-        static let terms = Localizable.tr("Localizable", "profile.settings.terms", fallback: "Terms and contitions")
+    }
+    
+    // MARK: Terms
+    
+    enum Terms {
+        static let alreadyAgreed = Localizable.tr("Localizable", "terms.already.agreed", fallback: "You already agreed with this terms on account creation.")
     }
     
     // MARK: Transaction type

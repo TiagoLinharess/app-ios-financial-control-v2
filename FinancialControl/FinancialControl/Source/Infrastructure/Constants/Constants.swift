@@ -28,4 +28,10 @@ enum Constants {
     enum Error {
         static let userCanceledLogin = "The user canceled the sign-in flow."
     }
+    
+    // MARK: Locale
+    
+    enum Locale {
+        static let brazil: String = "pt_BR"
+    }
 }

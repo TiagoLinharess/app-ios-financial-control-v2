@@ -29,7 +29,7 @@ enum ProfileSettingsItemType: String, CaseIterable, Hashable, Identifiable, Menu
     var title: String {
         switch self {
         case .editProfile: Localizable.ProfileSettings.editProfile
-        case .terms: Localizable.ProfileSettings.terms
+        case .terms: Localizable.Modules.terms
         }
     }
     

@@ -68,7 +68,10 @@ final class UpdateProfileFormViewModel: UpdateProfileFormViewModelProtocol {
         defer { isUpdateLoading = false }
         isUpdateLoading = true
         do {
-            guard let currentProfile else { return false } // usar viewState }
+            guard let currentProfile else {
+                viewState = .failure(FCError.generic.message)
+                return false
+            }
             let model = ProfileDataModel(
                 id: currentProfile.id,
                 nickname: nickname,
