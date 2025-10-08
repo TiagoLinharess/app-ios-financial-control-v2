@@ -32,8 +32,7 @@ struct FirstLoginFormView<ViewModel: FirstLoginFormViewModelProtocol>: View {
                 pronoun: $viewModel.pronoun,
                 nickname: $viewModel.nickname,
                 birthdate: $viewModel.birthdate,
-                toast: $viewModel.toast,
-                isLoading: $viewModel.isLoading,
+                isLoading: false,
                 onSubmit: handleSubmit
             )
         }
@@ -43,10 +42,7 @@ struct FirstLoginFormView<ViewModel: FirstLoginFormViewModelProtocol>: View {
     // MARK: Private methods
     
     func handleSubmit() {
-        Task {
-            if let result = await viewModel.submit() {
-                router.push(.firstLoginLoading(step: result))
-            }
-        }
+        let model = viewModel.submit()
+        router.push(.termsAgreement(profileModel: model))
     }
 }

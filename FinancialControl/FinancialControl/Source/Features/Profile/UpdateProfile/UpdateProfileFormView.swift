@@ -33,8 +33,7 @@ struct UpdateProfileFormView<ViewModel: UpdateProfileFormViewModelProtocol>: Vie
                     pronoun: $viewModel.pronoun,
                     nickname: $viewModel.nickname,
                     birthdate: $viewModel.birthdate,
-                    toast: $viewModel.toast,
-                    isLoading: $viewModel.isUpdateLoading,
+                    isLoading: viewModel.isUpdateLoading,
                     onSubmit: handleSubmit
                 )
             case .failure(let message):
@@ -50,6 +49,7 @@ struct UpdateProfileFormView<ViewModel: UpdateProfileFormViewModelProtocol>: Vie
             }
         }
         .onAppear(perform: loadProfile)
+        .toastView(toast: $viewModel.toast)
     }
     
     // MARK: Private methods

@@ -54,7 +54,9 @@ struct FirstLoginLoadingView<ViewModel: FirstLoginLoadingViewModelProtocol>: Vie
     
     private func submit() {
         Task {
-            router.push(.home)
+            if await viewModel.execute() {
+                router.push(.home)
+            }
         }
     }
     

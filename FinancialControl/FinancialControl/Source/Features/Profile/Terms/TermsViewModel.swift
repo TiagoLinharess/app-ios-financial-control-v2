@@ -7,7 +7,6 @@
 
 import Combine
 import Foundation
-import SharpnezDesignSystemSwiftUI
 
 enum TermsViewStatus {
     case loading

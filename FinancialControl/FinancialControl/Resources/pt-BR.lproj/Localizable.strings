@@ -80,6 +80,9 @@
 
 // MARK: Terms
 
+"terms.agreement.title" = "Ao clicar no botão abaixo, você está concordando com os **termos e condições**.";
+"terms.agreement.agree" = "concordo com os termos e condições";
+"terms.agreement.dont.agree" = "não concordo com os termos e condições";
 "terms.already.agreed" = "Você já concordou com os termos e condições no momento da criação da sua conta.";
 
 // MARK: Transaction type

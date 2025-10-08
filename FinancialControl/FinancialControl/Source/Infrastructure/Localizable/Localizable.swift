@@ -104,6 +104,9 @@ enum Localizable {
     // MARK: Terms
     
     enum Terms {
+        static let agreementTitle = Localizable.tr("Localizable", "terms.agreement.title", fallback: "By clicking the button below, you are agreeing to the **terms and conditions**.")
+        static let agreementButtonAgree = Localizable.tr("Localizable", "terms.agreement.agree", fallback: "i agree to the terms and conditions")
+        static let agreementButtonDontAgree = Localizable.tr("Localizable", "terms.agreement.dont.agree", fallback: "i do not agree to the terms and conditions")
         static let alreadyAgreed = Localizable.tr("Localizable", "terms.already.agreed", fallback: "You already agreed with this terms on account creation.")
     }
     

@@ -24,31 +24,33 @@ final class FirstLoginLoadingViewModel: FirstLoginLoadingViewModelProtocol {
     // MARK: Properties
     
     private let worker: FirstLoginLoadingWorkerProtocol
-    private let step: FirstLoginStep
+    private let profileModel: AddProfileDataModel
     
-    @Published var title: String
+    @Published var title: String = Localizable.Profile.finishing
     @Published var viewState: FirstLoginViewState = .loading
     
     // MARK: Init
     
     init(
-        step: FirstLoginStep,
+        profileModel: AddProfileDataModel,
         worker: FirstLoginLoadingWorkerProtocol = FirstLoginLoadingWorker()
     ) {
         self.worker = worker
-        self.step = step
-        self.title = step.loadingMessage
+        self.profileModel = profileModel
     }
     
     // MARK: Public methods
     
     func execute() async -> Bool {
-        if step == .created {
-            return await createBasicData()
+        do {
+            viewState = .loading
+            try await worker.execute(model: profileModel)
+            return true
+        } catch {
+            let message = ((error as? FCError) ?? FCError.generic).message
+            viewState = .failure(message)
+            return false
         }
-        
-        await waitToFinish()
-        return true
     }
     
     func logout() async -> Bool {
@@ -62,23 +64,5 @@ final class FirstLoginLoadingViewModel: FirstLoginLoadingViewModelProtocol {
             viewState = .failure(message)
             return false
         }
-    }
-    
-    // MARK: Private methods
-    
-    private func createBasicData() async -> Bool {
-        do {
-            viewState = .loading
-            try await worker.execute()
-            return true
-        } catch {
-            let message = ((error as? FCError) ?? FCError.generic).message
-            viewState = .failure(message)
-            return false
-        }
-    }
-    
-    private func waitToFinish() async {
-        try? await Task.sleep(nanoseconds: 2_000_000_000)
     }
 }

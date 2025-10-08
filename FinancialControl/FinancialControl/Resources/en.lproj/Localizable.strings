@@ -80,6 +80,9 @@
 
 // MARK: Terms
 
+"terms.agreement.title" = "By clicking the button below, you are agreeing to the **terms and conditions**.";
+"terms.agreement.agree" = "i agree to the terms and conditions";
+"terms.agreement.dont.agree" = "i do not agree to the terms and conditions";
 "terms.already.agreed" = "You already agreed with this terms on account creation.";
 
 // MARK: Transaction type

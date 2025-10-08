@@ -15,9 +15,8 @@ struct ProfileFormView: View {
     @Binding private var pronoun: Pronoun
     @Binding private var nickname: String
     @Binding private var birthdate: Date
-    @Binding private var toast: SHToastViewModel?
-    @Binding private var isLoading: Bool
     
+    private let isLoading: Bool
     private let subtitle: String?
     private let buttonTitle: String
     private let onSubmit: () -> Void
@@ -30,8 +29,7 @@ struct ProfileFormView: View {
         pronoun: Binding<Pronoun>,
         nickname: Binding<String>,
         birthdate: Binding<Date>,
-        toast: Binding<SHToastViewModel?>,
-        isLoading: Binding<Bool>,
+        isLoading: Bool,
         onSubmit: @escaping () -> Void
     ) {
         self.subtitle = subtitle
@@ -39,8 +37,7 @@ struct ProfileFormView: View {
         self._pronoun = pronoun
         self._nickname = nickname
         self._birthdate = birthdate
-        self._toast = toast
-        self._isLoading = isLoading
+        self.isLoading = isLoading
         self.onSubmit = onSubmit
     }
     
@@ -87,6 +84,5 @@ struct ProfileFormView: View {
             .padding(.small)
         }
         .onTapGesture(perform: closeKeyboard)
-        .toastView(toast: $toast)
     }
 }
