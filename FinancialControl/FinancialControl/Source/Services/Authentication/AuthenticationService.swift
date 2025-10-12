@@ -10,14 +10,15 @@ import FirebaseCore
 import GoogleSignIn
 
 protocol AuthenticationServiceProtocol {
-    func login() async throws -> UserModel
+    func login() async throws -> UserDataModel
     func logout() async throws
-    func validateSession() -> UserModel?
+    func validateSession() -> UserDataModel?
+    func reauthenticate() async throws
 }
 
 @MainActor
 final class AuthenticationService: AuthenticationServiceProtocol {
-    func login() async throws -> UserModel {
+    func login() async throws -> UserDataModel {
         do {
             guard let clientID = FirebaseApp.app()?.options.clientID else {
                 fatalError("no firbase clientID found")
@@ -53,11 +54,47 @@ final class AuthenticationService: AuthenticationServiceProtocol {
             
             try await Auth.auth().signIn(with: credential)
             
-            guard let currentUser = UserModel(from: Auth.auth().currentUser) else {
+            guard let currentUser = UserDataModel(from: Auth.auth().currentUser) else {
                 throw FCError.userPermission
             }
             
             return currentUser
+        } catch {
+            if let fcError = error as? FCError {
+                throw fcError
+            }
+            
+            throw FCError(value: error.localizedDescription)
+        }
+    }
+    
+    func reauthenticate() async throws {
+        do {
+            guard let clientID = FirebaseApp.app()?.options.clientID,
+                  let user = Auth.auth().currentUser
+            else {
+                throw FCError.userPermission
+            }
+            
+            let config = GIDConfiguration(clientID: clientID)
+            GIDSignIn.sharedInstance.configuration = config
+            
+            guard let rootViewController = (
+                UIApplication.shared.connectedScenes.first as? UIWindowScene
+            )?.windows.first?.rootViewController else {
+                throw FCError.userPermission
+            }
+            
+            let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+            
+            guard let idToken = result.user.idToken?.tokenString else {
+                throw FCError.userPermission
+            }
+            
+            let accessToken = result.user.accessToken.tokenString
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+            
+            try await user.reauthenticateAsync(with: credential)
         } catch {
             if let fcError = error as? FCError {
                 throw fcError
@@ -76,7 +113,7 @@ final class AuthenticationService: AuthenticationServiceProtocol {
         }
     }
     
-    func validateSession() -> UserModel? {
-        UserModel(from: Auth.auth().currentUser)
+    func validateSession() -> UserDataModel? {
+        UserDataModel(from: Auth.auth().currentUser)
     }
 }

@@ -8,12 +8,13 @@
 import Combine
 
 protocol FCSessionModelProtocol {
-    var user: UserModel? { get }
+    var user: UserDataModel? { get }
     var delegate: RouterDelegate? { get set }
     func remakeSession() async throws
     func validateSession() -> Bool
     func logout() async throws
     func login() async throws
+    func reauthenticate() async throws
 }
 
 @MainActor
@@ -22,7 +23,7 @@ final class FCSessionModel: FCSessionModelProtocol {
     // MARK: Properties
     
     private let service: AuthenticationServiceProtocol
-    private(set) var user: UserModel?
+    private(set) var user: UserDataModel?
     var delegate: (any RouterDelegate)?
     
     // MARK: Init
@@ -50,5 +51,9 @@ final class FCSessionModel: FCSessionModelProtocol {
     
     func login() async throws {
         self.user = try await service.login()
+    }
+    
+    func reauthenticate() async throws {
+        try await service.reauthenticate()
     }
 }

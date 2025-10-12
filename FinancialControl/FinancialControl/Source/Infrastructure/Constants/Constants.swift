@@ -20,12 +20,19 @@ enum Constants {
     // MARK: Images
     
     enum Images {
-        static let logo = "logo"
+        static let logo: String = "logo"
     }
     
     // MARK: Error
     
     enum Error {
-        static let userCanceledLogin = "The user canceled the sign-in flow."
+        static let userCanceledLogin: String = "The user canceled the sign-in flow."
+        static let credentialsDoNotMatch: String = "The supplied credentials do not correspond to the previously signed in user."
+    }
+    
+    // MARK: Locale
+    
+    enum Locale {
+        static let brazil: String = "pt_BR"
     }
 }

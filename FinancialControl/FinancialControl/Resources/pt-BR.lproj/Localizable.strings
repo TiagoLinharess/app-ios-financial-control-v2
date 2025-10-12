@@ -13,6 +13,7 @@
 "error.generic" = "Ocorreu um erro inesperado";
 "error.session.expired" = "Sua sessão expirou. Por favor, logue-se novamente";
 "error.parse.error" = "Ocorreu um erro ao processar os dados. Por favor, tente novamente mais tarde";
+"error.credentials.not.match" = "As credenciais fornecidas não correspondem ao usuário que fez login anteriormente.";
 
 // MARK: Commons
 
@@ -42,6 +43,7 @@
 "commons.he" = "Ele/Dele";
 "commons.she" = "Ela/Dela";
 "commons.they" = "Elu/Delu";
+"commons.in.parentheses" = "(%@)";
 
 // MARK: Modules
 
@@ -51,6 +53,8 @@
 "module.settings" = "Configurações";
 "module.categories" = "Categorias";
 "module.tags" = "Tags";
+"module.profile" = "Perfil";
+"module.terms" = "Termos e condições";
 
 // MARK: Login
 
@@ -64,6 +68,25 @@
 "profile.birthdate" = "Qual a sua data de nascimento?";
 "profile.finishing" = "Estamos Finalizando a sua conta, aguarde alguns segundos.";
 "profile.already.created" = "Parece que a sua conta ja existe! Vamos cuidar de tudo, não se preocupe.";
+"profile.detail.google.account" = "Conta Google:";
+"profile.detail.google.name" = "Nome: %@";
+"profile.detail.google.email" = "E-mail: %@";
+"profile.detail.google.observation" = "Sua foto de perfil e os dados da conta Google não podem ser gerenciadas pelo aplicativo, a edição desses dados é permitida apenas nas plataformas da Google.";
+
+// MARK: Profile Settings
+
+"profile.settings.title" = "Configurações do perfil";
+"profile.settings.delete.account" = "excluir minha conta e dados";
+"profile.settings.edit" = "Editar perfil";
+"profile.settings.delete.title" = "Tem certeza que deseja excluir a sua conta e os seus dados? Ao excluir os dados essa opção é permanente e não poderá ser desfeita.";
+"profile.settings.delete.keep.account" = "manter a conta";
+
+// MARK: Terms
+
+"terms.agreement.title" = "Ao clicar no botão abaixo, você está concordando com os **termos e condições**.";
+"terms.agreement.agree" = "concordo com os termos e condições";
+"terms.agreement.dont.agree" = "não concordo com os termos e condições";
+"terms.already.agreed" = "Você já concordou com os termos e condições no momento da criação da sua conta.";
 
 // MARK: Transaction type
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AddProfileDataModel {
+struct AddProfileDataModel: Equatable, Hashable {
     let nickname: String
     let pronoun: Pronoun
     let birthdate: Date

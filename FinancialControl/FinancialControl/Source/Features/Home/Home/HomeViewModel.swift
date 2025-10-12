@@ -19,6 +19,7 @@ protocol HomeViewModelProtocol: ObservableObject {
     var isLogoutLoading: Bool { get }
     var viewState: HomeViewState { get set }
     var toast: SHToastViewModel? { get set }
+    func loadUserPhoto() -> URL?
     func loadHome() async
     func logout() async
 }
@@ -41,6 +42,10 @@ final class HomeViewModel: HomeViewModelProtocol {
     }
     
     // MARK: Public methods
+    
+    func loadUserPhoto() -> URL? {
+        return worker.loadUserPhoto()
+    }
     
     func loadHome() async {
         viewState = .loading

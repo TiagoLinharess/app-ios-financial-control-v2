@@ -1,5 +1,5 @@
 //
-//  SideMenuRowView.swift
+//  MenuRowView.swift
 //  FinancialControl
 //
 //  Created by Tiago Linhares on 11/07/25.
@@ -8,18 +8,16 @@
 import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
-struct SideMenuRowView: View {
+struct MenuRowView: View {
     
     // MARK: Properties
     
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    @EnvironmentObject private var sideMenuState: SideMenuState
-    @EnvironmentObject private var router: Router
-    private let feature: SideMenuFeature
+    private let feature: MenuRowItem
     
     // MARK: Init
     
-    init(feature: SideMenuFeature) {
+    init(feature: MenuRowItem) {
         self.feature = feature
     }
     
@@ -49,13 +47,5 @@ struct SideMenuRowView: View {
         .background(Color.surface(colorScheme: colorScheme).ignoresSafeArea())
         .clipShape(RoundedRectangle(cornerRadius: .small))
         .padding(.bottom, .extraSmall)
-        .onTapGesture(perform: handleTap)
-    }
-    
-    // MARK: Private methods
-    
-    private func handleTap() {
-        sideMenuState.isExpanded.toggle()
-        router.push(feature.toDestination)
     }
 }

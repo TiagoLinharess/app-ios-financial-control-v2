@@ -14,12 +14,15 @@ enum FCError: Error {
     case userCanceledLogin
     case sessionExpired
     case parseError
+    case credentialsDoNotMatch
     case custom(String)
     
     init(value: String) {
         switch value {
         case Constants.Error.userCanceledLogin:
             self = .userCanceledLogin
+        case Constants.Error.credentialsDoNotMatch:
+            self = .credentialsDoNotMatch
         default:
             self = .generic
         }
@@ -37,6 +40,8 @@ enum FCError: Error {
             Localizable.Error.parseError
         case .sessionExpired:
             Localizable.Error.sessionExpired
+        case .credentialsDoNotMatch:
+            Localizable.Error.credentialsDoNotMatch
         case .custom(let message):
             message
         }

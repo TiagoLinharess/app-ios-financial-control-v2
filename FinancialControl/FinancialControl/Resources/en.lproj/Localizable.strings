@@ -13,6 +13,7 @@
 "error.generic" = "An unexpected error has occurred";
 "error.session.expired" = "Your session has expired. Please log in again";
 "error.parse.error" = "An error occurred while processing the data. Please try again later";
+"error.credentials.not.match" = "The supplied credentials do not correspond to the previously signed in user.";
 
 // MARK: Commons
 
@@ -42,6 +43,7 @@
 "commons.he" = "He/Him";
 "commons.she" = "She/Her";
 "commons.they" = "They/Them";
+"commons.in.parentheses" = "(%@)";
 
 // MARK: Modules
 
@@ -51,6 +53,8 @@
 "module.settings" = "Settings";
 "module.categories" = "Categories";
 "module.tags" = "Tags";
+"module.profile" = "Profile";
+"module.terms" = "Terms and conditions";
 
 // MARK: Login
 
@@ -64,6 +68,25 @@
 "profile.birthdate" = "What is your date of birth?";
 "profile.finishing" = "We are finalizing your account, please wait a few seconds.";
 "profile.already.created" = "It looks like your account already exists! We'll take care of everything, don't worry.";
+"profile.detail.google.account" = "Google Account:";
+"profile.detail.google.name" = "Name: %@";
+"profile.detail.google.email" = "E-mail: %@";
+"profile.detail.google.observation" = "Your profile picture and Google account data cannot be managed through the app;\nediting of this data is only allowed on Google platforms.";
+
+// MARK: Profile Settings
+
+"profile.settings.title" = "Profile settings";
+"profile.settings.delete.account" = "delete my account";
+"profile.settings.edit" = "Edit profile";
+"profile.settings.delete.title" = "Are you sure you want to delete your account and your data? Once deleted, this action is permanent and cannot be undone.";
+"profile.settings.delete.keep.account" = "keep account";
+
+// MARK: Terms
+
+"terms.agreement.title" = "By clicking the button below, you are agreeing to the **terms and conditions**.";
+"terms.agreement.agree" = "i agree to the terms and conditions";
+"terms.agreement.dont.agree" = "i do not agree to the terms and conditions";
+"terms.already.agreed" = "You already agreed with this terms on account creation.";
 
 // MARK: Transaction type
 

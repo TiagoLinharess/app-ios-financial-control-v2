@@ -17,6 +17,7 @@ enum Localizable {
         static let generic = Localizable.tr("Localizable", "error.generic", fallback: "An unexpected error has occurred.")
         static let sessionExpired = Localizable.tr("Localizable", "error.session.expired", fallback: "Your session has expired. Please log in again.")
         static let parseError = Localizable.tr("Localizable", "error.parse.error", fallback: "An error occurred while processing the data. Please try again later.")
+        static let credentialsDoNotMatch = Localizable.tr("Localizable", "error.credentials.not.match", fallback: "The supplied credentials do not correspond to the previously signed in user.")
     }
     
     // MARK: Commons
@@ -50,6 +51,9 @@ enum Localizable {
         static func createdAt(_ dateString: String) -> String {
             Localizable.tr("Localizable", "commons.created.at", dateString, fallback: "Created at: %@")
         }
+        static func inParentheses(_ text: String) -> String {
+            Localizable.tr("Localizable", "commons.in.parentheses", text, fallback: "(%@)")
+        }
     }
     
     // MARK: Modules
@@ -61,6 +65,8 @@ enum Localizable {
         static let settings = Localizable.tr("Localizable", "module.settings", fallback: "Settings")
         static let categories = Localizable.tr("Localizable", "module.categories", fallback: "Categories")
         static let tags = Localizable.tr("Localizable", "module.tags", fallback: "Tags")
+        static let profile = Localizable.tr("Localizable", "module.profile", fallback: "Profile")
+        static let terms = Localizable.tr("Localizable", "module.terms", fallback: "Terms and conditions")
     }
     
     // MARK: Login
@@ -78,6 +84,33 @@ enum Localizable {
         static let birthdate = Localizable.tr("Localizable", "profile.birthdate", fallback: "What is your date of birth?")
         static let finishing = Localizable.tr("Localizable", "profile.finishing", fallback: "We are finalizing your account, please wait a few seconds")
         static let alreadyCreated = Localizable.tr("Localizable", "profile.already.created", fallback: "It looks like your account already exists! We'll take care of everything, don't worry.")
+        static let googleAccount = Localizable.tr("Localizable", "profile.detail.google.account", fallback: "Google Account:")
+        static func googleName(_ name: String) -> String {
+            Localizable.tr("Localizable", "profile.detail.google.name", name, fallback: "Name: %@")
+        }
+        static func googleEmail(_ email: String) -> String {
+            Localizable.tr("Localizable", "profile.detail.google.email", email, fallback: "E-mail: %@")
+        }
+        static let googleObservation = Localizable.tr("Localizable", "profile.detail.google.observation", fallback: "Your profile picture and Google account data cannot be managed through the app;\nediting of this data is only allowed on Google platforms.")
+    }
+    
+    // MARK: Profile Settings
+    
+    enum ProfileSettings {
+        static let title = Localizable.tr("Localizable", "profile.settings.title", fallback: "Profile settings")
+        static let deleteAccount = Localizable.tr("Localizable", "profile.settings.delete.account", fallback: "delete my account")
+        static let editProfile = Localizable.tr("Localizable", "profile.settings.edit", fallback: "Edit profile")
+        static let deleteTitle = Localizable.tr("Localizable", "profile.settings.delete.title", fallback: "Are you sure you want to delete your account and your data? Once deleted, this action is permanent and cannot be undone.")
+        static let keepAccount = Localizable.tr("Localizable", "profile.settings.delete.keep.account", fallback: "keep account")
+    }
+    
+    // MARK: Terms
+    
+    enum Terms {
+        static let agreementTitle = Localizable.tr("Localizable", "terms.agreement.title", fallback: "By clicking the button below, you are agreeing to the **terms and conditions**.")
+        static let agreementButtonAgree = Localizable.tr("Localizable", "terms.agreement.agree", fallback: "i agree to the terms and conditions")
+        static let agreementButtonDontAgree = Localizable.tr("Localizable", "terms.agreement.dont.agree", fallback: "i do not agree to the terms and conditions")
+        static let alreadyAgreed = Localizable.tr("Localizable", "terms.already.agreed", fallback: "You already agreed with this terms on account creation.")
     }
     
     // MARK: Transaction type

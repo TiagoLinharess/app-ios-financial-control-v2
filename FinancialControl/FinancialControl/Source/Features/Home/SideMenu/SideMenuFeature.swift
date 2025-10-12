@@ -9,7 +9,7 @@ import SharpnezDesignSystemSwiftUI
 import SwiftUI
 
 // MARK: Localizable
-enum SideMenuFeature: String, CaseIterable, Hashable, Identifiable {
+enum SideMenuFeature: String, CaseIterable, Hashable, Identifiable, MenuRowItem {
     case categories
     case tags
     

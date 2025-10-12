@@ -26,55 +26,23 @@ struct FirstLoginFormView<ViewModel: FirstLoginFormViewModelProtocol>: View {
     
     var body: some View {
         SHContainerView {
-            VStack(spacing: .medium) {
-                ScrollView(.vertical) {
-                    VStack(alignment: .leading, spacing: .medium) {
-                        Text(Localizable.Profile.title)
-                            .configureWithSH(
-                                color: .onBackground(colorScheme: colorScheme),
-                                font: .body(.montserrat, .semiBold)
-                            )
-                        PronounSelectorView(selectedPronoun: $viewModel.pronoun)
-                        SHTextField(
-                            title: Localizable.Profile.nickname,
-                            color: .onBackground(colorScheme: colorScheme),
-                            font: .montserrat,
-                            text: $viewModel.nickname
-                        )
-                        SHDatePicker(
-                            title: Localizable.Profile.birthdate,
-                            color: .onBackground(colorScheme: colorScheme),
-                            font: .montserrat,
-                            date: $viewModel.birthdate,
-                            range: ...Date()
-                        )
-                    }
-                }
-                .padding(.small)
-                SHButton(
-                    title: Localizable.Commons.continueText,
-                    style: .primary(
-                        .brand(colorScheme: colorScheme),
-                        .onBrand(colorScheme: colorScheme)
-                    ),
-                    font: .montserrat,
-                    isLoading: viewModel.isLoading,
-                    action: handleSubmit
-                )
-                .padding(.small)
-            }
+            ProfileFormView(
+                subtitle: Localizable.Profile.title,
+                buttonTitle: Localizable.Commons.continueText,
+                pronoun: $viewModel.pronoun,
+                nickname: $viewModel.nickname,
+                birthdate: $viewModel.birthdate,
+                isLoading: false,
+                onSubmit: handleSubmit
+            )
         }
-        .toastView(toast: $viewModel.toast)
         .toolbarVisibility(.hidden)
     }
     
     // MARK: Private methods
     
     func handleSubmit() {
-        Task {
-            if let result = await viewModel.submit() {
-                router.push(.firstLoginLoading(step: result))
-            }
-        }
+        let model = viewModel.submit()
+        router.push(.termsAgreement(profileModel: model))
     }
 }

@@ -6,5 +6,5 @@
 //
 
 struct HomeDataModel {
-    let profile: ProfileDataModel?
+    let profile: ProfileDataModel
 }

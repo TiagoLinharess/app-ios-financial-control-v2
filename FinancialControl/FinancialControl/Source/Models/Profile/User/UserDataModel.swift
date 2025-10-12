@@ -1,5 +1,5 @@
 //
-//  UserModel.swift
+//  UserDataModel.swift
 //  FinancialControl
 //
 //  Created by Tiago Linhares on 10/07/25.
@@ -8,7 +8,7 @@
 import FirebaseAuth
 import Foundation
 
-struct UserModel {
+struct UserDataModel {
     let providerID: String
     let uid: String
     let displayName: String
