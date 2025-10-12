@@ -17,6 +17,7 @@ enum Localizable {
         static let generic = Localizable.tr("Localizable", "error.generic", fallback: "An unexpected error has occurred.")
         static let sessionExpired = Localizable.tr("Localizable", "error.session.expired", fallback: "Your session has expired. Please log in again.")
         static let parseError = Localizable.tr("Localizable", "error.parse.error", fallback: "An error occurred while processing the data. Please try again later.")
+        static let credentialsDoNotMatch = Localizable.tr("Localizable", "error.credentials.not.match", fallback: "The supplied credentials do not correspond to the previously signed in user.")
     }
     
     // MARK: Commons
@@ -99,6 +100,8 @@ enum Localizable {
         static let title = Localizable.tr("Localizable", "profile.settings.title", fallback: "Profile settings")
         static let deleteAccount = Localizable.tr("Localizable", "profile.settings.delete.account", fallback: "delete my account")
         static let editProfile = Localizable.tr("Localizable", "profile.settings.edit", fallback: "Edit profile")
+        static let deleteTitle = Localizable.tr("Localizable", "profile.settings.delete.title", fallback: "Are you sure you want to delete your account and your data? Once deleted, this action is permanent and cannot be undone.")
+        static let keepAccount = Localizable.tr("Localizable", "profile.settings.delete.keep.account", fallback: "keep account")
     }
     
     // MARK: Terms

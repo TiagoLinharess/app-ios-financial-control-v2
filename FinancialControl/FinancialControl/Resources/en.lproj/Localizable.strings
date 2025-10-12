@@ -13,6 +13,7 @@
 "error.generic" = "An unexpected error has occurred";
 "error.session.expired" = "Your session has expired. Please log in again";
 "error.parse.error" = "An error occurred while processing the data. Please try again later";
+"error.credentials.not.match" = "The supplied credentials do not correspond to the previously signed in user.";
 
 // MARK: Commons
 
@@ -77,6 +78,8 @@
 "profile.settings.title" = "Profile settings";
 "profile.settings.delete.account" = "delete my account";
 "profile.settings.edit" = "Edit profile";
+"profile.settings.delete.title" = "Are you sure you want to delete your account and your data? Once deleted, this action is permanent and cannot be undone.";
+"profile.settings.delete.keep.account" = "keep account";
 
 // MARK: Terms
 

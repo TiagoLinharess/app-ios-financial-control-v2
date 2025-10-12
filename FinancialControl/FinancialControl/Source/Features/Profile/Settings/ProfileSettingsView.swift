@@ -52,12 +52,19 @@ struct ProfileSettingsView<ViewModel: ProfileSettingsViewModelProtocol>: View {
                         style: .secondary(.error(colorScheme: colorScheme)),
                         font: .montserrat,
                         isLoading: viewModel.isSignOutLoading,
-                        action: handleDelete
+                        action: handleShowDeleteModal
                     )
                 }
                 .padding(.small)
             }
             .toastView(toast: $viewModel.toast)
+            .modal(isPresented: $viewModel.isDeleteModalPresented) {
+                ProfileSettingsDeleteView(
+                    action: handleDelete,
+                    isPresented: $viewModel.isDeleteModalPresented,
+                    isDeleteLoading: viewModel.isDeleteLoading
+                )
+            }
         }
     }
     
@@ -74,7 +81,15 @@ struct ProfileSettingsView<ViewModel: ProfileSettingsViewModelProtocol>: View {
         }
     }
     
+    private func handleShowDeleteModal() {
+        viewModel.isDeleteModalPresented = true
+    }
+    
     private func handleDelete() {
-        
+        Task {
+            if await viewModel.handleDelete() {
+                router.popToRoot()
+            }
+        }
     }
 }

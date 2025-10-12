@@ -13,6 +13,7 @@ protocol AuthenticationServiceProtocol {
     func login() async throws -> UserDataModel
     func logout() async throws
     func validateSession() -> UserDataModel?
+    func reauthenticate() async throws
 }
 
 @MainActor
@@ -58,6 +59,42 @@ final class AuthenticationService: AuthenticationServiceProtocol {
             }
             
             return currentUser
+        } catch {
+            if let fcError = error as? FCError {
+                throw fcError
+            }
+            
+            throw FCError(value: error.localizedDescription)
+        }
+    }
+    
+    func reauthenticate() async throws {
+        do {
+            guard let clientID = FirebaseApp.app()?.options.clientID,
+                  let user = Auth.auth().currentUser
+            else {
+                throw FCError.userPermission
+            }
+            
+            let config = GIDConfiguration(clientID: clientID)
+            GIDSignIn.sharedInstance.configuration = config
+            
+            guard let rootViewController = (
+                UIApplication.shared.connectedScenes.first as? UIWindowScene
+            )?.windows.first?.rootViewController else {
+                throw FCError.userPermission
+            }
+            
+            let result = try await GIDSignIn.sharedInstance.signIn(withPresenting: rootViewController)
+            
+            guard let idToken = result.user.idToken?.tokenString else {
+                throw FCError.userPermission
+            }
+            
+            let accessToken = result.user.accessToken.tokenString
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+            
+            try await user.reauthenticateAsync(with: credential)
         } catch {
             if let fcError = error as? FCError {
                 throw fcError

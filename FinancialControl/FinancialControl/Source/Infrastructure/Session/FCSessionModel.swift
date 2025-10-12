@@ -14,6 +14,7 @@ protocol FCSessionModelProtocol {
     func validateSession() -> Bool
     func logout() async throws
     func login() async throws
+    func reauthenticate() async throws
 }
 
 @MainActor
@@ -50,5 +51,9 @@ final class FCSessionModel: FCSessionModelProtocol {
     
     func login() async throws {
         self.user = try await service.login()
+    }
+    
+    func reauthenticate() async throws {
+        try await service.reauthenticate()
     }
 }

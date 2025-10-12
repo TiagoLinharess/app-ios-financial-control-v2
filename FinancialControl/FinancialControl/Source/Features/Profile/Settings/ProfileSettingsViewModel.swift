@@ -10,8 +10,11 @@ import Combine
 
 protocol ProfileSettingsViewModelProtocol: ObservableObject {
     var isSignOutLoading: Bool { get set }
+    var isDeleteLoading: Bool { get set }
+    var isDeleteModalPresented: Bool { get set }
     var toast: SHToastViewModel? { get set }
     func handleLogout() async
+    func handleDelete() async -> Bool
 }
 
 final class ProfileSettingsViewModel: ProfileSettingsViewModelProtocol {
@@ -20,6 +23,8 @@ final class ProfileSettingsViewModel: ProfileSettingsViewModelProtocol {
     
     private let worker: ProfileSettingsWorkerProtocol
     @Published var isSignOutLoading: Bool = false
+    @Published var isDeleteLoading: Bool = false
+    @Published var isDeleteModalPresented: Bool = false
     @Published var toast: SHToastViewModel?
     
     // MARK: Init
@@ -38,6 +43,22 @@ final class ProfileSettingsViewModel: ProfileSettingsViewModelProtocol {
         } catch {
             let message = ((error as? FCError) ?? FCError.generic).message
             toast = SHToastViewModel(style: .error, font: .montserrat, message: message)
+        }
+    }
+    
+    func handleDelete() async -> Bool {
+        defer {
+            isDeleteLoading = false
+            isDeleteModalPresented = false
+        }
+        isDeleteLoading = true
+        do {
+            try await worker.delete()
+            return true
+        } catch {
+            let message = ((error as? FCError) ?? FCError.generic).message
+            toast = SHToastViewModel(style: .error, font: .montserrat, message: message)
+            return false
         }
     }
 }

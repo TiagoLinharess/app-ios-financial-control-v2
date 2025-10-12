@@ -13,6 +13,7 @@
 "error.generic" = "Ocorreu um erro inesperado";
 "error.session.expired" = "Sua sessão expirou. Por favor, logue-se novamente";
 "error.parse.error" = "Ocorreu um erro ao processar os dados. Por favor, tente novamente mais tarde";
+"error.credentials.not.match" = "As credenciais fornecidas não correspondem ao usuário que fez login anteriormente.";
 
 // MARK: Commons
 
@@ -77,6 +78,8 @@
 "profile.settings.title" = "Configurações do perfil";
 "profile.settings.delete.account" = "excluir minha conta e dados";
 "profile.settings.edit" = "Editar perfil";
+"profile.settings.delete.title" = "Tem certeza que deseja excluir a sua conta e os seus dados? Ao excluir os dados essa opção é permanente e não poderá ser desfeita.";
+"profile.settings.delete.keep.account" = "manter a conta";
 
 // MARK: Terms
 

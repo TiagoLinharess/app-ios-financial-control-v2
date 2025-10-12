@@ -6,6 +6,9 @@
 //
 
 import FirebaseAuth
+import FirebaseCore
+import GoogleSignIn
+import UIKit
 
 protocol DeleteProfileServiceProtocol {
     func execute(id: String) async throws
@@ -22,7 +25,7 @@ final class DeleteProfileService: FCService, DeleteProfileServiceProtocol {
     
     init(
         repository: ProfileRepositoryProtocol = ProfileRepository(),
-        auth: Auth = .auth(),
+        auth: Auth = .auth()
     ) {
         self.repository = repository
         self.auth = auth
@@ -32,8 +35,12 @@ final class DeleteProfileService: FCService, DeleteProfileServiceProtocol {
     
     func execute(id: String) async throws {
         do {
-            guard auth.currentUser?.uid != nil else { throw FCError.sessionExpired }
+            guard let user = auth.currentUser, user.uid.isEmpty == false else {
+                throw FCError.sessionExpired
+            }
+            
             try await repository.delete(id: id)
+            try await user.deleteAsync()
         } catch {
             throw await super.handleError(error: error)
         }
