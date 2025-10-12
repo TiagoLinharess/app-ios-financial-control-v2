@@ -50,17 +50,17 @@ final class UpdateProfileFormViewModel: UpdateProfileFormViewModelProtocol {
     // MARK: Public methods
     
     func read() async {
-        viewState = .loading
+        withAnimation { viewState = .loading }
         do {
             let model = try await worker.read()
             nickname = model.nickname
             pronoun = model.pronoun
             birthdate = model.birthdate
             currentProfile = model
-            viewState = .success
+            withAnimation { viewState = .success }
         } catch {
             let message = ((error as? FCError) ?? FCError.generic).message
-            viewState = .failure(message)
+            withAnimation { viewState = .failure(message) }
         }
     }
     
@@ -69,7 +69,7 @@ final class UpdateProfileFormViewModel: UpdateProfileFormViewModelProtocol {
         isUpdateLoading = true
         do {
             guard let currentProfile else {
-                viewState = .failure(FCError.generic.message)
+                withAnimation { viewState = .failure(FCError.generic.message) }
                 return false
             }
             let model = ProfileDataModel(

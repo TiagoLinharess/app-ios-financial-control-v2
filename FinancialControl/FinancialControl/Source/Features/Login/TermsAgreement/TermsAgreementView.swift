@@ -29,7 +29,7 @@ struct TermsAgreementView<ViewModel: TermsAgreementViewModelProtocol>: View {
         SHContainerView(title: Localizable.Modules.terms) {
             switch viewModel.viewStatus {
             case .loading:
-                SHLoading(style: .large, color: .onBackground(colorScheme: colorScheme))
+                SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
             case .success(let url):
                 TermsAgreementContentView(url: url, action: contentViewAction)
             case .error(let message):

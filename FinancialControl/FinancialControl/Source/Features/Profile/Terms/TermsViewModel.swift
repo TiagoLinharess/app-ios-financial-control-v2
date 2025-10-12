@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import SwiftUI
 
 enum TermsViewStatus {
     case loading
@@ -36,13 +37,13 @@ final class TermsViewModel: TermsViewModelProtocol {
     // MARK: Public methods
     
     func readTerms() async {
-        viewStatus = .loading
+        withAnimation { viewStatus = .loading }
         do {
             let termsModel = try await worker.readTerms()
-            viewStatus = .success(termsModel.terms)
+            withAnimation { viewStatus = .success(termsModel.terms) }
         } catch {
             let message = ((error as? FCError) ?? FCError.generic).message
-            viewStatus = .error(message)
+            withAnimation { viewStatus = .error(message) }
         }
     }
 }

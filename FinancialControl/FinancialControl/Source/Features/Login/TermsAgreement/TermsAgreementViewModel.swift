@@ -8,6 +8,7 @@
 import Combine
 import Foundation
 import SharpnezDesignSystemSwiftUI
+import SwiftUI
 
 enum TermsAgreementViewStatus {
     case loading
@@ -45,13 +46,13 @@ final class TermsAgreementViewModel: TermsAgreementViewModelProtocol {
     // MARK: Public methods
     
     func readTerms() async {
-        viewStatus = .loading
+        withAnimation { viewStatus = .loading }
         do {
             let termsModel = try await worker.readTerms()
-            viewStatus = .success(termsModel.terms)
+            withAnimation { viewStatus = .success(termsModel.terms) }
         } catch {
             let message = ((error as? FCError) ?? FCError.generic).message
-            viewStatus = .error(message)
+            withAnimation { viewStatus = .error(message) }
         }
     }
     

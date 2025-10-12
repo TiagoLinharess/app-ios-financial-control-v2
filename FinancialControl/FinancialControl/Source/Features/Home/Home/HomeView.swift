@@ -82,7 +82,7 @@ struct HomeView<ViewModel: HomeViewModelProtocol>: View {
                 HomeContentView(model: model)
             case .loading:
                 SHLoading(
-                    style: .large,
+                    style: .medium,
                     color: .onBackground(colorScheme: colorScheme)
                 )
             case .failure(let message):

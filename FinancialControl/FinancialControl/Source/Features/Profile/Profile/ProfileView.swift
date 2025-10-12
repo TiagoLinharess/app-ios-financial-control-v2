@@ -28,7 +28,7 @@ struct ProfileView<ViewModel: ProfileViewModelProtocol>: View {
         SHContainerView(title: Localizable.Modules.profile) {
             switch viewModel.viewState {
             case .loading:
-                SHLoading(style: .large, color: .onBackground(colorScheme: colorScheme))
+                SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
             case .success(let model):
                 ProfileContentView(model: model, reloadAction: loadProfile)
             case .failure(let message):
