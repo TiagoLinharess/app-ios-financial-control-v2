@@ -28,7 +28,7 @@ struct TermsView<ViewModel: TermsViewModelProtocol>: View {
         SHContainerView(title: Localizable.Modules.terms) {
             switch viewModel.viewStatus {
             case .loading:
-                SHLoading(style: .large, color: .onBackground(colorScheme: colorScheme))
+                SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
             case .success(let url):
                 TermsContentView(url: url)
             case .error(let message):

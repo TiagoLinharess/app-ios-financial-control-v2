@@ -48,13 +48,13 @@ final class HomeViewModel: HomeViewModelProtocol {
     }
     
     func loadHome() async {
-        viewState = .loading
+        withAnimation { viewState = .loading }
         do {
             let model = try await worker.loadHome()
-            viewState = .success(model)
+            withAnimation { viewState = .success(model) }
         } catch {
             let message = ((error as? FCError) ?? FCError.generic).message
-            viewState = .failure(message)
+            withAnimation { viewState = .failure(message) }
         }
     }
     

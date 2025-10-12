@@ -7,6 +7,7 @@
 
 import Combine
 import SharpnezDesignSystemSwiftUI
+import SwiftUI
 
 enum CategoryListViewState {
     case loading
@@ -39,13 +40,13 @@ final class CategoryListViewModel: CategoryListViewModelProtocol {
     // MARK: Public methods
     
     func read() async {
-        viewState = .loading
+        withAnimation { viewState = .loading }
         do {
             let categories = try await worker.read()
             self.categories = categories
-            viewState = categories.isEmpty ? .empty : .success
+            withAnimation { viewState = categories.isEmpty ? .empty : .success }
         } catch {
-            viewState = .failure((error as? FCError) ?? FCError.generic)
+            withAnimation { viewState = .failure((error as? FCError) ?? FCError.generic) }
         }
     }
 }

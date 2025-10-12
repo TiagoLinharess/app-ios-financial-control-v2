@@ -6,6 +6,7 @@
 //
 
 import Combine
+import SwiftUI
 
 enum ProfileViewState {
     case loading
@@ -35,13 +36,13 @@ final class ProfileViewModel: ProfileViewModelProtocol {
     // MARK: Public methods
     
     func loadProfile() async {
-        viewState = .loading
+        withAnimation { viewState = .loading }
         do {
             let model = try await worker.loadProfile()
-            viewState = .success(model)
+            withAnimation { viewState = .success(model) }
         } catch {
             let message = ((error as? FCError) ?? FCError.generic).message
-            viewState = .failure(message)
+            withAnimation { viewState = .failure(message) }
         }
     }
 }

@@ -39,13 +39,13 @@ final class TagListViewModel: TagListViewModelProtocol {
     // MARK: Public methods
     
     func read() async {
-        viewState = .loading
+        withAnimation { viewState = .loading }
         do {
             let tags = try await worker.read()
             self.tags = tags
-            viewState = tags.isEmpty ? .empty : .success
+            withAnimation { viewState = tags.isEmpty ? .empty : .success }
         } catch {
-            viewState = .failure((error as? FCError) ?? FCError.generic)
+            withAnimation { viewState = .failure((error as? FCError) ?? FCError.generic) }
         }
     }
 }

@@ -45,7 +45,7 @@ struct UpdateProfileFormView<ViewModel: UpdateProfileFormViewModelProtocol>: Vie
                     primaryAction: loadProfile
                 )
             case .loading:
-                SHLoading(style: .large, color: .onBackground(colorScheme: colorScheme))
+                SHLoading(style: .medium, color: .onBackground(colorScheme: colorScheme))
             }
         }
         .onAppear(perform: loadProfile)
